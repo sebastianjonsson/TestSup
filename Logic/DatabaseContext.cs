@@ -14,11 +14,13 @@ namespace Logic
         { }
         public static DatabaseContext Create()
         {
+            var hej = false;
             return new DatabaseContext();
             //hey
             /// Hej Tiadfgsdfgsdfgm
+            /// //asdfasdfasdf
         }
-        public DbSet<BookingSystem> Bus { get; set; }
+        public DbSet<BookingSystem> Buss { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
