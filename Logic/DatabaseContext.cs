@@ -14,7 +14,7 @@ namespace Logic
         { }
         public static DatabaseContext Create()
         {
-            var hej = false;
+            var hej = "hej";
             return new DatabaseContext();
             //hey
             /// Hej Tiadfgsdfgsdfgm
