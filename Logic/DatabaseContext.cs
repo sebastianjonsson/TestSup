@@ -20,7 +20,7 @@ namespace Logic
             /// Hej Tiadfgsdfgsdfgm
             /// //asdfasdfasdf
         }
-        public DbSet<BookingSystem> Buss { get; set; }
+        public DbSet<BookingSystem> Bus { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
