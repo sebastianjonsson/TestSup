@@ -14,11 +14,7 @@ namespace Logic
         { }
         public static DatabaseContext Create()
         {
-            var hej = "hej";
             return new DatabaseContext();
-            //hey
-            /// Hej Tiadfgsdfgsdfgm
-            /// //asdfasdfasdf
         }
         public DbSet<BookingSystem> Bus { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
