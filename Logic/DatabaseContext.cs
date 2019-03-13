@@ -15,6 +15,7 @@ namespace Logic
         public static DatabaseContext Create()
         {
             return new DatabaseContext();
+            //hey
         }
         public DbSet<BookingSystem> Bus { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
