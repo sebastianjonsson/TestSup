@@ -19,5 +19,6 @@ namespace Logic
         public decimal LatitudeLongitude { get; set; }
         public string City { get; set; }
         public string Category { get; set; }
+        //public virtual ICollection<Bookings> Books { get; set; }
     }
 }
