@@ -20,6 +20,14 @@ namespace Logic
 
             busi.ForEach(x => context.Bus.Add(x));
             context.SaveChanges();
+
+            var book = new List<Bookings>()
+            {
+                new Bookings { UserName = "Sebbe"}
+            };
+
+            book.ForEach(x => context.Book.Add(x));
+            context.SaveChanges();
         }
     }
 }

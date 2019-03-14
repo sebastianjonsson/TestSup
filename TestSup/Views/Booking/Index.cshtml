@@ -1,0 +1,17 @@
+﻿@model TestSup.Controllers.BookingIndexViewModel
+
+@foreach (var item in Model.Bookings)
+{
+
+<div>
+    @*<h4><span><b>@Html.ActionLink(item.Id, "Details", "BookingSystems", new { item.Id }, null)</b> </span></h4>*@
+    <p>
+        @Html.DisplayFor(modelItem => item.UserName)
+        <hr>
+    </p>
+    <p>
+        @Html.DisplayFor(modelItem => item.BookingSys)
+        <hr>
+    </p>
+</div>
+}
