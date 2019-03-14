@@ -10,9 +10,9 @@ using Logic;
 
 namespace TestSup.Controllers
 {
-    public class BookingSystemsController : Controller
+    public class BookingSystemsController : BaseController
     {
-        private DatabaseContext db = new DatabaseContext();
+        
 
         // GET: BookingSystems
         public ActionResult Index()
