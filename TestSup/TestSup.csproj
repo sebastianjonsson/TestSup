@@ -207,7 +207,6 @@
     <Content Include="Views\BookingSystems\Details.cshtml" />
     <Content Include="Views\BookingSystems\Edit.cshtml" />
     <Content Include="Views\BookingSystems\Index.cshtml" />
-    <Content Include="Views\BookingSystems\ListBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

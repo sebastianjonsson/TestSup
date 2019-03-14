@@ -19,12 +19,7 @@ namespace TestSup.Controllers
         {
             return View(db.Bus.ToList());
         }
-
-        public ActionResult ListBookings()
-        {
-            return View(db.Bus.ToList());
-        }
-
+        
         // GET: BookingSystems/Details/5
         public ActionResult Details(int? id)
         {
