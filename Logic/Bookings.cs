@@ -15,8 +15,8 @@ namespace Logic
         public string Email { get; set; }
         public int UserMobile { get; set; }
         public string Subject { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime Endtime { get; set; }
+        //public DateTime StartTime { get; set; }
+        //public DateTime Endtime { get; set; }
         public Bookings BookingSys { get; set; }
     }
 }
