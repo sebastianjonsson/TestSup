@@ -25,6 +25,23 @@ namespace TestSup.Controllers
             return View();
 
         }
+        public ActionResult Book(Bookings book, int id)
+        {
+            try
+            {
+                var sys = db.Bus.Single(x => x.Id == id);
+                book.UserName = "Timtimtim";
+                book.BookingSys = sys;
+                db.Book.Add(book);
+                db.SaveChanges();
+            }
+
+            catch
+            {
+
+            }
+            return RedirectToAction("Index", "Booking", new { Id = id });
+        }
 
     }
     public class BookingIndexViewModel

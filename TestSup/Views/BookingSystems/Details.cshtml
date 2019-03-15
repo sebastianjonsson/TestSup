@@ -84,6 +84,9 @@
 
     </dl>
 </div>
+
+
+<input type="button" value="Boka" class="btn btn-info" onclick="location.href='@Url.Action("Book", "Booking", new { id = Model.Id })';" />
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
