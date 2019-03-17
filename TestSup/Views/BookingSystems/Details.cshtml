@@ -85,9 +85,20 @@
     </dl>
 </div>
 
-
-<input type="button" value="Boka" class="btn btn-info" onclick="location.href='@Url.Action("Book", "Booking", new { id = Model.Id })';" />
+<textarea name="UserName" id="UserName"></textarea>
+<textarea name="Email" id="Email"></textarea>
+<a class="btn btn-success" onclick="Book()">Boka här:</a>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<script>
+function Book() {
+    var userName= $("#UserName").val();
+    var email = $("#Email").val();
+    var url = '@Url.Action("Book", "Booking", new { id = Model.Id })';
+    window.location.href = url + '?userName=' + userName + '&email=' + email;
+    }
+</script>
+

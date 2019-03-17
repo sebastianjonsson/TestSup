@@ -1,17 +1,27 @@
 ﻿@model TestSup.Controllers.BookingIndexViewModel
 
-@foreach (var item in Model.Bookings)
-{
 
-<div>
-    @*<h4><span><b>@Html.ActionLink(item.Id, "Details", "BookingSystems", new { item.Id }, null)</b> </span></h4>*@
-    <p>
-        @Html.DisplayFor(modelItem => item.UserName)
-        <hr>
-    </p>
-    <p>
-        @Html.DisplayFor(modelItem => item.BookingSys)
-        <hr>
-    </p>
-</div>
-}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Användarnamn")
+        </th>
+        <th>
+            @Html.DisplayName("Email")
+        </th>
+        
+    </tr>
+    @foreach (var item in Model.Bookings)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>   
+        </tr>
+    }
+</table>
+
+
