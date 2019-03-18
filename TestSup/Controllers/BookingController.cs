@@ -25,7 +25,7 @@ namespace TestSup.Controllers
             return View();
 
         }
-        public ActionResult Book(Bookings book, int id, string userName, string email, int userMobile, string subject)
+        public ActionResult Book(Bookings book, int id, string userName, string email, int userMobile, string subject, DateTime startTime, DateTime endTime)
         {
             try
             {
@@ -34,6 +34,8 @@ namespace TestSup.Controllers
                 book.Email = email;
                 book.Subject = subject;
                 book.UserMobile = userMobile;
+                book.StartTime = startTime;
+                book.Endtime = endTime;
                 book.BookingSys = sys;
                 db.Book.Add(book);
                 db.SaveChanges();
