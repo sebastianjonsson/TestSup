@@ -85,7 +85,7 @@
     </dl>
 </div>
 <input type="datetime-local" name="StartTime" id="StartTime" />
-<input type="datetime-local" name="EndTime" id="EndTime" />
+<input type="datetime-local" name="EndTime" id="EndTime"/>
 <textarea name="UserName" id="UserName">Användarnamn</textarea>
 <textarea name="Email" id="Email">Email</textarea>
 <textarea name="UserMobile" id="UserMobile">Telefonnummer</textarea>
@@ -97,14 +97,23 @@
 </p>
 
 <script>
-function Book() {
-    var userName= $("#UserName").val();
-    var email = $("#Email").val();
-    var userMobile = $("#UserMobile").val();
-    var subject = $("#Subject").val();
-    var startTime = $("#StartTime").val();
-    var endTime = $("#EndTime").val();
-    var url = '@Url.Action("Book", "Booking", new { id = Model.Id })';
-    window.location.href = url + '?userName=' + userName + '&email=' + email + '&userMobile=' + userMobile + '&subject=' + subject + '&startTime=' + startTime + '&endTime=' + endTime;
+    function Book() {
+        var txt = $('#UserName').val().length;
+        var txt1 = $('#Email').val().length;
+        var txt2 = $('#UserMobile').val().length;
+        var txt3 = $('#Subject').val().length;
+        if (txt > 0 && txt1 > 0 && txt2 > 0 && txt3 > 0) {
+            var userName = $("#UserName").val();
+            var email = $("#Email").val();
+            var userMobile = $("#UserMobile").val();
+            var subject = $("#Subject").val();
+            var startTime = $("#StartTime").val();
+            var endTime = $("#EndTime").val();
+            var url = '@Url.Action("Book", "Booking", new { id = Model.Id })';
+            window.location.href = url + '?userName=' + userName + '&email=' + email + '&userMobile=' + userMobile + '&subject=' + subject + '&startTime=' + startTime + '&endTime=' + endTime;
+        }
+        else {
+            window.alert("Fel");
+        }
     }
 </script>

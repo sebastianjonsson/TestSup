@@ -42,7 +42,7 @@ namespace TestSup.Controllers
             }
             catch
             {
-
+                return View();
             }
             return RedirectToAction("Index", "Booking", new { Id = id });
         }
