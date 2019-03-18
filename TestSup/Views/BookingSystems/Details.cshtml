@@ -85,9 +85,11 @@
     </dl>
 </div>
 
-<textarea name="UserName" id="UserName"></textarea>
-<textarea name="Email" id="Email"></textarea>
-<a class="btn btn-success" onclick="Book()">Boka här:</a>
+<textarea name="UserName" id="UserName">Användarnamn</textarea>
+<textarea name="Email" id="Email">Email</textarea>
+<textarea name="UserMobile" id="UserMobile">Telefonnummer</textarea>
+<textarea name="Subject" id="Subject">Vad vill du boka?</textarea>
+<a class="btn btn-success" onclick="Book()">Boka</a>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
@@ -97,8 +99,10 @@
 function Book() {
     var userName= $("#UserName").val();
     var email = $("#Email").val();
+    var userMobile = $("#UserMobile").val();
+    var subject = $("#Subject").val();
     var url = '@Url.Action("Book", "Booking", new { id = Model.Id })';
-    window.location.href = url + '?userName=' + userName + '&email=' + email;
+    window.location.href = url + '?userName=' + userName + '&email=' + email + '&userMobile=' + userMobile + '&subject=' + subject;
     }
 </script>
 
