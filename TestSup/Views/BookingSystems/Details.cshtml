@@ -4,116 +4,136 @@
     ViewBag.Title = "Details";
 }
 
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<link href="/Content/Site.css" rel="stylesheet" />
+
 <h2>Details</h2>
 
-<div>
-    <h4>BookingSystem</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SystemName)
-        </dt>
+<div id="kolumn1">
+    <div class="container">
+        <h4>BookingSystem</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.SystemName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SystemName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.SystemName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SystemDescription)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.SystemDescription)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SystemDescription)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.SystemDescription)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Website)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Website)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Website)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LatitudeLongitude)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.LatitudeLongitude)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LatitudeLongitude)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LatitudeLongitude)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Category)
+            </dd>
 
-    </dl>
+        </dl>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<input type="datetime-local" name="StartTime" id="StartTime" />
-<input type="datetime-local" name="EndTime" id="EndTime"/>
-<textarea name="UserName" id="UserName">Användarnamn</textarea>
-<textarea name="Email" id="Email">Email</textarea>
-<textarea name="UserMobile" id="UserMobile">Telefonnummer</textarea>
-<textarea name="Subject" id="Subject">Vad vill du boka?</textarea>
-<a class="btn btn-success" onclick="Book()">Boka</a>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div id="kolumn2">
+    <div class="container">
+        <h2>Gör din bokning här:</h2>
+        <div class="panel panel-info">
+            <div class="panel-heading">Starttid: </div>
+            <div class="panel-body"><input type="datetime-local" name="StartTime" id="StartTime"></div>
+            <div class="panel-heading">Sluttid: </div>
+            <div class="panel-body"><input type="datetime-local" name="EndTime" id="EndTime"></div>
+            <div class="panel-heading">Namn: </div>
+            <div class="panel-body"><input type="text" name="UserName" id="UserName"></div>
+            <div class="panel-heading">Email: </div>
+            <div class="panel-body"><input type="text" name="Email" id="Email"></div>
+            <div class="panel-heading">Telefon: </div>
+            <div class="panel-body"><input type="text" name="UserMobile" id="UserMobile"></div>
+            <div class="panel-heading">Detaljer: </div>
+            <div class="panel-body"><input type="text" name="Subject" id="Subject"></div>
+            <a class="btn btn-success" onclick="Book()">Boka</a>
+        </div>
+    </div>
+</div>
 
 <script>
-    function Book() {
-        var txt = $('#UserName').val().length;
-        var txt1 = $('#Email').val().length;
-        var txt2 = $('#UserMobile').val().length;
-        var txt3 = $('#Subject').val().length;
-        if (txt > 0 && txt1 > 0 && txt2 > 0 && txt3 > 0) {
-            var userName = $("#UserName").val();
-            var email = $("#Email").val();
-            var userMobile = $("#UserMobile").val();
-            var subject = $("#Subject").val();
-            var startTime = $("#StartTime").val();
-            var endTime = $("#EndTime").val();
-            var url = '@Url.Action("Book", "Booking", new { id = Model.Id })';
-            window.location.href = url + '?userName=' + userName + '&email=' + email + '&userMobile=' + userMobile + '&subject=' + subject + '&startTime=' + startTime + '&endTime=' + endTime;
+        function Book() {
+            var txt = $('#UserName').val().length;
+            var txt1 = $('#Email').val().length;
+            var txt2 = $('#UserMobile').val().length;
+            var txt3 = $('#Subject').val().length;
+            if (txt > 0 && txt1 > 0 && txt2 > 0 && txt3 > 0) {
+                var userName = $("#UserName").val();
+                var email = $("#Email").val();
+                var userMobile = $("#UserMobile").val();
+                var subject = $("#Subject").val();
+                var startTime = $("#StartTime").val();
+                var endTime = $("#EndTime").val();
+                var url = '@Url.Action("Book", "Booking", new { id = Model.Id })';
+                window.location.href = url + '?userName=' + userName + '&email=' + email + '&userMobile=' + userMobile + '&subject=' + subject + '&startTime=' + startTime + '&endTime=' + endTime;
+            }
+            else {
+                window.alert("Fel");
+            }
         }
-        else {
-            window.alert("Fel");
-        }
-    }
 </script>

@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#kolumn1 {
+    float: left;
+    width: 400px;
+}
+
+#kolumn2 {
+    float: left;
+    width: 400px;
+}

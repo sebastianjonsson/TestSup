@@ -27,12 +27,13 @@ namespace TestSup.Controllers
             return View();
 
         }
-        public ActionResult Book(Bookings book, int id, string userName, string email, int userMobile, string subject, DateTime startTime, DateTime endTime)
+      
+        public ActionResult Book(Bookings book, int id, string UserName, string email, int userMobile, string subject, DateTime startTime, DateTime endTime)
         {
             try
             {
                 var sys = db.Bus.Single(x => x.Id == id);
-                book.UserName = userName;
+                book.UserName = UserName;
                 book.Email = email;
                 book.Subject = subject;
                 book.UserMobile = userMobile;
