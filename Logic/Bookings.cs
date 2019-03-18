@@ -17,6 +17,8 @@ namespace Logic
         public string Subject { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime Endtime { get; set; }
-        public BookingSystem BookingSys { get; set; }
+
+        public int BookingSystemID { get; set; }
+        public virtual BookingSystem BookingSys { get; set; }
     }
 }

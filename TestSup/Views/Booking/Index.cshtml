@@ -4,23 +4,53 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayName("Användarnamn")
+            @Html.DisplayName("Verksamhet")
+        </th>
+        <th>
+            @Html.DisplayName("Namn")
         </th>
         <th>
             @Html.DisplayName("Email")
         </th>
-        
+        <th>
+            @Html.DisplayName("Telefon")
+        </th>
+        <th>
+            @Html.DisplayName("Detaljer")
+        </th>
+        <th>
+            @Html.DisplayName("Starttid")
+        </th>
+        <th>
+            @Html.DisplayName("Sluttid")
+        </th>
+
     </tr>
     @foreach (var item in Model.Bookings)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>   
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingSys.SystemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserMobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Endtime)
+        </td>
+    </tr>
     }
 </table>
 
