@@ -4,25 +4,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayName("Verksamhet")
+            @Html.DisplayNameFor(model => model.BookingSystemID)
         </th>
         <th>
-            @Html.DisplayName("Namn")
+            @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
-            @Html.DisplayName("Email")
+            @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayName("Telefon")
+            @Html.DisplayNameFor(model => model.UserMobile)
         </th>
         <th>
-            @Html.DisplayName("Detaljer")
+            @Html.DisplayNameFor(model => model.Subject)
         </th>
         <th>
-            @Html.DisplayName("Starttid")
+            @Html.DisplayNameFor(model => model.StartTime)
         </th>
         <th>
-            @Html.DisplayName("Sluttid")
+            @Html.DisplayNameFor(model => model.Endtime)
         </th>
 
     </tr>
@@ -49,6 +49,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Endtime)
+        </td>
+        <td>
+            @Html.ActionLink("Ta bort bokning", "Delete", new { id = item.Id })
         </td>
     </tr>
     }

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using TestSup.Models;
 using Logic;
+using System.Net;
+using System.ComponentModel.DataAnnotations;
 
 namespace TestSup.Controllers
 {
@@ -47,10 +49,58 @@ namespace TestSup.Controllers
             return RedirectToAction("Index", "Booking", new { Id = id });
         }
 
+        // GET: BookingSystems/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Bookings booking = db.Book.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+
+        // POST: BookingSystems/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Bookings booking = db.Book.Find(id);
+            db.Book.Remove(booking);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
     }
     public class BookingIndexViewModel
     {
         public string Id { get; set; }
+        [Display(Name = "Namn")]
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        [Display(Name = "Telefonnummer")]
+        public int UserMobile { get; set; }
+        [Display(Name = "Detaljer")]
+        public string Subject { get; set; }
+        [Display(Name = "Starttid")]
+        public DateTime StartTime { get; set; }
+        [Display(Name = "Sluttid")]
+        public DateTime Endtime { get; set; }
+        [Display(Name = "Verksamhet")]
+        public int BookingSystemID { get; set; }
         public ICollection<Bookings> Bookings { get; set; }
         public BookingIndexViewModel()
         {
