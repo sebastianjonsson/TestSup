@@ -28,7 +28,25 @@ namespace TestSup.Controllers
             return View();
 
         }
-      
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,USerName,Email,UserMobile,Subject,StartTime,EndTime,BookingSys")] Bookings book, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var sys = db.Bus.Single(x => x.Id == id);
+                book.BookingSys = sys;
+                db.Book.Add(book);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(book);
+        }
         public ActionResult Book(Bookings book, int id, string UserName, string email, int userMobile, string subject, DateTime startTime, DateTime endTime)
         {
             try

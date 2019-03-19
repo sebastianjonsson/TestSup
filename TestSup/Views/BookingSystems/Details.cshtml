@@ -88,6 +88,7 @@
             </dd>
 
         </dl>
+        <button onclick="location.href= '@Url.Action("Create", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
             @Html.ActionLink("Back to List", "Index")
@@ -97,43 +98,7 @@
 
 <div id="kolumn2">
     <div class="container">
-        <h2>Gör din bokning här:</h2>
-        <div class="panel panel-info">
-            <div class="panel-heading">Starttid: </div>
-            <div class="panel-body"><input type="datetime-local" name="StartTime" id="StartTime"></div>
-            <div class="panel-heading">Sluttid: </div>
-            <div class="panel-body"><input type="datetime-local" name="EndTime" id="EndTime"></div>
-            <div class="panel-heading">Namn: </div>
-            <div class="panel-body"><input type="text" name="UserName" id="UserName"></div>
-            <div class="panel-heading">Email: </div>
-            <div class="panel-body"><input type="text" name="Email" id="Email"></div>
-            <div class="panel-heading">Telefon: </div>
-            <div class="panel-body"><input type="text" name="UserMobile" id="UserMobile"></div>
-            <div class="panel-heading">Detaljer: </div>
-            <div class="panel-body"><input type="text" name="Subject" id="Subject"></div>
-            <a class="btn btn-success" onclick="Book()">Boka</a>
-        </div>
+        
     </div>
 </div>
 
-<script>
-        function Book() {
-            //var txt = $('#UserName').val().length;
-            //var txt1 = $('#Email').val().length;
-            //var txt2 = $('#UserMobile').val().length;
-            //var txt3 = $('#Subject').val().length;
-            //if (txt > 0 && txt1 > 0 && txt2 > 0 && txt3 > 0) {
-                var userName = $("#UserName").val();
-                var email = $("#Email").val();
-                var userMobile = $("#UserMobile").val();
-                var subject = $("#Subject").val();
-                var startTime = $("#StartTime").val();
-                var endTime = $("#EndTime").val();
-                var url = '@Url.Action("Book", "Booking", new { id = Model.Id })';
-                window.location.href = url + '?userName=' + userName + '&email=' + email + '&userMobile=' + userMobile + '&subject=' + subject + '&startTime=' + startTime + '&endTime=' + endTime;
-            }
-        //    else {
-        //        window.alert("Fel");
-        //    }
-        //}
-</script>
