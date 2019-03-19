@@ -45,7 +45,7 @@ namespace TestSup.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction("Details", "BookingSystems", new { Id = id });
             }
             return RedirectToAction("Index", "Booking", new { Id = id });
         }

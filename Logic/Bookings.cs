@@ -12,6 +12,7 @@ namespace Logic
     {
         public int Id { get; set; }
         [Display(Name = "Namn")]
+        [Required]
         public string UserName { get; set; }
         public string Email { get; set; }
         [Display(Name = "Telefonnummer")]
