@@ -34,6 +34,17 @@
 
 <div id="kolumn2">
     <div class="container">
+        <div class="row">
+            <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
+            <br />
+            @using (Html.BeginForm("Picture", "BookingSystems", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" class="btn btn-info" name="upload" accept=".png,.jpg,.jpeg,.gif,.bmp" />
+                    <br />
+                    <input type="submit" class="btn btn-info" value="Ladda upp" />
+                }
+        </div>
+        <br />
         <button onclick="location.href= '@Url.Action("Create", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
     </div>
 </div>

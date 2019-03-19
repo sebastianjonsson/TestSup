@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -33,6 +34,46 @@ namespace TestSup.Controllers
                 return HttpNotFound();
             }
             return View(bookingSystem);
+        }
+        public ActionResult Image(int id)
+        {
+            try
+            {
+                var image = db.Bus.Single(x => x.Id == id);
+                return File(image.Picture, image.Content);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        public ActionResult Picture(int Id, HttpPostedFileBase upload)
+        {
+            try
+            {
+                var sys = db.Bus.Single(x => x.Id == Id);
+
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    sys.File = upload.FileName;
+
+                    sys.Content = upload.ContentType;
+
+                    using (var reader = new BinaryReader(upload.InputStream))
+                    {
+                        sys.Picture = reader.ReadBytes(upload.ContentLength);
+                    }
+                    db.Entry(sys).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                RedirectToAction("Index");
+            }
+            return View();
         }
 
         // GET: BookingSystems/Create
