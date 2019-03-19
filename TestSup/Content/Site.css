@@ -32,3 +32,8 @@ textarea {
     float: left;
     width: 400px;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
