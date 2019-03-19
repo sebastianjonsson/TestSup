@@ -7,6 +7,7 @@ using TestSup.Models;
 using Logic;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 
 namespace TestSup.Controllers
 {
@@ -48,6 +49,35 @@ namespace TestSup.Controllers
                 return RedirectToAction("Details", "BookingSystems", new { Id = id });
             }
             return RedirectToAction("Index", "Booking", new { Id = id });
+        }
+
+        // GET: BookingSystems/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Bookings booking = db.Book.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+
+        // POST: BookingSystems/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id, UserName, Email, UserMobile, Subject, StartTime, Endtime")] Bookings booking)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(booking).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(booking);
         }
 
         // GET: BookingSystems/Delete/5

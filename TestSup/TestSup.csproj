@@ -221,6 +221,7 @@
     <Content Include="Views\BookingSystems\Index.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\Delete.cshtml" />
+    <Content Include="Views\Booking\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

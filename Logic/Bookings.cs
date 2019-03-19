@@ -24,7 +24,7 @@ namespace Logic
         [Display(Name = "Sluttid")]
         public DateTime Endtime { get; set; }
         
-        public int BookingSystemID { get; set; }
+        //public int BookingSystemID { get; set; }
         public virtual BookingSystem BookingSys { get; set; }
     }
 }

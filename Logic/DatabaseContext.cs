@@ -21,6 +21,11 @@ namespace Logic
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<Bookings>()
+            .HasOptional<BookingSystem>(s => s.BookingSys)
+            .WithMany()
+            .WillCascadeOnDelete(false);
         }
     }
 }

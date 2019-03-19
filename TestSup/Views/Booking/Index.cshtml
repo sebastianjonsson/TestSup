@@ -51,6 +51,7 @@
             @Html.DisplayFor(modelItem => item.Endtime)
         </td>
         <td>
+            @Html.ActionLink("Ändra bokning", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Ta bort bokning", "Delete", new { id = item.Id })
         </td>
     </tr>
