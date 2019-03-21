@@ -25,7 +25,8 @@ namespace Logic
             modelBuilder.Entity<Bookings>()
             .HasOptional<BookingSystem>(s => s.BookingSys)
             .WithMany()
-            .WillCascadeOnDelete(false);
+            .WillCascadeOnDelete(true);
+            
         }
     }
 }
