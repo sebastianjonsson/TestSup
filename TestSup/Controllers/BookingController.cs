@@ -47,28 +47,7 @@ namespace TestSup.Controllers
 
             return View(book);
         }
-        public ActionResult Book(Bookings book, int id, string UserName, string email, int userMobile, string subject, DateTime startTime, DateTime endTime)
-        {
-            try
-            {
-                var sys = db.Bus.Single(x => x.Id == id);
-                book.UserName = UserName;
-                book.Email = email;
-                book.Subject = subject;
-                book.UserMobile = userMobile;
-                book.StartTime = startTime;
-                book.Endtime = endTime;
-                book.BookingSys = sys;
-                db.Book.Add(book);
-                db.SaveChanges();
-            }
-            catch
-            {
-                return RedirectToAction("Details", "BookingSystems", new { Id = id });
-            }
-            return RedirectToAction("Index", "Booking", new { Id = id });
-        }
-
+        
         // GET: BookingSystems/Edit/5
         public ActionResult Edit(int? id)
         {
