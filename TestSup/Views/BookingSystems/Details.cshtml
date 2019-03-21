@@ -8,11 +8,13 @@
 <meta charset="utf-8" />
 <link href="/Content/Site.css" rel="stylesheet" />
 
-<h2>Info om verksamheten</h2>
-
+<h2>@Html.DisplayFor(model => model.SystemName)</h2>
+<hr />
 <div id="kolumn1">
     <div class="container">
-        <h4>Verksamhet</h4>
+        <div>
+            <button onclick="location.href= '@Url.Action("Create", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
+        </div>
         <hr />
         <div class="panel panel-info">
             <div class="panel-heading">@Html.DisplayNameFor(model => model.SystemName): @Html.DisplayFor(model => model.SystemName) </div>
@@ -26,8 +28,7 @@
             <div class="panel-heading">@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(m => m.Category) </div>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Tillbaka till verksamheter", "Index")
         </p>
     </div>
 </div>
@@ -44,8 +45,6 @@
                     <input type="submit" class="btn btn-info" value="Ladda upp" />
                 }
         </div>
-        <br />
-        <button onclick="location.href= '@Url.Action("Create", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
     </div>
 </div>
 

@@ -4,7 +4,7 @@
     ViewBag.Title = "Boka";
 }
 
-<h2>Tryck på en verksamhet för att boka.</h2>
+<h2>Tryck på en verksamhet för att boka</h2>
 
 <table class="table">
     <tr>
@@ -38,8 +38,8 @@
             @Html.DisplayFor(modelItem => item.Category)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Ändra verksamhet", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Ta bort verksamhet", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
