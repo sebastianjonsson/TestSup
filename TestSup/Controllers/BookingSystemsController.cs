@@ -95,6 +95,8 @@ namespace TestSup.Controllers
                 db.SaveChanges();
 
                 var sys = db.Bus.Single(x => x.Id == bookingSystem.Id);
+                if (upload != null && upload.ContentLength > 0)
+                {
                     sys.File = upload.FileName;
 
                     sys.Content = upload.ContentType;
@@ -104,6 +106,7 @@ namespace TestSup.Controllers
                         sys.Picture = reader.ReadBytes(upload.ContentLength);
                     }
                     db.Entry(sys).State = EntityState.Modified;
+                }
                     db.SaveChanges();
 
                 return RedirectToAction("Index");
