@@ -87,12 +87,28 @@ namespace TestSup.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,LatitudeLongitude,City,Category")] BookingSystem bookingSystem)
+        public ActionResult Create([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,LatitudeLongitude,City,Category")] BookingSystem bookingSystem, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 db.Bus.Add(bookingSystem);
                 db.SaveChanges();
+
+                var sys = db.Bus.Single(x => x.Id == bookingSystem.Id);
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    sys.File = upload.FileName;
+
+                    sys.Content = upload.ContentType;
+
+                    using (var reader = new BinaryReader(upload.InputStream))
+                    {
+                        sys.Picture = reader.ReadBytes(upload.ContentLength);
+                    }
+                    db.Entry(sys).State = EntityState.Modified;
+                }
+                    db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
