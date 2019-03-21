@@ -29,9 +29,7 @@ namespace Logic
         [Display(Name = "Kategori")]
         public string Category { get; set; }
         public byte[] Picture { get; set; }
-
         public string File { get; set; }
-
         public string Content { get; set; }
 
         public virtual ICollection<Bookings> Books { get; set; }
