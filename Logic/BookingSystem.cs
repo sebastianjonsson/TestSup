@@ -28,6 +28,7 @@ namespace Logic
         public string City { get; set; }
         [Display(Name = "Kategori")]
         public string Category { get; set; }
+        [Display(Name = "Verksamhetslogga")]
         public byte[] Picture { get; set; }
         public string File { get; set; }
         public string Content { get; set; }
