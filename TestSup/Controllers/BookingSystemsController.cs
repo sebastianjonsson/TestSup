@@ -43,6 +43,11 @@ namespace TestSup.Controllers
             }
             return View();
         }
+        public ActionResult Sort()
+        {
+            var sortSystem = db.Bus.OrderBy(x => x.SystemName).ToList();
+            return View("Index", sortSystem);
+        }
 
         // GET: BookingSystems/Details/5
         public ActionResult Details(int? id)
