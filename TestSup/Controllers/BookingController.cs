@@ -28,7 +28,7 @@ namespace TestSup.Controllers
                                      select m;
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    bookings = bookings.Where(s => s.UserName.Contains(searchString));
+                    bookings = bookings.Where(s => s.BookingSys.SystemName.Contains(searchString) || s.UserName.Contains(searchString));
                 }
                 return View("Index", bookings.ToList());
             }
