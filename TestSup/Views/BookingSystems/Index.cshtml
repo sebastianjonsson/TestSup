@@ -6,14 +6,13 @@
 
 <h2>Tryck på en verksamhet för att boka</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Search", "BookingSystems"))
 {
     <p>
         @Html.TextBox("SearchString") <input type="submit" class="btn btn-primary" value="Sök efter verksamhetsnamn" />
     </p>
 }
 
-<button onclick="location.href= '@Url.Action("Sort", "BookingSystems")'" class="btn btn-info"> Sortera efter namn </button>
 
 <table class="table">
     <tr>
@@ -21,16 +20,16 @@
             @Html.DisplayNameFor(model => model.Picture)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SystemName)
+            @Html.ActionLink("Verksamhet", "SortByName")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.ActionLink("Stad", "SortByCity")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category)
+            @Html.ActionLink("Kategori", "SortByCategory")
         </th>
         <th></th>
     </tr>

@@ -23,7 +23,7 @@ namespace TestSup.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string searchString)
+        public ActionResult Search(string searchString)
         {
             try
             {
@@ -43,9 +43,19 @@ namespace TestSup.Controllers
             }
             return View();
         }
-        public ActionResult Sort()
+        public ActionResult SortByName()
         {
             var sortSystem = db.Bus.OrderBy(x => x.SystemName).ToList();
+            return View("Index", sortSystem);
+        }
+        public ActionResult SortByCity()
+        {
+            var sortSystem = db.Bus.OrderBy(x => x.City).ToList();
+            return View("Index", sortSystem);
+        }
+        public ActionResult SortByCategory()
+        {
+            var sortSystem = db.Bus.OrderBy(x => x.Category).ToList();
             return View("Index", sortSystem);
         }
 
