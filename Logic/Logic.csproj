@@ -59,6 +59,7 @@
     <Compile Include="Bookings.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="BookingSystem.cs" />
+    <Compile Include="DatabaseInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
