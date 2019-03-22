@@ -16,17 +16,27 @@ namespace TestSup.Controllers
         // GET: Posts
         public ActionResult Index()
         {
+            var bookings = db.Book.ToList();
+            return View(bookings);
+        }
+        [HttpPost]
+        public ActionResult Index(string searchString)
+        {
             try
             {
-                var booking = db.Book.ToList();
-                return View(new BookingIndexViewModel { Bookings = booking });
+                var bookings = from m in db.Book
+                                     select m;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    bookings = bookings.Where(s => s.UserName.Contains(searchString));
+                }
+                return View("Index", bookings.ToList());
             }
             catch
             {
                 RedirectToAction("Index", "Home");
             }
             return View();
-
         }
         public ActionResult Create()
         {
@@ -112,27 +122,5 @@ namespace TestSup.Controllers
             base.Dispose(disposing);
         }
 
-    }
-    public class BookingIndexViewModel
-    {
-        public string Id { get; set; }
-        [Display(Name = "Namn")]
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        [Display(Name = "Telefonnummer")]
-        public int UserMobile { get; set; }
-        [Display(Name = "Detaljer")]
-        public string Subject { get; set; }
-        [Display(Name = "Starttid")]
-        public DateTime StartTime { get; set; }
-        [Display(Name = "Sluttid")]
-        public DateTime Endtime { get; set; }
-        [Display(Name = "Verksamhet")]
-        public int BookingSystemID { get; set; }
-        public ICollection<Bookings> Bookings { get; set; }
-        public BookingIndexViewModel()
-        {
-
-        }
     }
 }

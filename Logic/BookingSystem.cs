@@ -10,6 +10,7 @@ namespace Logic
 {
     public class BookingSystem
     {
+        [Display(Name = "Verksamhet")]
         public int Id { get; set; }
         [Display(Name = "Verksamhet")]
         public string SystemName { get; set; }

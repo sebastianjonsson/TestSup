@@ -1,11 +1,18 @@
-﻿@model TestSup.Controllers.BookingIndexViewModel
+﻿@model IEnumerable<Logic.Bookings>
 
 <h2>Alla bokningar</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("SearchString") <input type="submit" class="btn btn-primary" value="Sök efter bokning" />
+    </p>
+}
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BookingSystemID)
+            @Html.DisplayNameFor(model => model.BookingSys.SystemName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UserName)
@@ -27,36 +34,34 @@
         </th>
 
     </tr>
-    @foreach (var item in Model.Bookings)
+    @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingSys.SystemName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserMobile)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Endtime)
-        </td>
-        <td>
-            @Html.ActionLink("Ändra bokning", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Ta bort bokning", "Delete", new { id = item.Id })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingSys.SystemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserMobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endtime)
+            </td>
+            <td>
+                @Html.ActionLink("Ändra bokning", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Ta bort bokning", "Delete", new { id = item.Id })
+            </td>
+        </tr>
     }
 </table>
-
-
