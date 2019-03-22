@@ -6,6 +6,13 @@
 
 <h2>Tryck på en verksamhet för att boka</h2>
 
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("SearchString") <input type="submit" class="btn btn-primary" value="Sök efter verksamhetsnamn" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -26,28 +33,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img height="48" width="48" src="@Url.Action("Image", new { id = item.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
-        </td>
-        <td>
-            @Html.ActionLink(item.SystemName, "Details", new { id = item.Id })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
-            @Html.ActionLink("Ändra verksamhet", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Ta bort verksamhet", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img height="48" width="48" src="@Url.Action("Image", new { id = item.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
+            </td>
+            <td>
+                @Html.ActionLink(item.SystemName, "Details", new { id = item.Id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.ActionLink("Ändra verksamhet", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Ta bort verksamhet", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

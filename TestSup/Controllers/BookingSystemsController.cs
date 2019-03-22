@@ -18,9 +18,32 @@ namespace TestSup.Controllers
         // GET: BookingSystems
         public ActionResult Index()
         {
-            return View(db.Bus.ToList());
+            var bookingSystems = db.Bus.ToList();
+            return View(bookingSystems);
         }
-        
+
+        [HttpPost]
+        public ActionResult Index(string searchString)
+        {
+            try
+            {
+                var bookingSystems = from m in db.Bus
+                            select m;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    bookingSystems = bookingSystems.Where(s => s.SystemName.Contains(searchString));
+                }
+
+                return View("Index", bookingSystems);
+            }
+            catch
+            {
+                RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
         // GET: BookingSystems/Details/5
         public ActionResult Details(int? id)
         {
