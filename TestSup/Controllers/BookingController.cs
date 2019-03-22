@@ -20,7 +20,7 @@ namespace TestSup.Controllers
             return View(bookings);
         }
         [HttpPost]
-        public ActionResult Index(string searchString)
+        public ActionResult Search(string searchString)
         {
             try
             {
@@ -38,6 +38,18 @@ namespace TestSup.Controllers
             }
             return View();
         }
+        public ActionResult SortBySystemName()
+        {
+            var sort = db.Book.OrderBy(x => x.BookingSys.SystemName).ToList();
+            return View("Index", sort);
+        }
+        public ActionResult SortByName()
+        {
+            var sort = db.Book.OrderBy(x => x.UserName).ToList();
+            return View("Index", sort);
+        }
+
+
         public ActionResult Create()
         {
             return View();

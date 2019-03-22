@@ -2,20 +2,20 @@
 
 <h2>Alla bokningar</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Search", "Booking"))
 {
     <p>
-        @Html.TextBox("SearchString") <input type="submit" class="btn btn-primary" value="Sök efter bokning" />
+        @Html.TextBox("SearchString") <input type="submit" class="btn btn-primary" value="Sök efter verksamhet eller namn" />
     </p>
 }
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BookingSys.SystemName)
+            @Html.ActionLink("Verksamhet", "SortBySystemName")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.ActionLink("Namn", "SortByName")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
