@@ -14,6 +14,7 @@ namespace Logic
         {
 
             IList<BookingSystem> bookingSys = new List<BookingSystem>();
+            IList<Bookings> booking = new List<Bookings>();
 
             bookingSys.Add(new BookingSystem()
             {
@@ -86,6 +87,54 @@ namespace Logic
                 LatitudeLongitude = 97,
                 City = "Stockholm",
                 Category = "Frisör",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Bengts allfix",
+                SystemDescription = "Jag är en man som fixar allt mellan himmel och jord.",
+                Email = "bengtsfix@hej.se",
+                PhoneNumber = 0701989898,
+                Website = "bengansfix.se",
+                Address = "fixvägen 1",
+                LatitudeLongitude = 65,
+                City = "Örebro",
+                Category = "Verkstad",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Mias blomsterhörna",
+                SystemDescription = "Blommor och bin.",
+                Email = "miashörna@hej.se",
+                PhoneNumber = 0701323232,
+                Website = "miashorna.se",
+                Address = "blomstervägen 1",
+                LatitudeLongitude = 41,
+                City = "Västerås",
+                Category = "Blomsterhandel",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Charlies växtnäring",
+                SystemDescription = "Växter och blomjord",
+                Email = "challesvaxt@hej.se",
+                PhoneNumber = 0701717171,
+                Website = "challesvaxt.se",
+                Address = "växtvägen 1",
+                LatitudeLongitude = 71,
+                City = "Västerås",
+                Category = "Blomsterhandel",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Rosornas paradis",
+                SystemDescription = "Rosor i överflöd.",
+                Email = "rosor@hej.se",
+                PhoneNumber = 0701464646,
+                Website = "rosor.se",
+                Address = "rosvägen 1",
+                LatitudeLongitude = 86,
+                City = "Örebro",
+                Category = "Blomsterhandel",
             });
             foreach (BookingSystem booksys in bookingSys)
                 context.Bus.Add(booksys);
