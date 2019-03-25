@@ -29,6 +29,7 @@ namespace TestSup.Controllers
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     bookings = bookings.Where(s => s.BookingSys.SystemName.Contains(searchString) || s.UserName.Contains(searchString));
+                    //HEJSAN
                 }
                 return View("Index", bookings.ToList());
             }
