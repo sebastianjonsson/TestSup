@@ -125,7 +125,7 @@ namespace TestSup.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,Latitude, Longitude,City,Category")] BookingSystem bookingSystem, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,City,Category")] BookingSystem bookingSystem, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -173,24 +173,24 @@ namespace TestSup.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,Latitude, Longitude,City,Category")] BookingSystem bookingSystem, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,City,Category")] BookingSystem bookingSystem, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(bookingSystem).State = EntityState.Modified;
                 var sys = db.Bus.Single(x => x.Id == bookingSystem.Id);
-                if (upload != null && upload.ContentLength > 0)
-                {
-                    sys.File = upload.FileName;
+                //if (upload != null && upload.ContentLength > 0)
+                //{
+                //    sys.File = upload.FileName;
 
-                    sys.Content = upload.ContentType;
+                //    sys.Content = upload.ContentType;
 
-                    using (var reader = new BinaryReader(upload.InputStream))
-                    {
-                        sys.Picture = reader.ReadBytes(upload.ContentLength);
-                    }
-                    db.Entry(sys).State = EntityState.Modified;
-                }
+                //    using (var reader = new BinaryReader(upload.InputStream))
+                //    {
+                //        sys.Picture = reader.ReadBytes(upload.ContentLength);
+                //    }
+                //    db.Entry(sys).State = EntityState.Modified;
+                //}
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
