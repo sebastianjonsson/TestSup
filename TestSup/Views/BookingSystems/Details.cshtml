@@ -42,21 +42,49 @@
         </div>
     </div>
 </div>
+@*<script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            var uluru = { lat: @Html.DisplayFor(m => m.Latitude), lng: @Html.DisplayFor(m => m.Longitude) };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 15, center: uluru });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({ position: uluru, map: map });
+        }
+    </script>
+    <body onload="initialize()">
+        <div id="map" style="width: 320px; height: 480px;"></div>
+    </body>*@
 <script>
-    // Initialize and add the map
-    function initMap() {
-        // The location of Uluru
-        var uluru = { lat: @Html.DisplayFor(m => m.Latitude), lng: @Html.DisplayFor(m => m.Longitude) };
-        // The map, centered at Uluru
-        var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 15, center: uluru });
-        // The marker, positioned at Uluru
-        var marker = new google.maps.Marker({ position: uluru, map: map });
+    var geocoder;
+    var map;
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var mapOptions = {
+            zoom: 12,
+            center: latlng
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        var address = '@Model.Address' + ' ' + '@Model.City';
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
     }
 </script>
 <body onload="initialize()">
     <div id="map" style="width: 320px; height: 480px;"></div>
-    
 </body>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"

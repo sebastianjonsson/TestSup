@@ -23,7 +23,7 @@ namespace Logic
                 Email = "cykelverkstad@hej.se",
                 PhoneNumber = 0701567598,
                 Website = "cykelverkstad.se",
-                Address = "cykelvägen 1",
+                Address = "Drottningsgatan 20",
                 Latitude = "45",
                 Longitude = "45",
                 City = "Örebro",
@@ -36,10 +36,10 @@ namespace Logic
                 Email = "pellesfrissa@hej.se",
                 PhoneNumber = 0701554765,
                 Website = "pellesfrissa.se",
-                Address = "frisörvägen 1",
+                Address = "Drottningsgatan 20",
                 Latitude = "45",
                 Longitude = "45",
-                City = "Örebro",
+                City = "Stockholm",
                 Category = "Frisör",
             });
             bookingSys.Add(new BookingSystem()
