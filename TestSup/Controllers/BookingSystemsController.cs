@@ -173,7 +173,7 @@ namespace TestSup.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,Latitude,City,Category")] BookingSystem bookingSystem, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,Latitude,Longitude,City,Category")] BookingSystem bookingSystem, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
