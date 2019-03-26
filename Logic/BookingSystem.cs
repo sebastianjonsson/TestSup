@@ -24,7 +24,8 @@ namespace Logic
         public string Website { get; set; }
         [Display(Name = "Adress")]
         public string Address { get; set; }
-        public decimal LatitudeLongitude { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
         [Display(Name = "Stad")]
         public string City { get; set; }
         [Display(Name = "Kategori")]

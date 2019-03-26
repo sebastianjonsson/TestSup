@@ -23,7 +23,8 @@
             <div class="panel-heading">@Html.DisplayNameFor(model => model.PhoneNumber): @Html.DisplayFor(m => m.PhoneNumber)</div>
             <div class="panel-heading">@Html.DisplayNameFor(model => model.Website): @Html.DisplayFor(m => m.Website) </div>
             <div class="panel-heading">@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(m => m.Address) </div>
-            <div class="panel-heading">@Html.DisplayNameFor(model => model.LatitudeLongitude): @Html.DisplayFor(m => m.LatitudeLongitude) </div>
+            <div class="panel-heading">@Html.DisplayNameFor(model => model.Latitude): @Html.DisplayFor(m => m.Latitude) </div>
+            <div class="panel-heading">@Html.DisplayNameFor(model => model.Longitude): @Html.DisplayFor(m => m.Longitude) </div>
             <div class="panel-heading">@Html.DisplayNameFor(model => model.City): @Html.DisplayFor(m => m.City) </div>
             <div class="panel-heading">@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(m => m.Category) </div>
         </div>
@@ -41,4 +42,23 @@
         </div>
     </div>
 </div>
+<script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        var uluru = { lat: @Html.DisplayFor(m => m.Latitude), lng: @Html.DisplayFor(m => m.Longitude) };
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 15, center: uluru });
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({ position: uluru, map: map });
+    }
+</script>
+<body onload="initialize()">
+    <div id="map" style="width: 320px; height: 480px;"></div>
+    
+</body>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUAKSrl00mK3Gw2MvpHzHjjGDkTsPviPo&callback=initMap"
+        async defer></script>
 

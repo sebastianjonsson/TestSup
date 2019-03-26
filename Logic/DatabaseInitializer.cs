@@ -24,7 +24,8 @@ namespace Logic
                 PhoneNumber = 0701567598,
                 Website = "cykelverkstad.se",
                 Address = "cykelvägen 1",
-                LatitudeLongitude = 45,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Örebro",
                 Category = "Verkstad",
             });
@@ -36,7 +37,8 @@ namespace Logic
                 PhoneNumber = 0701554765,
                 Website = "pellesfrissa.se",
                 Address = "frisörvägen 1",
-                LatitudeLongitude = 87,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Örebro",
                 Category = "Frisör",
             });
@@ -48,7 +50,8 @@ namespace Logic
                 PhoneNumber = 0701328514,
                 Website = "hassesskradderi.se",
                 Address = "skräddarvägen 1",
-                LatitudeLongitude = 96,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Örebro",
                 Category = "Skrädderi",
             });
@@ -60,7 +63,8 @@ namespace Logic
                 PhoneNumber = 0701547218,
                 Website = "kallesbilar.se",
                 Address = "bilvägen 1",
-                LatitudeLongitude = 12,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Stockholm",
                 Category = "Verkstad",
             });
@@ -72,7 +76,8 @@ namespace Logic
                 PhoneNumber = 0701957863,
                 Website = "dackbyte.se",
                 Address = "däckvägen 1",
-                LatitudeLongitude = 26,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Stockholm",
                 Category = "Verkstad",
             });
@@ -84,7 +89,8 @@ namespace Logic
                 PhoneNumber = 0701525254,
                 Website = "lisasfrissa.se",
                 Address = "frisörvägen 45",
-                LatitudeLongitude = 97,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Stockholm",
                 Category = "Frisör",
             });
@@ -96,7 +102,8 @@ namespace Logic
                 PhoneNumber = 0701989898,
                 Website = "bengansfix.se",
                 Address = "fixvägen 1",
-                LatitudeLongitude = 65,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Örebro",
                 Category = "Verkstad",
             });
@@ -108,7 +115,8 @@ namespace Logic
                 PhoneNumber = 0701323232,
                 Website = "miashorna.se",
                 Address = "blomstervägen 1",
-                LatitudeLongitude = 41,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Västerås",
                 Category = "Blomsterhandel",
             });
@@ -120,7 +128,8 @@ namespace Logic
                 PhoneNumber = 0701717171,
                 Website = "challesvaxt.se",
                 Address = "växtvägen 1",
-                LatitudeLongitude = 71,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Västerås",
                 Category = "Blomsterhandel",
             });
@@ -132,7 +141,8 @@ namespace Logic
                 PhoneNumber = 0701464646,
                 Website = "rosor.se",
                 Address = "rosvägen 1",
-                LatitudeLongitude = 86,
+                Latitude = "45",
+                Longitude = "45",
                 City = "Örebro",
                 Category = "Blomsterhandel",
             });
