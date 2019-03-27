@@ -1,4 +1,4 @@
-﻿@model Logic.BookingSystem
+﻿@model TestSup.Models.BookingSystemsViewModel
 
 @{
     ViewBag.Title = "Skapa verksamhet";
@@ -72,7 +72,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.Category, new SelectList(Enum.GetValues(typeof(Category))), "Välj Kategori", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
         </div>
     </div>
