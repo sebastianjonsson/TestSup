@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Logic;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
-namespace Logic
+namespace TestSup.Models
 {
-    public class BookingSystem
+    public class BookingSystemsViewModel
     {
         [Display(Name = "Verksamhet")]
         public int Id { get; set; }
@@ -30,7 +30,7 @@ namespace Logic
         public string City { get; set; }
         [Required]
         [Display(Name = "Kategori")]
-        public string Category { get; set; }
+        public Category Category { get; set; }
         [Display(Name = "Verksamhetslogga")]
         public byte[] Picture { get; set; }
         public string File { get; set; }
@@ -38,5 +38,13 @@ namespace Logic
 
         public virtual ICollection<Bookings> Books { get; set; }
     }
+
 }
-    
+public enum Category
+{
+    Verkstad,
+    Skönhet,
+    Restaurang,
+    Idrott
+}
+
