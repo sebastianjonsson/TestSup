@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Logic.BookingSystem>
+@{
     ViewBag.Title = "Start";
 }
 
@@ -6,4 +7,24 @@
     <h1>BokningsProjekt</h1>
     <p class="lead">Det här är ett projekt som görs av Tim och Sebastian i samarbete med:</p>
     <p><a href="https://boka.se" class="btn btn-primary btn-lg">boka.se &raquo;</a></p>
+</div>
+
+<div>
+    <p> Behöver du inspo? Här är fem random verksamheter.</p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SystemName)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
 </div>

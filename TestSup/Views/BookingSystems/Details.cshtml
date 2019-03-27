@@ -42,21 +42,7 @@
         </div>
     </div>
 </div>
-@*<script>
-        // Initialize and add the map
-        function initMap() {
-            // The location of Uluru
-            var uluru = { lat: @Html.DisplayFor(m => m.Latitude), lng: @Html.DisplayFor(m => m.Longitude) };
-            // The map, centered at Uluru
-            var map = new google.maps.Map(
-                document.getElementById('map'), { zoom: 15, center: uluru });
-            // The marker, positioned at Uluru
-            var marker = new google.maps.Marker({ position: uluru, map: map });
-        }
-    </script>
-    <body onload="initialize()">
-        <div id="map" style="width: 320px; height: 480px;"></div>
-    </body>*@
+
 <script>
     var geocoder;
     var map;
@@ -87,6 +73,4 @@
     <div id="map" style="width: 320px; height: 480px;"></div>
 </body>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
-        async defer></script>
 

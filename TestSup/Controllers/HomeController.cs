@@ -10,6 +10,17 @@ namespace TestSup.Controllers
     {
         public ActionResult Index()
         {
+            try
+            {
+                var bookingSystems = db.Bus.ToList();
+                Random rnd = new Random();
+                bookingSystems = bookingSystems.OrderBy(emp => rnd.Next()).Take(5).ToList();
+                return View(bookingSystems);
+            }
+            catch
+            {
+                RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
