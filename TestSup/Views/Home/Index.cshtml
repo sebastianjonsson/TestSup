@@ -32,4 +32,26 @@
         }
     </table>
 </div>
-    
+
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 59.609901, lng: 16.544809 },
+            zoom: 8
+        });
+
+        @foreach(var item in Model){
+     <text>
+        var marker = new google.maps.Marker({
+          map: map,
+          position: { lat: @item.Latitude, lng: @item.Longitude },
+        });
+    </text>
+}
+    }
+</script>
+<body onload="initialize()">
+    <div id="map" style="width: 600px; height: 480px;"></div>
+</body>
+
