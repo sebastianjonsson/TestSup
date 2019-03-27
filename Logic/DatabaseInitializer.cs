@@ -16,135 +16,215 @@ namespace Logic
             IList<BookingSystem> bookingSys = new List<BookingSystem>();
             IList<Bookings> booking = new List<Bookings>();
 
+            //Örebro
             bookingSys.Add(new BookingSystem()
             {
-                SystemName = "Cykelverkstad",
+                SystemName = "Nasses Cykelverkstad",
                 SystemDescription ="Lagar cyklar",
                 Email = "cykelverkstad@hej.se",
                 PhoneNumber = 0701567598,
                 Website = "cykelverkstad.se",
-                Address = "Drottningsgatan 20",
-                Latitude = "45",
-                Longitude = "45",
+                Address = "Isgatan 5",
+                Latitude = "59.266121",
+                Longitude = "15.229120",
                 City = "Örebro",
                 Category = "Verkstad",
             });
             bookingSys.Add(new BookingSystem()
             {
-                SystemName = "Pelles frisör",
-                SystemDescription = "Klipper alla möjliga hårlängder.",
-                Email = "pellesfrissa@hej.se",
+                SystemName = "Tottas Fritid AB",
+                SystemDescription = "Lagar allt som går att laga",
+                Email = "totta@hej.se",
                 PhoneNumber = 0701554765,
-                Website = "pellesfrissa.se",
-                Address = "Drottningsgatan 20",
-                Latitude = "45",
-                Longitude = "45",
-                City = "Stockholm",
-                Category = "Frisör",
+                Website = "totta.se",
+                Address = "Hjälmarvägen 26",
+                Latitude = "59.261640",
+                Longitude = "15.248280",
+                City = "Örebro",
+                Category = "Verkstad",
             });
             bookingSys.Add(new BookingSystem()
             {
-                SystemName = "Hasses skrädderi",
-                SystemDescription = "Tvättar och syr kläder.",
-                Email = "hassesskradderi@hej.se",
+                SystemName = "Restaurang Monza",
+                SystemDescription = "Pizza, kebab, sallad.",
+                Email = "monza@hej.se",
                 PhoneNumber = 0701328514,
-                Website = "hassesskradderi.se",
-                Address = "skräddarvägen 1",
-                Latitude = "45",
-                Longitude = "45",
+                Website = "monza.se",
+                Address = "Universitetsallén 24",
+                Latitude = "59.264150",
+                Longitude = "15.240100",
                 City = "Örebro",
-                Category = "Skrädderi",
+                Category = "Restaurang",
             });
             bookingSys.Add(new BookingSystem()
             {
-                SystemName = "Kalles bilverkstad",
-                SystemDescription = "Lagar bilar",
-                Email = "kallesbilar@hej.se",
+                SystemName = "Sörby Grill & Pizzeria",
+                SystemDescription = "Grillad pizza mmm gott",
+                Email = "sorbygrill@hej.se",
                 PhoneNumber = 0701547218,
-                Website = "kallesbilar.se",
-                Address = "bilvägen 1",
-                Latitude = "45",
-                Longitude = "45",
-                City = "Stockholm",
-                Category = "Verkstad",
+                Website = "sorby.se",
+                Address = "Mejramvägen 113",
+                Latitude = "59.255200",
+                Longitude = "15.223530",
+                City = "Örebro",
+                Category = "Restaurang",
             });
             bookingSys.Add(new BookingSystem()
             {
-                SystemName = "Snabbaste däckbytarna",
-                SystemDescription = "Bildäckbyte",
-                Email = "dackbyte@hej.se",
+                SystemName = "Tybblelundshallen",
+                SystemDescription = "Hyr din hall för aktiviteter här!",
+                Email = "tybble@hej.se",
                 PhoneNumber = 0701957863,
-                Website = "dackbyte.se",
-                Address = "däckvägen 1",
-                Latitude = "45",
-                Longitude = "45",
-                City = "Stockholm",
-                Category = "Verkstad",
+                Website = "gympa.se",
+                Address = "Tybblelundsvägen 3",
+                Latitude = "59.256481",
+                Longitude = "15.260481",
+                City = "Örebro",
+                Category = "Idrott",
             });
             bookingSys.Add(new BookingSystem()
             {
-                SystemName = "Lisas frissa",
-                SystemDescription = "Specialiserad på tjejklippning.",
-                Email = "lisasdamfrissa@hej.se",
+                SystemName = "Behrn Arena",
+                SystemDescription = "Fotboll och amerikansk fotboll.",
+                Email = "behrn@hej.se",
                 PhoneNumber = 0701525254,
-                Website = "lisasfrissa.se",
-                Address = "frisörvägen 45",
-                Latitude = "45",
-                Longitude = "45",
-                City = "Stockholm",
-                Category = "Frisör",
+                Website = "behrn.se",
+                Address = "Restalundsvägen 4-6",
+                Latitude = "59.265530",
+                Longitude = "15.225060",
+                City = "Örebro",
+                Category = "Idrott",
             });
             bookingSys.Add(new BookingSystem()
             {
-                SystemName = "Bengts allfix",
-                SystemDescription = "Jag är en man som fixar allt mellan himmel och jord.",
-                Email = "bengtsfix@hej.se",
+                SystemName = "Chia's Barbershop",
+                SystemDescription = "Klippning halva pris jalla",
+                Email = "chia@hej.se",
                 PhoneNumber = 0701989898,
-                Website = "bengansfix.se",
-                Address = "fixvägen 1",
-                Latitude = "45",
-                Longitude = "45",
+                Website = "chia.se",
+                Address = "Storgatan 11",
+                Latitude = "59.275790",
+                Longitude = "15.215140",
                 City = "Örebro",
+                Category = "Skönhet",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "SolTinis Fotvård",
+                SystemDescription = "Jag älskar fötter",
+                Email = "fotfot@hej.se",
+                PhoneNumber = 0701323232,
+                Website = "miasfotter.se",
+                Address = "Köpmangatan 15B",
+                Latitude = "59.270230",
+                Longitude = "15.212027",
+                City = "Örebro",
+                Category = "Skönhet",
+            });
+            //Stockholm
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Bra Verkstad Stockholm AB",
+                SystemDescription = "En bra verkstad bara",
+                Email = "verkstad@hej.se",
+                PhoneNumber = 0701567598,
+                Website = "verkstad.se",
+                Address = "Artillerigatan 33",
+                Latitude = "59.336230",
+                Longitude = "18.082920",
+                City = "Stockholm",
                 Category = "Verkstad",
             });
             bookingSys.Add(new BookingSystem()
             {
-                SystemName = "Mias blomsterhörna",
-                SystemDescription = "Blommor och bin.",
-                Email = "miashörna@hej.se",
+                SystemName = "Stockholms Blåsinstrumentverkstad",
+                SystemDescription = "Lagar dina trumpeter på nolltid!",
+                Email = "blas@hej.se",
+                PhoneNumber = 0701554765,
+                Website = "blas.se",
+                Address = "Bergsgatan 1",
+                Latitude = "59.329670",
+                Longitude = "18.045280",
+                City = "Stockholm",
+                Category = "Verkstad",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Supper Stockholm",
+                SystemDescription = "Supermat på supper",
+                Email = "super@hej.se",
+                PhoneNumber = 0701328514,
+                Website = "super.se",
+                Address = "Tegnérgatan 37",
+                Latitude = "59.339000", 
+                Longitude = "18.056780",
+                City = "Stockholm",
+                Category = "Restaurang",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Nostrano",
+                SystemDescription = "Italian food",
+                Email = "food@hej.se",
+                PhoneNumber = 0701547218,
+                Website = "food.se",
+                Address = "Timmermansgatan 13",
+                Latitude = "59.318940",
+                Longitude = "18.059680",
+                City = "Stockholm",
+                Category = "Restaurang",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Konradsbergshallen",
+                SystemDescription = "Innebandy?",
+                Email = "konrdad@hej.se",
+                PhoneNumber = 0701957863,
+                Website = "konrad.se",
+                Address = "Konradsbergsgatan 2B",
+                Latitude = "59.328788",
+                Longitude = "18.015113",
+                City = "Stockholm",
+                Category = "Idrott",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Gärdeshallen",
+                SystemDescription = "Badminton tennis och kul.",
+                Email = "tennis@hej.se",
+                PhoneNumber = 0701525254,
+                Website = "tennis.se",
+                Address = "Banérgatan 56",
+                Latitude = "59.340520",
+                Longitude = "18.097020",
+                City = "Stockholm",
+                Category = "Idrott",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Björn Axén Norrlandsgatan 7",
+                SystemDescription = "Klippning för eliten på Östermalm",
+                Email = "klipp@hej.se",
+                PhoneNumber = 0701989898,
+                Website = "klipp.se",
+                Address = "Norrlandsgatan 7",
+                Latitude = "59.333890",
+                Longitude = "18.071400",
+                City = "Stockholm",
+                Category = "Skönhet",
+            });
+            bookingSys.Add(new BookingSystem()
+            {
+                SystemName = "Hårgänget",
+                SystemDescription = "Vi älskar hår",
+                Email = "hair@hej.se",
                 PhoneNumber = 0701323232,
-                Website = "miashorna.se",
-                Address = "blomstervägen 1",
-                Latitude = "45",
-                Longitude = "45",
-                City = "Västerås",
-                Category = "Blomsterhandel",
-            });
-            bookingSys.Add(new BookingSystem()
-            {
-                SystemName = "Charlies växtnäring",
-                SystemDescription = "Växter och blomjord",
-                Email = "challesvaxt@hej.se",
-                PhoneNumber = 0701717171,
-                Website = "challesvaxt.se",
-                Address = "växtvägen 1",
-                Latitude = "45",
-                Longitude = "45",
-                City = "Västerås",
-                Category = "Blomsterhandel",
-            });
-            bookingSys.Add(new BookingSystem()
-            {
-                SystemName = "Rosornas paradis",
-                SystemDescription = "Rosor i överflöd.",
-                Email = "rosor@hej.se",
-                PhoneNumber = 0701464646,
-                Website = "rosor.se",
-                Address = "rosvägen 1",
-                Latitude = "45",
-                Longitude = "45",
-                City = "Örebro",
-                Category = "Blomsterhandel",
+                Website = "hair.se",
+                Address = "Götgatan 31",
+                Latitude = "59.316560",
+                Longitude = "18.072180",
+                City = "Stockholm",
+                Category = "Skönhet",
             });
             foreach (BookingSystem booksys in bookingSys)
                 context.Bus.Add(booksys);
