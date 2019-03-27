@@ -53,6 +53,13 @@
             zoom: 12,
             center: latlng
         }
+
+        var contentString = '<div>@Html.DisplayFor(m => m.Address)</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
         var address = '@Model.Address' + ' ' + '@Model.City';
@@ -63,6 +70,8 @@
                     map: map,
                     position: results[0].geometry.location
                 });
+
+                    infowindow.open(map, marker);
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
