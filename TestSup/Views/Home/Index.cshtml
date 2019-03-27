@@ -2,14 +2,17 @@
 @{
     ViewBag.Title = "Start";
 }
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<link href="/Content/Site.css" rel="stylesheet" />
 
 <div class="jumbotron">
     <h1>BokningsProjekt</h1>
     <p class="lead">Det här är ett projekt som görs av Tim och Sebastian i samarbete med:</p>
     <p><a href="https://boka.se" class="btn btn-primary btn-lg">boka.se &raquo;</a></p>
 </div>
-
-<div>
+<br />
+<div id="kolumn1">
     <p> Behöver du inspo? Här är fem random verksamheter.</p>
     <table class="table">
         <tr>
@@ -22,9 +25,11 @@
         {
             <tr>
                 <td>
+                    <img height="48" width="48" src="@Url.Action("Image", new { id = item.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
                     @Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)
                 </td>
             </tr>
         }
     </table>
 </div>
+    
