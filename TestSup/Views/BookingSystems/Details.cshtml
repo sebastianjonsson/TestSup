@@ -40,6 +40,13 @@
             <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
             <br />
         </div>
+        <br />
+        <div class="panel panel-info">
+            <div class="panel-heading">Rekommenderade:</div>
+            <div class="panel-body">
+                @Html.Partial("../BookingSystems/RecBookingSys", new TestSup.Controllers.RecBookingSys(Model.Category))
+            </div>
+        </div>
     </div>
 </div>
 

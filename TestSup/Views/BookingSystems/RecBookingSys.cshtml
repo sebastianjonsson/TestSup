@@ -1,0 +1,14 @@
+﻿@model TestSup.Controllers.RecBookingSys
+
+@{
+    ViewBag.Title = "RecBookingSys";
+}
+
+@foreach (var item in Model.BookSys)
+{
+
+<div>
+    @Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)
+</div>
+
+}

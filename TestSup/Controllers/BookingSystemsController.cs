@@ -21,6 +21,20 @@ namespace TestSup.Controllers
             var bookingSystems = db.Bus.ToList();
             return View(bookingSystems);
         }
+        public ActionResult RecBookingSys (string Cat)
+        {
+            try
+            {
+                var booksys = db.Bus.Where(i => i.Category == Cat).ToList();
+                return View(new RecBookingSys { Cat = Cat, BookSys = booksys });
+            }
+            catch
+            {
+                RedirectToAction("Index", "Home");
+            }
+            return View();
+
+        }
 
         [HttpPost]
         public ActionResult Search(string searchString)
@@ -231,5 +245,23 @@ namespace TestSup.Controllers
             }
             base.Dispose(disposing);
         }
+    }
+    public class RecBookingSys
+    {
+        public string Cat { get; set; }
+        public ICollection<BookingSystem> BookSys { get; set; }
+        public RecBookingSys()
+        {
+
+        }
+        public RecBookingSys(string Cat)
+        {
+            using (var db = new DatabaseContext())
+                {
+                    this.BookSys = db.Bus.Where(i => i.Category == Cat).ToList();
+                    this.Cat = Cat;
+                }
+            
+         }
     }
 }
