@@ -19,7 +19,7 @@ namespace Logic
         [Display(Name = "Email")]
         public string Email { get; set; }
         [Display(Name = "Telefonnummer")]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [Display(Name = "Hemsida")]
         public string Website { get; set; }
         [Display(Name = "Adress")]

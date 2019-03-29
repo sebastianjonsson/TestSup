@@ -11,12 +11,10 @@ namespace Logic
     public class Bookings
     {
         public int Id { get; set; }
-        [Display(Name = "Namn")]
-        [Required]
         public string UserName { get; set; }
         public string Email { get; set; }
         [Display(Name = "Telefonnummer")]
-        public int UserMobile { get; set; }
+        public string UserMobile { get; set; }
         [Display(Name = "Detaljer")]
         public string Subject { get; set; }
         [Display(Name = "Starttid")]

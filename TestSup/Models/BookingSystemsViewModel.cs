@@ -10,22 +10,29 @@ namespace TestSup.Models
 {
     public class BookingSystemsViewModel
     {
-        [Display(Name = "Verksamhet")]
         public int Id { get; set; }
+        [Required]
         [Display(Name = "Verksamhet")]
         public string SystemName { get; set; }
+        [Required]
         [Display(Name = "Beskrivning")]
         public string SystemDescription { get; set; }
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Required]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "telefonnumret måste vara i siffror.")]
         [Display(Name = "Telefonnummer")]
         public int PhoneNumber { get; set; }
+        [Required]
         [Display(Name = "Hemsida")]
         public string Website { get; set; }
+        [Required]
         [Display(Name = "Adress")]
         public string Address { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        [Required]
         [Display(Name = "Stad")]
         public string City { get; set; }
         [Required]
