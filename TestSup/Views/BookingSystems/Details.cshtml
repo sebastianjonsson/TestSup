@@ -69,6 +69,17 @@
 
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+        var sunCircle = {
+            strokeColor: "#c3fc49",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#2A8764",
+            fillOpacity: 0.35,
+            map: map,
+            center: latlng,
+            radius: 5000 // in meters
+        };
+
         var address = '@Model.Address' + ' ' + '@Model.City';
         geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == 'OK') {
@@ -78,7 +89,9 @@
                     position: results[0].geometry.location
                 });
 
-                    infowindow.open(map, marker);
+                infowindow.open(map, marker);
+                cityCircle = new google.maps.Circle(sunCircle);
+                cityCircle.bindTo('center', marker, 'position');
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
