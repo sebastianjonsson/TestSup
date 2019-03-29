@@ -57,7 +57,7 @@ namespace TestSup.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,USerName,Email,UserMobile,Subject,StartTime,EndTime,BookingSys")] Bookings book, int id)
+        public ActionResult Create([Bind(Include = "Id,UserName,Email,UserMobile,Subject,StartTime,EndTime,BookingSys")] Bookings book, int id)
         {
             if (ModelState.IsValid)
             {
