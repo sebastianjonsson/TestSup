@@ -21,11 +21,11 @@ namespace TestSup.Controllers
             var bookingSystems = db.Bus.ToList();
             return View(bookingSystems);
         }
-        public ActionResult RecBookingSys (string Cat, string City)
+        public ActionResult RecBookingSys (string Cat, string City, int Id)
         {
             try
             {
-                var booksys = db.Bus.Where(i => i.Category == Cat && i.City == City).ToList();
+                var booksys = db.Bus.Where(i => i.Category == Cat && i.City == City && i.Id != Id).ToList();
                 return View(new RecBookingSys { BookSys = booksys });
             }
             catch
@@ -255,14 +255,13 @@ namespace TestSup.Controllers
         {
 
         }
-        public RecBookingSys(string Cat, string City)
+        public RecBookingSys(string Cat, string City, int Id)
         {
             using (var db = new DatabaseContext())
                 {
-                    this.BookSys = db.Bus.Where(i => i.Category == Cat && i.City == City).ToList();
+                    this.BookSys = db.Bus.Where(i => i.Category == Cat && i.City == City && i.Id != Id).ToList();
                     this.Cat = Cat;
                     this.City = City;
-                
                 }
             
          }
