@@ -7,9 +7,20 @@
     function initMap2() {
         var place = { lat: @Model.Lat, lng: @Model.Long };
         var map2 = new google.maps.Map(
-            document.getElementById('map2'), { zoom: 12, center: place });
+            document.getElementById('map2'), { zoom: 11, center: place });
 
         var infowindow = new google.maps.InfoWindow();
+
+        var myCity = new google.maps.Circle({
+            center: place,
+            radius: 5000,
+            strokeColor: "#0000FF",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#CACACA",
+            fillOpacity: 0.3,
+            map: map2
+        });
 
                 @foreach(var item in Model.BookSys){
      <text>
