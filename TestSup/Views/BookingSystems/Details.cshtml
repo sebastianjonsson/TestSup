@@ -14,6 +14,11 @@
     <div class="container">
         <div>
             <button onclick="location.href= '@Url.Action("Create", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
+            <p>
+                @Html.ActionLink("Tillbaka till alla verksamheter", "Index")
+            </p>
+
+            <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
         </div>
         <hr />
         <div class="panel panel-info">
@@ -26,26 +31,22 @@
             <div class="panel-heading">@Html.DisplayNameFor(model => model.City): @Html.DisplayFor(m => m.City) </div>
             <div class="panel-heading">@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(m => m.Category) </div>
         </div>
-        <p>
-            @Html.ActionLink("Tillbaka till verksamheter", "Index")
-        </p>
     </div>
+</div>
+
+<div class="col-md-12">
+    <div id="map" style="width: 620px; height: 380px;"></div>
+    <hr />
 </div>
 
 <div id="kolumn2">
     <div class="container">
         <div class="row">
-            <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
+            <h3>Rekommenderade:</h3>
+            @Html.Partial("../BookingSystems/RecBookingSys", new TestSup.Controllers.RecBookingSys(Model.Category, Model.City, Model.Id))
             <br />
         </div>
-        <br />
-        <div class="panel panel-info">
-            <div class="panel-heading">Rekommenderade:</div>
-            <div class="panel-body">
-                @Html.Partial("../BookingSystems/RecBookingSys", new TestSup.Controllers.RecBookingSys(Model.Category, Model.City, Model.Id, Model.Latitude, Model.Longitude))
-            </div>
-        </div>
-    </div>
+     </div>
 </div>
 
 <script>
@@ -72,8 +73,6 @@
     }
 </script>
 
-<body onload="initMap()">
-    <div id="map" style="width: 320px; height: 480px;"></div>
-</body>
+
 
 
