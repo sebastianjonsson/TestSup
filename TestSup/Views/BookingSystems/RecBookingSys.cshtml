@@ -5,9 +5,9 @@
 }
 <script>
     function initMap2() {
-        var place = { lat: 59.609901, lng: 16.544809 };
+        var place = { lat: @Model.Lat, lng: @Model.Long };
         var map2 = new google.maps.Map(
-            document.getElementById('map2'), { zoom: 8, center: place });
+            document.getElementById('map2'), { zoom: 12, center: place });
 
                 @foreach(var item in Model.BookSys){
      <text>
@@ -18,9 +18,10 @@
         var marker = new google.maps.Marker({
           map: map2,
             position: { lat: @item.Latitude, lng: @item.Longitude },
-          });
-        infowindow.open(map2, marker);
-        
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.open(map2, marker);
+        });
      </text>
     }
     }

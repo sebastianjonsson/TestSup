@@ -21,7 +21,7 @@ namespace TestSup.Controllers
             var bookingSystems = db.Bus.ToList();
             return View(bookingSystems);
         }
-        public ActionResult RecBookingSys (string Cat, string City, int Id)
+        public ActionResult RecBookingSys (string Cat, string City, int Id, string Lat, string Long)
         {
             try
             {
@@ -250,18 +250,23 @@ namespace TestSup.Controllers
     {
         public string Cat { get; set; }
         public string City { get; set; }
+        public string Lat { get; set; }
+        public string Long { get; set; }
         public ICollection<BookingSystem> BookSys { get; set; }
         public RecBookingSys()
         {
 
         }
-        public RecBookingSys(string Cat, string City, int Id)
+        public RecBookingSys(string Cat, string City, int Id, string Lat, string Long)
         {
             using (var db = new DatabaseContext())
                 {
                     this.BookSys = db.Bus.Where(i => i.Category == Cat && i.City == City && i.Id != Id).ToList();
                     this.Cat = Cat;
                     this.City = City;
+                    this.Lat = Lat;
+                    this.Long = Long;
+                
                 }
             
          }
