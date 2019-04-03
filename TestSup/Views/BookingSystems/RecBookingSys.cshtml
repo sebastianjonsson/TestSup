@@ -9,19 +9,22 @@
         var map2 = new google.maps.Map(
             document.getElementById('map2'), { zoom: 12, center: place });
 
+        var infowindow = new google.maps.InfoWindow();
+
                 @foreach(var item in Model.BookSys){
      <text>
         var contentString = '<div>@Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div>';
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
-        });
+        
         var marker = new google.maps.Marker({
           map: map2,
             position: { lat: @item.Latitude, lng: @item.Longitude },
         });
-        google.maps.event.addListener(marker, 'click', function () {
-            infowindow.open(map2, marker);
-        });
+        google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
+            return function () {
+                infowindow.setContent(contentString);
+                infowindow.open(map2, marker);
+            };
+        })(marker, contentString, infowindow));
      </text>
     }
     }
