@@ -55,7 +55,8 @@
         var place = { lat: @Model.Latitude, lng: @Model.Longitude };
         var map = new google.maps.Map(
             document.getElementById('map'), { zoom: 15, center: place });
-        var marker = new google.maps.Marker({ position: place, map: map });
+        var marker = new google.maps.Marker({
+            position: place, map: map });
 
         var circle = {
             strokeColor: "#c3fc49",

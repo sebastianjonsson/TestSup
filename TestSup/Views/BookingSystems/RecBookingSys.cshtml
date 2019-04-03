@@ -3,12 +3,38 @@
 @{
     ViewBag.Title = "RecBookingSys";
 }
+<script>
+    function initMap2() {
+        var place = { lat: 59.609901, lng: 16.544809 };
+        var map2 = new google.maps.Map(
+            document.getElementById('map2'), { zoom: 8, center: place });
+
+                @foreach(var item in Model.BookSys){
+     <text>
+        var contentString = '<div>@item.SystemName</div><div>@item.Address</div>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        var marker = new google.maps.Marker({
+          map: map2,
+            position: { lat: @item.Latitude, lng: @item.Longitude },
+          });
+        infowindow.open(map2, marker);
+        
+     </text>
+    }
+    }
+</script>
+
+<body onload="initMap2()">
+    <div id="map2" style="width: 320px; height: 480px;"></div>
+</body>
 
 @foreach (var item in Model.BookSys)
 {
 
-<div>
-    @Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)
-</div>
+    <div>
+        @Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)
+    </div>
 
 }
