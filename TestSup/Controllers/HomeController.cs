@@ -14,7 +14,7 @@ namespace TestSup.Controllers
             {
                 var bookingSystems = db.Bus.ToList();
                 Random rnd = new Random();
-                bookingSystems = bookingSystems.OrderBy(emp => rnd.Next()).Take(5).ToList();
+                bookingSystems = bookingSystems.OrderBy(emp => rnd.Next()).ToList();
                 return View(bookingSystems);
             }
             catch
