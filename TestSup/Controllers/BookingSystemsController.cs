@@ -21,11 +21,11 @@ namespace TestSup.Controllers
             var bookingSystems = db.Bus.ToList();
             return View(bookingSystems);
         }
-        public ActionResult RecBookingSys (string Cat, string City, int Id, string Lat, string Long)
+        public ActionResult RecBookingSys (string Cat, int Id, string Lat, string Long)
         {
             try
             {
-                var booksys = db.Bus.Where(i => i.Category == Cat && i.City == City && i.Id != Id).ToList();
+                var booksys = db.Bus.Where(i => i.Category == Cat && i.Id != Id).ToList();
                 return View(new RecBookingSys { BookSys = booksys });
             }
             catch
@@ -249,7 +249,6 @@ namespace TestSup.Controllers
     public class RecBookingSys
     {
         public string Cat { get; set; }
-        public string City { get; set; }
         public string Lat { get; set; }
         public string Long { get; set; }
         public ICollection<BookingSystem> BookSys { get; set; }
@@ -257,13 +256,12 @@ namespace TestSup.Controllers
         {
 
         }
-        public RecBookingSys(string Cat, string City, int Id, string Lat, string Long)
+        public RecBookingSys(string Cat, int Id, string Lat, string Long)
         {
             using (var db = new DatabaseContext())
                 {
-                    this.BookSys = db.Bus.Where(i => i.Category == Cat && i.City == City && i.Id != Id).ToList();
+                    this.BookSys = db.Bus.Where(i => i.Category == Cat && i.Id != Id).ToList();
                     this.Cat = Cat;
-                    this.City = City;
                     this.Lat = Lat;
                     this.Long = Long;
                 

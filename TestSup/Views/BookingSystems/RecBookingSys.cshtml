@@ -22,20 +22,28 @@
             map: map2
         });
 
-                @foreach(var item in Model.BookSys){
+        var a = new google.maps.LatLng(@Model.Lat, @Model.Long);
+     @foreach(var item in Model.BookSys)
+     {
      <text>
         var contentString = '<div>@Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div>';
-        
-        var marker = new google.maps.Marker({
-          map: map2,
-            position: { lat: @item.Latitude, lng: @item.Longitude },
-        });
-        google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
-            return function () {
-                infowindow.setContent(contentString);
-                infowindow.open(map2, marker);
-            };
-        })(marker, contentString, infowindow));
+
+        var b = new google.maps.LatLng(@item.Latitude, @item.Longitude);
+        var distance = google.maps.geometry.spherical.computeDistanceBetween(a, b);
+
+        if (distance < 5000) {
+            var marker = new google.maps.Marker({
+                map: map2,
+                position: { lat: @item.Latitude, lng: @item.Longitude },
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
+                return function () {
+                    infowindow.setContent(contentString);
+                    infowindow.open(map2, marker);
+                };
+            })(marker, contentString, infowindow));
+        }
      </text>
     }
     }
@@ -44,4 +52,3 @@
 <body onload="initMap2()">
     <div id="map2" style="width: 420px; height: 280px;"></div>
 </body>
-
