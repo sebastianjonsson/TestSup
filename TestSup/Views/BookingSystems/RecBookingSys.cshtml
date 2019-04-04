@@ -3,6 +3,14 @@
 @{
     ViewBag.Title = "RecBookingSys";
 }
+<select id="kmList" onchange="initMap2()">
+    <option value="1000">1km</option>
+    <option value="2000">2km</option>
+    <option value="3000">3km</option>
+    <option value="4000">4km</option>
+    <option value="5000" selected="selected">5km</option>
+</select>
+
 <script>
     function initMap2() {
         var place = { lat: @Model.Lat, lng: @Model.Long };
@@ -11,9 +19,13 @@
 
         var infowindow = new google.maps.InfoWindow();
 
+        var listValue = document.getElementById("kmList");
+        var km = listValue.options[listValue.selectedIndex].value;
+
+
         var myCity = new google.maps.Circle({
             center: place,
-            radius: 5000,
+            radius: km,
             strokeColor: "#0000FF",
             strokeOpacity: 0.8,
             strokeWeight: 1,
@@ -31,7 +43,7 @@
         var b = new google.maps.LatLng(@item.Latitude, @item.Longitude);
         var distance = google.maps.geometry.spherical.computeDistanceBetween(a, b);
 
-        if (distance < 5000) {
+        if (distance < km) {
             var marker = new google.maps.Marker({
                 map: map2,
                 position: { lat: @item.Latitude, lng: @item.Longitude },
