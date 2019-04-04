@@ -10,14 +10,13 @@
 
 <h2>@Html.DisplayFor(model => model.SystemName)</h2>
 <hr />
+<button onclick="location.href= '@Url.Action("Create", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
+<p>
+    @Html.ActionLink("Tillbaka till alla verksamheter", "Index")
+</p>
 <div id="kolumn1">
     <div class="container">
         <div>
-            <button onclick="location.href= '@Url.Action("Create", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
-            <p>
-                @Html.ActionLink("Tillbaka till alla verksamheter", "Index")
-            </p>
-
             <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
         </div>
         <hr />
@@ -46,7 +45,7 @@
             @Html.Partial("../BookingSystems/RecBookingSys", new TestSup.Controllers.RecBookingSys(Model.Category, Model.Id, Model.Latitude, Model.Longitude))
             <br />
         </div>
-     </div>
+    </div>
 </div>
 
 <script>
@@ -67,7 +66,7 @@
         //    center: place,
         //    radius: 2000 // in meters
         //};
-        
+
         //cityCircle = new google.maps.Circle(circle);
         //cityCircle.bindTo('Place', marker, 'position');
     }
