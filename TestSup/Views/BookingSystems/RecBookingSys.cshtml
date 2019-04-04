@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "RecBookingSys";
 }
+<h5>Välj avstånd för rekommenderade verksamheter:</h5>
 <select id="kmList" onchange="initMap2()">
     <option value="1000">1km</option>
     <option value="2000">2km</option>
@@ -20,8 +21,7 @@
         var infowindow = new google.maps.InfoWindow();
 
         var listValue = document.getElementById("kmList");
-        var km = listValue.options[listValue.selectedIndex].value;
-
+        var km = listValue.options[listValue.selectedIndex].value*1;
 
         var myCity = new google.maps.Circle({
             center: place,
