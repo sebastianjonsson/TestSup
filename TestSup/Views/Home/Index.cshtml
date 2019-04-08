@@ -43,7 +43,35 @@
         });
 
         var infowindow = new google.maps.InfoWindow();
+        var infoWindowGeo = new google.maps.InfoWindow;
 
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                infoWindowGeo.setPosition(pos);
+                infoWindowGeo.setContent('Här är du!');
+                infoWindowGeo.open(map);
+                map.setCenter(pos);
+            }, function () {
+                handleLocationError(true, infoWindowGeo, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindowGeo, map.getCenter());
+        }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindowGeo, pos) {
+        infoWindowGeo.setPosition(pos);
+        infoWindowGeo.setContent(browserHasGeolocation ?
+            'Fel: Geolocation misslyckades.' :
+            'Fel: Din webbläsare stödjer inte geolocation.');
+        infoWindowGeo.open(map);
+    }
         @foreach(var item in Model){
      <text>
         var contentString = '<div>@Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div>';
@@ -61,8 +89,7 @@
         })(marker, contentString, infowindow));
      </text>
     }
-
-    }
+    
 </script>
 <body onload="initialize()">
     <div id="map" style="width: 600px; height: 480px;"></div>
