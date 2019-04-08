@@ -72,23 +72,21 @@
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindowGeo, map.getCenter());
         }
-    }
-
-    function handleLocationError(browserHasGeolocation, infoWindowGeo, pos) {
-        infoWindowGeo.setPosition(pos);
-        infoWindowGeo.setContent(browserHasGeolocation ?
-            'Fel: Geolocation misslyckades.' :
-            'Fel: Din webbläsare stödjer inte geolocation.');
-        infoWindowGeo.open(map);
-    }
-        @foreach(var item in Model){
+        function handleLocationError(browserHasGeolocation, infoWindowGeo, pos) {
+            infoWindowGeo.setPosition(pos);
+            infoWindowGeo.setContent(browserHasGeolocation ?
+                'Fel: Geolocation misslyckades.' :
+                'Fel: Din webbläsare stödjer inte geolocation.');
+            infoWindowGeo.open(map);
+        }
+        @foreach(var item in Model) {
      <text>
         var contentString = '<div>@Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div>';
 
         var marker = new google.maps.Marker({
-          map: map,
+            map: map,
             position: { lat: @item.Latitude, lng: @item.Longitude },
-          });
+        });
 
         google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
             return function () {
@@ -97,6 +95,7 @@
             };
         })(marker, contentString, infowindow));
      </text>
+    }
     }
 
 </script>
