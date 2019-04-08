@@ -34,6 +34,15 @@
     </div>
 </div>
 
+<h5>Visa verksamheter i vald kategori</h5>
+<select id="catOnMap" onchange="initMap()">
+    <option value="All" selected="selected">Alla kategorier</option>
+    <option value="Skonhet">Skönhet</option>
+    <option value="Verkstad">Verkstad</option>
+    <option value="Restaurang">Restaurang</option>
+    <option value="Idrott">Idrott</option>
+</select>
+
 <script>
     var map;
     function initMap() {
@@ -75,7 +84,7 @@
         @foreach(var item in Model){
      <text>
         var contentString = '<div>@Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div>';
-        
+
         var marker = new google.maps.Marker({
           map: map,
             position: { lat: @item.Latitude, lng: @item.Longitude },
@@ -89,7 +98,7 @@
         })(marker, contentString, infowindow));
      </text>
     }
-    
+
 </script>
 <body onload="initialize()">
     <div id="map" style="width: 600px; height: 480px;"></div>
