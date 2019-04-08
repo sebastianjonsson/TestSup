@@ -35,15 +35,26 @@
 </div>
 
 <h5>Visa verksamheter i vald kategori</h5>
-<select id="catOnMap" onchange="initMap()">
-    <option value="All" selected="selected">Alla kategorier</option>
-    <option value="Skonhet">Skönhet</option>
-    <option value="Verkstad">Verkstad</option>
-    <option value="Restaurang">Restaurang</option>
-    <option value="Idrott">Idrott</option>
-</select>
+<div class="row">
+    <select id="catOnMap">
+        <option value="All" selected="selected">Alla kategorier</option>
+        <option value="Skonhet">Skönhet</option>
+        <option value="Verkstad">Verkstad</option>
+        <option value="Restaurang">Restaurang</option>
+        <option value="Idrott">Idrott</option>
+    </select>
+</div>
 
-<script>
+@*@Html.DropDownList("CatChange", new SelectList(Enum.GetValues(typeof(Category))), "Välj Kategori", new {@id = "cat", @onchange = "CatChange()" })
+
+ <script>
+        function CatChange() {
+            var cat = $("#cat option:selected").val();
+            location.href = "Home/Index?Cat=" + cat;
+        }
+</script>*@
+
+    <script>
     var map;
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -98,8 +109,8 @@
     }
     }
 
-</script>
-<body onload="initialize()">
-    <div id="map" style="width: 600px; height: 480px;"></div>
-</body>
+    </script>
+    <body onload="initialize()">
+        <div id="map" style="width: 600px; height: 480px;"></div>
+    </body>
 

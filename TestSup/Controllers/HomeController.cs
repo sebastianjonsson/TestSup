@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Logic;
 
 namespace TestSup.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(string cat)
         {
             try
             {
                 var bookingSystems = db.Bus.ToList();
-                Random rnd = new Random();
-                bookingSystems = bookingSystems.OrderBy(emp => rnd.Next()).ToList();
+                bookingSystems = bookingSystems.Where(x => x.Category == cat).ToList();
                 return View(bookingSystems);
             }
             catch
