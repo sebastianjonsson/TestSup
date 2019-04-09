@@ -11,7 +11,8 @@
     <p class="lead">Det här är ett projekt som görs av Tim och Sebastian i samarbete med:</p>
     <p><a href="https://boka.se" class="btn btn-primary btn-lg">boka.se &raquo;</a></p>
 </div>
-<br />
+<p>Sortera på kategori:</p>
+@Html.DropDownList("cat", new SelectList(Enum.GetValues(typeof(Category))), "Visa alla", new { @id = "cat", @onchange = "CatChange()", @class = "form-control" })
 <div id="kolumn1">
     <div style="height: 480px; overflow: auto;">
         <table class="table">
@@ -34,20 +35,19 @@
     </div>
 </div>
 
-@Html.DropDownList("cat", new SelectList(Enum.GetValues(typeof(Category))), "Visa alla", new {@id = "cat", @onchange = "CatChange()" })
 
- <script>
-        function CatChange() {
-            var cat = $("#cat option:selected").val();
-            if (window.location.href.indexOf("Home") > 0) {
-                location.href = "Index?Cat=" + cat;
-            } else {
-                location.href = "Home/Index?Cat=" + cat;
-            }
+<script>
+    function CatChange() {
+        var cat = $("#cat option:selected").val();
+        if (window.location.href.indexOf("Home") > 0) {
+            location.href = "Index?Cat=" + cat;
+        } else {
+            location.href = "Home/Index?Cat=" + cat;
         }
+    }
 </script>
 
-    <script>
+<script>
     var map;
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -69,6 +69,7 @@
                 infoWindowGeo.setContent('Här är du!');
                 infoWindowGeo.open(map);
                 map.setCenter(pos);
+                map.setZoom(13);
             }, function () {
                 handleLocationError(true, infoWindowGeo, map.getCenter());
             });
@@ -102,8 +103,8 @@
     }
     }
 
-    </script>
-    <body onload="initialize()">
-        <div id="map" style="width: 600px; height: 480px;"></div>
-    </body>
+</script>
+<body onload="initialize()">
+    <div id="map" style="width: 600px; height: 480px;"></div>
+</body>
 
