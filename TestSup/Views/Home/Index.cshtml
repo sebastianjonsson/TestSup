@@ -34,7 +34,7 @@
     </div>
 </div>
 
-@Html.DropDownList("CatChange", new SelectList(Enum.GetValues(typeof(Category))), "Välj Kategori", new {@id = "cat", @onchange = "CatChange()" })
+@Html.DropDownList("cat", new SelectList(Enum.GetValues(typeof(Category))), "Visa alla", new {@id = "cat", @onchange = "CatChange()" })
 
  <script>
         function CatChange() {

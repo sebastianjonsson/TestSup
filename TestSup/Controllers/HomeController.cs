@@ -13,7 +13,7 @@ namespace TestSup.Controllers
         {
             try
             {
-                if (cat == null )
+                if (cat == null || cat == "")
                 {
                     var bookingSystems = db.Bus.ToList();
                     return View(bookingSystems);
