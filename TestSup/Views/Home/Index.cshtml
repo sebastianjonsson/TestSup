@@ -26,8 +26,8 @@
             {
                 <tr>
                     <td>
-                        <img height="48" width="48" src="@Url.Action("Image", new { id = item.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
-                        @Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)
+                        <img height="48" width="48" src="@Url.Action("Image", "BookingSystems", new { id = item.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
+                         @Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)
                     </td>
                 </tr>
             }
