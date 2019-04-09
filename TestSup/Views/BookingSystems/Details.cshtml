@@ -55,20 +55,13 @@
             document.getElementById('map'), { zoom: 15, center: place });
         var marker = new google.maps.Marker({
             position: place, map: map });
-
-        //var circle = {
-        //    strokeColor: "#c3fc49",
-        //    strokeOpacity: 0.8,
-        //    strokeWeight: 2,
-        //    fillColor: "#2A8764",
-        //    fillOpacity: 0.35,
-        //    map: map,
-        //    center: place,
-        //    radius: 2000 // in meters
-        //};
-
-        //cityCircle = new google.maps.Circle(circle);
-        //cityCircle.bindTo('Place', marker, 'position');
+        var contentString = "@Model.SystemName";
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        
+            infowindow.open(map, marker);
+        
     }
 </script>
 
