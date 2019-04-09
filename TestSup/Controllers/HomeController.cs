@@ -13,9 +13,17 @@ namespace TestSup.Controllers
         {
             try
             {
-                var bookingSystems = db.Bus.ToList();
-                bookingSystems = bookingSystems.Where(x => x.Category == cat).ToList();
-                return View(bookingSystems);
+                if (cat == null )
+                {
+                    var bookingSystems = db.Bus.ToList();
+                    return View(bookingSystems);
+                }
+                else
+                {
+                    var bookingSystems = db.Bus.Where(x => x.Category == cat).ToList();
+                    return View(bookingSystems);
+                }
+                
             }
             catch
             {
