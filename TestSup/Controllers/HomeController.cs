@@ -16,11 +16,15 @@ namespace TestSup.Controllers
                 if (cat == null || cat == "")
                 {
                     var bookingSystems = db.Bus.ToList();
+                    Random rnd = new Random();
+                    bookingSystems = bookingSystems.OrderBy(emp => rnd.Next()).ToList();
                     return View(bookingSystems);
                 }
                 else
                 {
                     var bookingSystems = db.Bus.Where(x => x.Category == cat).ToList();
+                    Random rnd = new Random();
+                    bookingSystems = bookingSystems.OrderBy(emp => rnd.Next()).ToList();
                     return View(bookingSystems);
                 }
                 
