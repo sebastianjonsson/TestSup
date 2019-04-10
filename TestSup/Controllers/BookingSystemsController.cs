@@ -187,24 +187,25 @@ namespace TestSup.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,Latitude,Longitude,City,Category")] BookingSystem bookingSystem, HttpPostedFileBase upload)
+        public ActionResult Edit(BookingSystem bookingSystem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bookingSystem).State = EntityState.Modified;
+                
                 var sys = db.Bus.Single(x => x.Id == bookingSystem.Id);
-                //if (upload != null && upload.ContentLength > 0)
-                //{
-                //    sys.File = upload.FileName;
 
-                //    sys.Content = upload.ContentType;
+                sys.Address = bookingSystem.Address;
+                sys.Category = bookingSystem.Category;
+                sys.City = bookingSystem.City;
+                sys.Email = bookingSystem.Email;
+                sys.PhoneNumber = bookingSystem.PhoneNumber;
+                sys.Latitude = bookingSystem.Latitude;
+                sys.Longitude = bookingSystem.Longitude;
+                sys.SystemName = bookingSystem.SystemName;
+                sys.SystemDescription = bookingSystem.SystemDescription;
+                sys.Website = bookingSystem.Website;
 
-                //    using (var reader = new BinaryReader(upload.InputStream))
-                //    {
-                //        sys.Picture = reader.ReadBytes(upload.ContentLength);
-                //    }
-                //    db.Entry(sys).State = EntityState.Modified;
-                //}
+                db.Entry(sys).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
