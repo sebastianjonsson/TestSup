@@ -16,7 +16,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "userName" } })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -24,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "email" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserMobile, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserMobile, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.EditorFor(model => model.UserMobile, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "userMobile" } })
                 @Html.ValidationMessageFor(model => model.UserMobile, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "subject" } })
                 @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @required = "required" } })
+                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @required = "required", @id = "startTime" } })
                 @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Endtime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Endtime, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @required = "required" } })
+                @Html.EditorFor(model => model.Endtime, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @required = "required", @id = "endTime" } })
                 @Html.ValidationMessageFor(model => model.Endtime, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -76,7 +76,16 @@
 
     <script>
         function done() {
-            alert("Din bokning är nu genomförd.")
+            var userName = $('#userName').val().length;
+            var email = $('#email').val().length;
+            var userMobile = $('#userMobile').val().length;
+            var subject = $('#subject').val().length;
+            var startTime = $('#startTime').val().length;
+            var endTime = $('#endTime').val().length;
+
+            if (userName > 0 && email > 0 && userMobile > 0 && subject > 0 && startTime > 0 && endTime > 0) {
+                alert("Din bokning är nu genomförd.")
+            }
         }
     </script>
 }
