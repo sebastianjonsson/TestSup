@@ -159,6 +159,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ApiBookingController.cs" />
     <Compile Include="Api\ApiBookingSystemController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Models\BookingSystemsViewModel.cs" />
     <Compile Include="Models\BookingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BookingRepository.cs" />
     <Compile Include="Repository\BookingSystemRepository.cs" />
   </ItemGroup>
   <ItemGroup>
