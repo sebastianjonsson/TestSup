@@ -84,21 +84,9 @@ namespace TestSup.Controllers
             var url = "http://localhost:64034/api/getBookingSystem/" + id;
             using (var client = new HttpClient())
             {
-                //var content = new StringContent(JsonConvert.DeserializeObject(BookingSystem bookingsSystem, Encoding.UTF8, "application/json");
-                //var result = await client.GetAsync(url, content);
-                //var jsonString = await task.Content.ReadAsStringAsync();
-                //model = JsonConvert.DeserializeObject<List<Job>>(jsonString);
-                //if (result.IsSuccessStatusCode)
-                //{
-                //    return RedirectToAction("Index");
-                //}
-                //return View(result);
                 var task = await client.GetAsync(url);
                 var jsonString = await task.Content.ReadAsStringAsync();
                 var bookingSystem = JsonConvert.DeserializeObject<BookingSystem>(jsonString);
-
-                //var bookingSystem = new BookingSystem();
-                //bookingSystem = modelBookingSystem;
 
                 return View(bookingSystem);
             }
@@ -161,9 +149,6 @@ namespace TestSup.Controllers
             return View();
         }
 
-        // POST: BookingSystems/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,City,Category,Longitude,Latitude")] BookingSystem bookingSystem, HttpPostedFileBase upload)
@@ -194,19 +179,16 @@ namespace TestSup.Controllers
             return View(bookingSystem);
         }
 
-        // GET: BookingSystems/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            var url = "http://localhost:64034/api/getBookingSystem/" + id;
+            using (var client = new HttpClient())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var bookingSystem = JsonConvert.DeserializeObject<BookingSystem>(jsonString);
+                return View(bookingSystem);
             }
-            BookingSystem bookingSystem = db.Bus.Find(id);
-            if (bookingSystem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bookingSystem);
         }
 
         // POST: BookingSystems/Edit/5
@@ -239,19 +221,16 @@ namespace TestSup.Controllers
             return View(bookingSystem);
         }
 
-        // GET: BookingSystems/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            var url = "http://localhost:64034/api/getBookingSystem/" + id;
+            using (var client = new HttpClient())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var bookingSystem = JsonConvert.DeserializeObject<BookingSystem>(jsonString);
+                return View(bookingSystem);
             }
-            BookingSystem bookingSystem = db.Bus.Find(id);
-            if (bookingSystem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bookingSystem);
         }
 
         // POST: BookingSystems/Delete/5

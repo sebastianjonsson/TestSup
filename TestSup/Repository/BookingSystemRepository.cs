@@ -5,13 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using TestSup.Controllers;
 
 namespace TestSup.Repository
 {
-    public class BookingSystemRepository
+    public class BookingSystemRepository : BaseController
     {
-        protected DatabaseContext db = new DatabaseContext();
-
         public async Task<BookingSystem> GetBookingSystem(int id)
         {
             BookingSystem bookingSystem =  db.Bus.Find(id);
