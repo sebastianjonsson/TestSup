@@ -15,5 +15,11 @@ namespace TestSup.Repository
             Bookings booking = db.Book.Find(id);
             return (booking);
         }
+
+        public async Task<IEnumerable<Bookings>> GetAllBookings()
+        {
+            IEnumerable<Bookings> bookings = db.Book.ToList();
+            return (bookings);
+        }
     }
 }

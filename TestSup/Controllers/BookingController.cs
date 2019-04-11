@@ -17,10 +17,19 @@ namespace TestSup.Controllers
     public class BookingController : BaseController
     {
         // GET: Posts
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var bookings = db.Book.ToList();
-            return View(bookings);
+            //var bookings = db.Book.ToList();
+            //return View(bookings);
+
+            var url = "http://localhost:64034/api/getAllBookings";
+            using (var client = new HttpClient())
+            {
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
+                return View(booking);
+            }
         }
         [HttpPost]
         public ActionResult Search(string searchString)

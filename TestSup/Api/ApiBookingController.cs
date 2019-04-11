@@ -13,9 +13,16 @@ namespace TestSup.Api
     {
         BookingRepository bookingRepository = new BookingRepository();
         // GET: api/ApiBooking
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [Route("api/getAllBookings")]
+        public async Task<IHttpActionResult> GetAllBookings()
         {
-            return new string[] { "value1", "value2" };
+            var system = await bookingRepository.GetAllBookings();
+            if (system == null)
+            {
+                return BadRequest();
+            }
+            return Ok(system);
         }
 
         // GET: api/ApiBooking/5
