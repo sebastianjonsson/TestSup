@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using Logic;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace TestSup.Controllers
 {
@@ -77,7 +78,7 @@ namespace TestSup.Controllers
         }
 
         // GET: BookingSystems/Details/5
-        public async System.Threading.Tasks.Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
 
             var url = "http://localhost:64034/api/getBookingSystem/" + id;
