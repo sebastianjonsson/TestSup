@@ -8,6 +8,9 @@ using Logic;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace TestSup.Controllers
 {
@@ -72,18 +75,16 @@ namespace TestSup.Controllers
         }
         
         // GET: BookingSystems/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            var url = "http://localhost:64034/api/getBooking/" + id;
+            using (var client = new HttpClient())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var booking = JsonConvert.DeserializeObject<Bookings>(jsonString);
+                return View(booking);
             }
-            Bookings booking = db.Book.Find(id);
-            if (booking == null)
-            {
-                return HttpNotFound();
-            }
-            return View(booking);
         }
 
         // POST: BookingSystems/Edit/5
@@ -101,18 +102,26 @@ namespace TestSup.Controllers
         }
 
         // GET: BookingSystems/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            var url = "http://localhost:64034/api/getBooking/" + id;
+            using (var client = new HttpClient())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var booking = JsonConvert.DeserializeObject<Bookings>(jsonString);
+                return View(booking);
             }
-            Bookings booking = db.Book.Find(id);
-            if (booking == null)
-            {
-                return HttpNotFound();
-            }
-            return View(booking);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Bookings booking = db.Book.Find(id);
+            //if (booking == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(booking);
         }
 
         // POST: BookingSystems/Delete/5
