@@ -48,7 +48,19 @@ namespace TestSup.Api
                        
             return Ok(system);
         }
-        
+        //[HttpPost]
+        //[Route("api/createBookingSystem")]
+        //public async Task<IHttpActionResult> CreateBookingSystemAsync(BookingSystem bookingSystem)
+        //{
+        //    var system = await bookingSystemRepository.CreateBookingSystem(bookingSystem);
+        //    if (system == null)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    return Ok(system);
+        //}
+
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)
         {

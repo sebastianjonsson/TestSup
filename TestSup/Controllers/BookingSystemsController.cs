@@ -178,6 +178,22 @@ namespace TestSup.Controllers
 
             return View(bookingSystem);
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Create(BookingSystem bookingSystem)
+        //{
+        //    var url = "http://localhost:64034/api/createBookingSystem";
+        //    using (var client = new HttpClient())
+        //    {
+        //        var content = new StringContent(JsonConvert.SerializeObject(bookingSystem), Encoding.UTF8, "application/json");
+        //        var result = await client.PostAsync(url, content);
+        //        if (result.IsSuccessStatusCode)
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+        //        return View(bookingSystem);
+        //    }
+        //}
 
         public async Task<ActionResult> Edit(int? id)
         {
@@ -191,9 +207,6 @@ namespace TestSup.Controllers
             }
         }
 
-        // POST: BookingSystems/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(BookingSystem bookingSystem)
@@ -233,7 +246,6 @@ namespace TestSup.Controllers
             }
         }
 
-        // POST: BookingSystems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

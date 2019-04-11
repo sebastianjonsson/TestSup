@@ -16,7 +16,12 @@ namespace TestSup.Repository
             BookingSystem bookingSystem =  db.Bus.Find(id);
             return (bookingSystem);
         }
-
+        //public async Task<BookingSystem> CreateBookingSystem(BookingSystem bookingSystem)
+        //{
+        //    db.Bus.Add(bookingSystem);
+        //    db.SaveChanges();
+        //    return (bookingSystem);
+        //}
 
     }
 }
