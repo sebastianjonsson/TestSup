@@ -5,15 +5,18 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Logic;
+using Newtonsoft.Json;
 
 namespace TestSup.Controllers
 {
     public class BookingSystemsController : BaseController
     {
-        
+         
 
         // GET: BookingSystems
         public ActionResult Index()
@@ -74,18 +77,41 @@ namespace TestSup.Controllers
         }
 
         // GET: BookingSystems/Details/5
-        public ActionResult Details(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+
+            var url = "http://localhost:64034/api/getBookingSystem/" + id;
+            using (var client = new HttpClient())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //var content = new StringContent(JsonConvert.DeserializeObject(BookingSystem bookingsSystem, Encoding.UTF8, "application/json");
+                //var result = await client.GetAsync(url, content);
+                //var jsonString = await task.Content.ReadAsStringAsync();
+                //model = JsonConvert.DeserializeObject<List<Job>>(jsonString);
+                //if (result.IsSuccessStatusCode)
+                //{
+                //    return RedirectToAction("Index");
+                //}
+                //return View(result);
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var bookingSystem = JsonConvert.DeserializeObject<BookingSystem>(jsonString);
+
+                //var bookingSystem = new BookingSystem();
+                //bookingSystem = modelBookingSystem;
+
+                return View(bookingSystem);
             }
-            BookingSystem bookingSystem = db.Bus.Find(id);
-            if (bookingSystem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bookingSystem);
+
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //BookingSystem bookingSystem = db.Bus.Find(id);
+            //if (bookingSystem == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(bookingSystem);
         }
         public ActionResult Image(int id)
         {

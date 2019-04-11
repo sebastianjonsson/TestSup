@@ -63,7 +63,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Boka" class="btn btn-default" onclick= "done()" />
+                <input type="submit" value="Boka" class="btn btn-default" onclick="done()" />
             </div>
         </div>
 
@@ -73,7 +73,25 @@
             </div>
         </div>
     </div>
-
+    <div class="modal" tabindex="-1" role="dialog" id="modal-badboy">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Din bokning är nu genomförd</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         function done() {
             var userName = $('#userName').val().length;
@@ -85,6 +103,7 @@
 
             if (userName > 0 && email > 0 && userMobile > 0 && subject > 0 && startTime > 0 && endTime > 0) {
                 alert("Din bokning är nu genomförd.")
+                $('#modal-badboy').modal('show');
             }
         }
     </script>
