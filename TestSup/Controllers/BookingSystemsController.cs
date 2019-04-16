@@ -101,35 +101,7 @@ namespace TestSup.Controllers
                 return View();
             }
         }
-        [HttpPost]
-        public ActionResult Picture(int id, HttpPostedFileBase upload)
-        {
-            try
-            {
-                var system = db.DbBookingSystem.Single(x => x.Id == id);
-
-                if (upload != null && upload.ContentLength > 0)
-                {
-                    system.File = upload.FileName;
-
-                    system.Content = upload.ContentType;
-
-                    using (var reader = new BinaryReader(upload.InputStream))
-                    {
-                        system.Picture = reader.ReadBytes(upload.ContentLength);
-                    }
-                    db.Entry(system).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                return RedirectToAction("BookingSystemList");
-            }
-            catch
-            {
-                RedirectToAction("BookingSystemList");
-            }
-            return View();
-        }
-
+        
         // GET: BookingSystems/Create
         public ActionResult CreateBookingSystem()
         {
