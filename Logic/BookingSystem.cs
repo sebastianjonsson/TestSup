@@ -36,7 +36,7 @@ namespace Logic
         public string File { get; set; }
         public string Content { get; set; }
 
-        public virtual ICollection<Bookings> Books { get; set; }
+        public virtual ICollection<Bookings> Bookings { get; set; }
     }
 }
     

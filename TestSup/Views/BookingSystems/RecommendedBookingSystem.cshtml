@@ -35,7 +35,7 @@
         });
 
         var a = new google.maps.LatLng(@Model.Lat, @Model.Long);
-     @foreach(var item in Model.BookSystem)
+     @foreach(var item in Model.BookingSystem)
      {
      <text>
         var contentString = '<div>@Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div>';

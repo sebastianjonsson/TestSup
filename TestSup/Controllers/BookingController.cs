@@ -40,7 +40,7 @@ namespace TestSup.Controllers
                                      select m;
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    bookings = bookings.Where(s => s.BookingSys.SystemName.Contains(searchString) || s.UserName.Contains(searchString));
+                    bookings = bookings.Where(s => s.BookingSystem.SystemName.Contains(searchString) || s.UserName.Contains(searchString));
                     //HEJSAN
                 }
                 return View("BookingList", bookings.ToList());
@@ -53,7 +53,7 @@ namespace TestSup.Controllers
         }
         public ActionResult SortBySystemName()
         {
-            var sort = db.DbBookings.OrderBy(x => x.BookingSys.SystemName).ToList();
+            var sort = db.DbBookings.OrderBy(x => x.BookingSystem.SystemName).ToList();
             return View("Index", sort);
         }
         public ActionResult SortByName()
@@ -69,18 +69,18 @@ namespace TestSup.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateBooking([Bind(Include = "Id,UserName,Email,UserMobile,Subject,StartTime,EndTime,BookingSys")] Bookings book, int id)
+        public ActionResult CreateBooking([Bind(Include = "Id,UserName,Email,UserMobile,Subject,StartTime,EndTime,BookingSys")] Bookings booking, int id)
         {
             if (ModelState.IsValid)
             {
                 var sys = db.DbBookingSystem.Single(x => x.Id == id);
-                book.BookingSys = sys;
-                db.DbBookings.Add(book);
+                booking.BookingSystem = sys;
+                db.DbBookings.Add(booking);
                 db.SaveChanges();
                 return RedirectToAction("BookingList");
             }
 
-            return View(book);
+            return View(booking);
         }
         
         // GET: BookingSystems/Edit/5

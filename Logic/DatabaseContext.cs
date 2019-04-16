@@ -23,7 +23,7 @@ namespace Logic
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             modelBuilder.Entity<Bookings>()
-            .HasOptional<BookingSystem>(s => s.BookingSys)
+            .HasOptional<BookingSystem>(s => s.BookingSystem)
             .WithMany()
             .WillCascadeOnDelete(true);
             

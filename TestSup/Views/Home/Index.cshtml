@@ -12,7 +12,7 @@
     <p><a href="https://boka.se" class="btn btn-primary btn-lg">boka.se &raquo;</a></p>
 </div>
 <p>Sortera på kategori:</p>
-@Html.DropDownList("cat", new SelectList(Enum.GetValues(typeof(Category))), "Visa alla", new { @id = "cat", @onchange = "CatChange()", @class = "form-control" })
+@Html.DropDownList("changeCategory", new SelectList(Enum.GetValues(typeof(Category))), "Visa alla", new { @id = "changeCategory", @onchange = "CategoryChange()", @class = "form-control" })
 <div id="kolumn1">
     <div style="height: 480px; overflow: auto;">
         <table class="table">
@@ -37,12 +37,12 @@
 
 
 <script>
-    function CatChange() {
-        var cat = $("#cat option:selected").val();
+    function CategoryChange() {
+        var category = $("#changeCategory option:selected").val();
         if (window.location.href.indexOf("Home") > 0) {
-            location.href = "Index?Cat=" + cat;
+            location.href = "Index?Category=" + category;
         } else {
-            location.href = "Home/Index?Cat=" + cat;
+            location.href = "Home/Index?Category=" + category;
         }
     }
 </script>

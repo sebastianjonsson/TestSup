@@ -23,12 +23,12 @@ namespace TestSup.Controllers
             var bookingSystems = db.DbBookingSystem.ToList();
             return View(bookingSystems);
         }
-        public ActionResult RecommendedBookingSystem(string Cat, int Id, string Lat, string Long)
+        public ActionResult RecommendedBookingSystem(string category, int id, string latitude, string longitude)
         {
             try
             {
-                var bookSystem = db.DbBookingSystem.Where(i => i.Category == Cat && i.Id != Id).ToList();
-                return View(new RecommendedBookingSystem { BookSystem = bookSystem });
+                var bookingSystem = db.DbBookingSystem.Where(i => i.Category == category && i.Id != id).ToList();
+                return View(new RecommendedBookingSystem { BookingSystem = bookingSystem });
             }
             catch
             {
@@ -102,23 +102,23 @@ namespace TestSup.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Picture(int Id, HttpPostedFileBase upload)
+        public ActionResult Picture(int id, HttpPostedFileBase upload)
         {
             try
             {
-                var sys = db.DbBookingSystem.Single(x => x.Id == Id);
+                var system = db.DbBookingSystem.Single(x => x.Id == id);
 
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    sys.File = upload.FileName;
+                    system.File = upload.FileName;
 
-                    sys.Content = upload.ContentType;
+                    system.Content = upload.ContentType;
 
                     using (var reader = new BinaryReader(upload.InputStream))
                     {
-                        sys.Picture = reader.ReadBytes(upload.ContentLength);
+                        system.Picture = reader.ReadBytes(upload.ContentLength);
                     }
-                    db.Entry(sys).State = EntityState.Modified;
+                    db.Entry(system).State = EntityState.Modified;
                     db.SaveChanges();
                 }
                 return RedirectToAction("BookingSystemList");
@@ -145,18 +145,18 @@ namespace TestSup.Controllers
                 db.DbBookingSystem.Add(bookingSystem);
                 db.SaveChanges();
 
-                var sys = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
+                var system = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    sys.File = upload.FileName;
+                    system.File = upload.FileName;
 
-                    sys.Content = upload.ContentType;
+                    system.Content = upload.ContentType;
 
                     using (var reader = new BinaryReader(upload.InputStream))
                     {
-                        sys.Picture = reader.ReadBytes(upload.ContentLength);
+                        system.Picture = reader.ReadBytes(upload.ContentLength);
                     }
-                    db.Entry(sys).State = EntityState.Modified;
+                    db.Entry(system).State = EntityState.Modified;
                 }
                     db.SaveChanges();
 
@@ -201,20 +201,20 @@ namespace TestSup.Controllers
             if (ModelState.IsValid)
             {
                 
-                var sys = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
+                var system = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
 
-                sys.Address = bookingSystem.Address;
-                sys.Category = bookingSystem.Category;
-                sys.City = bookingSystem.City;
-                sys.Email = bookingSystem.Email;
-                sys.PhoneNumber = bookingSystem.PhoneNumber;
-                sys.Latitude = bookingSystem.Latitude;
-                sys.Longitude = bookingSystem.Longitude;
-                sys.SystemName = bookingSystem.SystemName;
-                sys.SystemDescription = bookingSystem.SystemDescription;
-                sys.Website = bookingSystem.Website;
+                system.Address = bookingSystem.Address;
+                system.Category = bookingSystem.Category;
+                system.City = bookingSystem.City;
+                system.Email = bookingSystem.Email;
+                system.PhoneNumber = bookingSystem.PhoneNumber;
+                system.Latitude = bookingSystem.Latitude;
+                system.Longitude = bookingSystem.Longitude;
+                system.SystemName = bookingSystem.SystemName;
+                system.SystemDescription = bookingSystem.SystemDescription;
+                system.Website = bookingSystem.Website;
 
-                db.Entry(sys).State = EntityState.Modified;
+                db.Entry(system).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("BookingSystemList");
             }
@@ -254,22 +254,22 @@ namespace TestSup.Controllers
     }
     public class RecommendedBookingSystem
     {
-        public string Cat { get; set; }
+        public string Category { get; set; }
         public string Lat { get; set; }
         public string Long { get; set; }
-        public ICollection<BookingSystem> BookSystem { get; set; }
+        public ICollection<BookingSystem> BookingSystem { get; set; }
         public RecommendedBookingSystem()
         {
 
         }
-        public RecommendedBookingSystem(string Cat, int Id, string Lat, string Long)
+        public RecommendedBookingSystem(string category, int id, string latitude, string longitude)
         {
             using (var db = new DatabaseContext())
                 {
-                    this.BookSystem = db.DbBookingSystem.Where(i => i.Category == Cat && i.Id != Id).ToList();
-                    this.Cat = Cat;
-                    this.Lat = Lat;
-                    this.Long = Long;
+                    this.BookingSystem = db.DbBookingSystem.Where(i => i.Category == category && i.Id != id).ToList();
+                    this.Category = category;
+                    this.Lat = latitude;
+                    this.Long = longitude;
                 
                 }
             

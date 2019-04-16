@@ -13,11 +13,11 @@ namespace Logic
         protected override void Seed(DatabaseContext context)
         {
 
-            IList<BookingSystem> bookingSys = new List<BookingSystem>();
+            IList<BookingSystem> bookingSystem = new List<BookingSystem>();
             IList<Bookings> booking = new List<Bookings>();
 
             //Örebro
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Nasses Cykelverkstad",
                 SystemDescription ="Lagar cyklar",
@@ -30,7 +30,7 @@ namespace Logic
                 City = "Örebro",
                 Category = "Verkstad",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Tottas Fritid AB",
                 SystemDescription = "Lagar allt som går att laga",
@@ -43,7 +43,7 @@ namespace Logic
                 City = "Örebro",
                 Category = "Verkstad",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Restaurang Monza",
                 SystemDescription = "Pizza, kebab, sallad.",
@@ -56,7 +56,7 @@ namespace Logic
                 City = "Örebro",
                 Category = "Restaurang",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Sörby Grill & Pizzeria",
                 SystemDescription = "Grillad pizza mmm gott",
@@ -69,7 +69,7 @@ namespace Logic
                 City = "Örebro",
                 Category = "Restaurang",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Tybblelundshallen",
                 SystemDescription = "Hyr din hall för aktiviteter här!",
@@ -82,7 +82,7 @@ namespace Logic
                 City = "Örebro",
                 Category = "Idrott",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Behrn Arena",
                 SystemDescription = "Fotboll och amerikansk fotboll.",
@@ -95,7 +95,7 @@ namespace Logic
                 City = "Örebro",
                 Category = "Idrott",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Chia's Barbershop",
                 SystemDescription = "Klippning halva pris jalla",
@@ -108,7 +108,7 @@ namespace Logic
                 City = "Örebro",
                 Category = "Skönhet",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "SolTinis Fotvård",
                 SystemDescription = "Jag älskar fötter",
@@ -122,7 +122,7 @@ namespace Logic
                 Category = "Skönhet",
             });
             //Stockholm
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Bra Verkstad Stockholm AB",
                 SystemDescription = "En bra verkstad bara",
@@ -135,7 +135,7 @@ namespace Logic
                 City = "Stockholm",
                 Category = "Verkstad",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Stockholms Blåsinstrumentverkstad",
                 SystemDescription = "Lagar dina trumpeter på nolltid!",
@@ -148,7 +148,7 @@ namespace Logic
                 City = "Stockholm",
                 Category = "Verkstad",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Supper Stockholm",
                 SystemDescription = "Supermat på supper",
@@ -161,7 +161,7 @@ namespace Logic
                 City = "Stockholm",
                 Category = "Restaurang",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Nostrano",
                 SystemDescription = "Italian food",
@@ -174,7 +174,7 @@ namespace Logic
                 City = "Stockholm",
                 Category = "Restaurang",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Konradsbergshallen",
                 SystemDescription = "Innebandy?",
@@ -187,7 +187,7 @@ namespace Logic
                 City = "Stockholm",
                 Category = "Idrott",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Gärdeshallen",
                 SystemDescription = "Badminton tennis och kul.",
@@ -200,7 +200,7 @@ namespace Logic
                 City = "Stockholm",
                 Category = "Idrott",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Björn Axén Norrlandsgatan 7",
                 SystemDescription = "Klippning för eliten på Östermalm",
@@ -213,7 +213,7 @@ namespace Logic
                 City = "Stockholm",
                 Category = "Skönhet",
             });
-            bookingSys.Add(new BookingSystem()
+            bookingSystem.Add(new BookingSystem()
             {
                 SystemName = "Hårgänget",
                 SystemDescription = "Vi älskar hår",
@@ -226,8 +226,8 @@ namespace Logic
                 City = "Stockholm",
                 Category = "Skönhet",
             });
-            foreach (BookingSystem booksys in bookingSys)
-                context.DbBookingSystem.Add(booksys);
+            foreach (BookingSystem system in bookingSystem)
+                context.DbBookingSystem.Add(system);
             base.Seed(context);
         }
     }
