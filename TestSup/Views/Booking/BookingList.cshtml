@@ -2,7 +2,7 @@
 
 <h2>Alla bokningar</h2>
 
-@using (Html.BeginForm("Search", "Booking"))
+@using (Html.BeginForm("SearchBooking", "Booking"))
 {
     <p>
         @Html.TextBox("SearchString") <input type="submit" class="btn btn-primary" value="Sök efter verksamhet eller namn" />
@@ -59,8 +59,8 @@
                 @Html.DisplayFor(modelItem => item.Endtime)
             </td>
             <td>
-                @Html.ActionLink("Ändra bokning", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Ta bort bokning", "Delete", new { id = item.Id })
+                @Html.ActionLink("Ändra bokning", "EditBooking", new { id = item.Id }) |
+                @Html.ActionLink("Ta bort bokning", "DeleteBooking", new { id = item.Id })
             </td>
         </tr>
     }

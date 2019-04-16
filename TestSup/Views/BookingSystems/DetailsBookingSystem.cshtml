@@ -10,9 +10,9 @@
 
 <h2>@Html.DisplayFor(model => model.SystemName)</h2>
 <hr />
-<button onclick="location.href= '@Url.Action("Create", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
+<button onclick="location.href= '@Url.Action("CreateBooking", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
 <p>
-    @Html.ActionLink("Tillbaka till alla verksamheter", "Index")
+    @Html.ActionLink("Tillbaka till alla verksamheter", "BookingSystemList")
 </p>
 <div id="kolumn1">
     <div class="container">
@@ -42,7 +42,7 @@
     <div class="container">
         <div class="row">
             <h3>Rekommenderade:</h3>
-            @Html.Partial("../BookingSystems/RecBookingSys", new TestSup.Controllers.RecBookingSys(Model.Category, Model.Id, Model.Latitude, Model.Longitude))
+            @Html.Partial("../BookingSystems/RecommendedBookingSystem", new TestSup.Controllers.RecommendedBookingSystem(Model.Category, Model.Id, Model.Latitude, Model.Longitude))
             <br />
         </div>
     </div>

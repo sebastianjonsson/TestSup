@@ -12,13 +12,13 @@ namespace TestSup.Repository
     {
         public async Task<Bookings> GetBooking(int id)
         {
-            Bookings booking = db.Book.Find(id);
+            Bookings booking = db.DbBookings.Find(id);
             return (booking);
         }
 
         public async Task<IEnumerable<Bookings>> GetAllBookings()
         {
-            IEnumerable<Bookings> bookings = db.Book.ToList();
+            IEnumerable<Bookings> bookings = db.DbBookings.ToList();
             return (bookings);
         }
     }

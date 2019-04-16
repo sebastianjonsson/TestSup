@@ -227,7 +227,7 @@ namespace Logic
                 Category = "Skönhet",
             });
             foreach (BookingSystem booksys in bookingSys)
-                context.Bus.Add(booksys);
+                context.DbBookingSystem.Add(booksys);
             base.Seed(context);
         }
     }

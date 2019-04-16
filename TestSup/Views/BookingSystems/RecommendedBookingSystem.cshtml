@@ -1,4 +1,4 @@
-﻿@model TestSup.Controllers.RecBookingSys
+﻿@model TestSup.Controllers.RecommendedBookingSystem
 
 @{
     ViewBag.Title = "RecBookingSys";
@@ -35,7 +35,7 @@
         });
 
         var a = new google.maps.LatLng(@Model.Lat, @Model.Long);
-     @foreach(var item in Model.BookSys)
+     @foreach(var item in Model.BookSystem)
      {
      <text>
         var contentString = '<div>@Html.ActionLink(item.SystemName, "Details", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div>';

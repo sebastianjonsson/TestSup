@@ -17,7 +17,7 @@ namespace TestSup.Controllers
     public class BookingController : BaseController
     {
         // GET: Posts
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> BookingList()
         {
             //var bookings = db.Book.ToList();
             //return View(bookings);
@@ -32,18 +32,18 @@ namespace TestSup.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Search(string searchString)
+        public ActionResult SearchBooking(string searchString)
         {
             try
             {
-                var bookings = from m in db.Book
+                var bookings = from m in db.DbBookings
                                      select m;
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     bookings = bookings.Where(s => s.BookingSys.SystemName.Contains(searchString) || s.UserName.Contains(searchString));
                     //HEJSAN
                 }
-                return View("Index", bookings.ToList());
+                return View("BookingList", bookings.ToList());
             }
             catch
             {
@@ -53,38 +53,38 @@ namespace TestSup.Controllers
         }
         public ActionResult SortBySystemName()
         {
-            var sort = db.Book.OrderBy(x => x.BookingSys.SystemName).ToList();
+            var sort = db.DbBookings.OrderBy(x => x.BookingSys.SystemName).ToList();
             return View("Index", sort);
         }
         public ActionResult SortByName()
         {
-            var sort = db.Book.OrderBy(x => x.UserName).ToList();
+            var sort = db.DbBookings.OrderBy(x => x.UserName).ToList();
             return View("Index", sort);
         }
 
 
-        public ActionResult Create()
+        public ActionResult CreateBooking()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserName,Email,UserMobile,Subject,StartTime,EndTime,BookingSys")] Bookings book, int id)
+        public ActionResult CreateBooking([Bind(Include = "Id,UserName,Email,UserMobile,Subject,StartTime,EndTime,BookingSys")] Bookings book, int id)
         {
             if (ModelState.IsValid)
             {
-                var sys = db.Bus.Single(x => x.Id == id);
+                var sys = db.DbBookingSystem.Single(x => x.Id == id);
                 book.BookingSys = sys;
-                db.Book.Add(book);
+                db.DbBookings.Add(book);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("BookingList");
             }
 
             return View(book);
         }
         
         // GET: BookingSystems/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> EditBooking(int? id)
         {
             var url = "http://localhost:64034/api/getBooking/" + id;
             using (var client = new HttpClient())
@@ -99,19 +99,19 @@ namespace TestSup.Controllers
         // POST: BookingSystems/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, UserName, Email, UserMobile, Subject, StartTime, Endtime")] Bookings booking)
+        public ActionResult EditBooking([Bind(Include = "Id, UserName, Email, UserMobile, Subject, StartTime, Endtime")] Bookings booking)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(booking).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("BookingList");
             }
             return View(booking);
         }
 
         // GET: BookingSystems/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> DeleteBooking(int? id)
         {
             var url = "http://localhost:64034/api/getBooking/" + id;
             using (var client = new HttpClient())
@@ -121,27 +121,17 @@ namespace TestSup.Controllers
                 var booking = JsonConvert.DeserializeObject<Bookings>(jsonString);
                 return View(booking);
             }
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Bookings booking = db.Book.Find(id);
-            //if (booking == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(booking);
         }
 
         // POST: BookingSystems/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteBooking")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Bookings booking = db.Book.Find(id);
-            db.Book.Remove(booking);
+            Bookings booking = db.DbBookings.Find(id);
+            db.DbBookings.Remove(booking);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("BookingList");
         }
 
         protected override void Dispose(bool disposing)

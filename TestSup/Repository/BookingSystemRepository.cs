@@ -13,7 +13,7 @@ namespace TestSup.Repository
     {
         public async Task<BookingSystem> GetBookingSystem(int id)
         {
-            BookingSystem bookingSystem =  db.Bus.Find(id);
+            BookingSystem bookingSystem =  db.DbBookingSystem.Find(id);
             return (bookingSystem);
         }
         //public async Task<BookingSystem> CreateBookingSystem(BookingSystem bookingSystem)

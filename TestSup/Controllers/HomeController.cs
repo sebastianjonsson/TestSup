@@ -15,14 +15,14 @@ namespace TestSup.Controllers
             {
                 if (cat == null || cat == "")
                 {
-                    var bookingSystems = db.Bus.ToList();
+                    var bookingSystems = db.DbBookingSystem.ToList();
                     Random rnd = new Random();
                     bookingSystems = bookingSystems.OrderBy(emp => rnd.Next()).ToList();
                     return View(bookingSystems);
                 }
                 else
                 {
-                    var bookingSystems = db.Bus.Where(x => x.Category == cat).ToList();
+                    var bookingSystems = db.DbBookingSystem.Where(x => x.Category == cat).ToList();
                     Random rnd = new Random();
                     bookingSystems = bookingSystems.OrderBy(emp => rnd.Next()).ToList();
                     return View(bookingSystems);

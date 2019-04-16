@@ -6,7 +6,7 @@
 
 <h2>Tryck på en verksamhet för att boka</h2>
 
-@using (Html.BeginForm("Search", "BookingSystems"))
+@using (Html.BeginForm("SearchBooking", "BookingSystems"))
 {
     <p>
         @Html.TextBox("SearchString") <input type="submit" class="btn btn-primary" value="Sök efter verksamhetsnamn" />
@@ -41,7 +41,7 @@
                 <img height="48" width="48" src="@Url.Action("Image", new { id = item.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
             </td>
             <td>
-                @Html.ActionLink(item.SystemName, "Details", new { id = item.Id })
+                @Html.ActionLink(item.SystemName, "DetailsBookingSystem", new { id = item.Id })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
@@ -53,8 +53,8 @@
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
-                @Html.ActionLink("Ändra verksamhet", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Ta bort verksamhet", "Delete", new { id = item.Id })
+                @Html.ActionLink("Ändra verksamhet", "EditBookingSystem", new { id = item.Id }) |
+                @Html.ActionLink("Ta bort verksamhet", "DeleteBookingSystem", new { id = item.Id })
             </td>
         </tr>
     }

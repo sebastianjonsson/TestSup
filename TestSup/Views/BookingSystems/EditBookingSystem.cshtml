@@ -7,7 +7,7 @@
 <h2>Ändra Verksamhet</h2>
 
 
-@using (Html.BeginForm("Edit", "BookingSystems", FormMethod.Post, new { enctype = "multipart/form-data", onkeydown = "return event.keyCode!=13" }))
+@using (Html.BeginForm("EditBookingSystem", "BookingSystems", FormMethod.Post, new { enctype = "multipart/form-data", onkeydown = "return event.keyCode!=13" }))
 {
     @Html.AntiForgeryToken()
 
@@ -110,7 +110,7 @@
 }
 
 <div>
-    @Html.ActionLink("Tillbaka till verksamheter", "Index")
+    @Html.ActionLink("Tillbaka till verksamheter", "BookingSystemList")
 </div>
 
 <script>function showResult(result) {

@@ -16,8 +16,8 @@ namespace Logic
         {
             return new DatabaseContext();
         }
-        public DbSet<BookingSystem> Bus { get; set; }
-        public DbSet<Bookings> Book { get; set; }
+        public DbSet<BookingSystem> DbBookingSystem { get; set; }
+        public DbSet<Bookings> DbBookings { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

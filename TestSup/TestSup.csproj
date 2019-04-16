@@ -214,16 +214,16 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\BookingSystems\Create.cshtml" />
-    <Content Include="Views\BookingSystems\Delete.cshtml" />
-    <Content Include="Views\BookingSystems\Details.cshtml" />
-    <Content Include="Views\BookingSystems\Edit.cshtml" />
-    <Content Include="Views\BookingSystems\Index.cshtml" />
-    <Content Include="Views\Booking\Delete.cshtml" />
-    <Content Include="Views\Booking\Edit.cshtml" />
-    <Content Include="Views\Booking\Index.cshtml" />
-    <Content Include="Views\BookingSystems\RecBookingSys.cshtml" />
-    <Content Include="Views\Booking\Create.cshtml" />
+    <None Include="Views\BookingSystems\CreateBookingSystem.cshtml" />
+    <Content Include="Views\BookingSystems\DeleteBookingSystem.cshtml" />
+    <Content Include="Views\BookingSystems\DetailsBookingSystem.cshtml" />
+    <Content Include="Views\BookingSystems\EditBookingSystem.cshtml" />
+    <Content Include="Views\BookingSystems\BookingSystemList.cshtml" />
+    <Content Include="Views\Booking\DeleteBooking.cshtml" />
+    <Content Include="Views\Booking\EditBooking.cshtml" />
+    <Content Include="Views\Booking\BookingList.cshtml" />
+    <Content Include="Views\BookingSystems\RecommendedBookingSystem.cshtml" />
+    <Content Include="Views\Booking\CreateBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

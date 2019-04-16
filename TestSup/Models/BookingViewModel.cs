@@ -28,6 +28,6 @@ namespace TestSup.Models
         [Required]
         [Display(Name = "Sluttid")]
         public DateTime Endtime { get; set; }
-        public int BookingSys { get; set; }
+        public int BookingSystem { get; set; }
     }
 }
