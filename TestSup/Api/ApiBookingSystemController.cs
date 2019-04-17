@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using TestSup.Repository;
 
@@ -48,18 +49,13 @@ namespace TestSup.Api
                        
             return Ok(system);
         }
-        //[HttpPost]
-        //[Route("api/createBookingSystem")]
-        //public async Task<IHttpActionResult> CreateBookingSystemAsync(BookingSystem bookingSystem)
-        //{
-        //    var system = await bookingSystemRepository.CreateBookingSystem(bookingSystem);
-        //    if (system == null)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    return Ok(system);
-        //}
+        [HttpPost]
+        [Route("api/addBookingSystem/")]
+        public async Task <IHttpActionResult> AddBookingSystem(BookingSystem bookingSystem/*, HttpPostedFileBase upload*/)
+        {
+            new BookingSystemRepository().AddBookingSystem(bookingSystem/*, upload*/);
+            return Ok();
+        }
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)
