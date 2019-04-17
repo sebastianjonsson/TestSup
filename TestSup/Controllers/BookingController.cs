@@ -19,9 +19,6 @@ namespace TestSup.Controllers
         // GET: Posts
         public async Task<ActionResult> BookingList()
         {
-            //var bookings = db.Book.ToList();
-            //return View(bookings);
-
             var url = "http://localhost:64034/api/getAllBookings";
             using (var client = new HttpClient())
             {
@@ -31,26 +28,34 @@ namespace TestSup.Controllers
                 return View(booking);
             }
         }
-        [HttpPost]
-        public ActionResult SearchBooking(string searchString)
+ 
+        public async Task<ActionResult> SearchBooking(string searchString)
         {
-            try
+            if (!String.IsNullOrEmpty(searchString))
             {
-                var bookings = from m in db.DbBookings
-                                     select m;
-                if (!String.IsNullOrEmpty(searchString))
+                var url = "http://localhost:64034/api/searchBooking/" + searchString;
+                using (var client = new HttpClient())
                 {
-                    bookings = bookings.Where(s => s.BookingSystem.SystemName.Contains(searchString) || s.UserName.Contains(searchString));
-                    //HEJSAN
+                    var task = await client.GetAsync(url);
+                    var jsonString = await task.Content.ReadAsStringAsync();
+                    var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
+                    return View("BookingList", booking);
                 }
-                return View("BookingList", bookings.ToList());
             }
-            catch
+            //Detta är nog fel.
+            else
             {
-                RedirectToAction("Index", "Home");
+                var url = "http://localhost:64034/api/getAllBookings";
+                using (var client = new HttpClient())
+                {
+                    var task = await client.GetAsync(url);
+                    var jsonString = await task.Content.ReadAsStringAsync();
+                    var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
+                    return View("BookingList", booking);
+                }
             }
-            return View();
         }
+
         public async Task<ActionResult> SortBySystemName()
         {
             var url = "http://localhost:64034/api/sortBookingBySystemName";
@@ -62,6 +67,7 @@ namespace TestSup.Controllers
                 return View("BookingList", booking);
             }
         }
+
         public async Task<ActionResult> SortByName()
         {
             var url = "http://localhost:64034/api/sortBookingByName";
@@ -73,7 +79,6 @@ namespace TestSup.Controllers
                 return View("BookingList", booking);
             }
         }
-
 
         public ActionResult CreateBooking()
         {

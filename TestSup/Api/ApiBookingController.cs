@@ -62,6 +62,18 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        [HttpGet]
+        [Route("api/searchBooking/{searchString}")]
+        public async Task<IHttpActionResult> SearchBooking(string searchString)
+        {
+            var system = await bookingRepository.SearchBooking(searchString);
+            if (system == null)
+            {
+                return BadRequest();
+            }
+            return Ok(system);
+        }
+
         // POST: api/ApiBooking
         public void Post([FromBody]string value)
         {

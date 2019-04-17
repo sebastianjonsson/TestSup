@@ -33,5 +33,11 @@ namespace TestSup.Repository
             var sort = db.DbBookings.OrderBy(x => x.UserName).ToList();
             return (sort);
         }
+
+        public async Task<IEnumerable<Bookings>> SearchBooking(string searchString)
+        {
+                IEnumerable<Bookings> bookings = db.DbBookings.Where(s => s.BookingSystem.SystemName.Contains(searchString) || s.UserName.Contains(searchString)).ToList();
+                return (bookings);
+        }
     }
 }
