@@ -38,6 +38,30 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        [HttpGet]
+        [Route("api/sortBookingBySystemName")]
+        public async Task<IHttpActionResult> SortBookingBySystemName()
+        {
+            var system = await bookingRepository.SortBookingsBySystemName();
+            if (system == null)
+            {
+                return BadRequest();
+            }
+            return Ok(system);
+        }
+
+        [HttpGet]
+        [Route("api/sortBookingByName")]
+        public async Task<IHttpActionResult> SortBookingByName()
+        {
+            var system = await bookingRepository.SortBookingsByName();
+            if (system == null)
+            {
+                return BadRequest();
+            }
+            return Ok(system);
+        }
+
         // POST: api/ApiBooking
         public void Post([FromBody]string value)
         {

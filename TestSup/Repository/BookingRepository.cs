@@ -21,5 +21,17 @@ namespace TestSup.Repository
             IEnumerable<Bookings> bookings = db.DbBookings.ToList();
             return (bookings);
         }
+
+        public async Task <IEnumerable<Bookings>> SortBookingsBySystemName()
+        {
+            var sort = db.DbBookings.OrderBy(x => x.BookingSystem.SystemName).ToList();
+            return (sort);
+        }
+
+        public async Task<IEnumerable<Bookings>> SortBookingsByName()
+        {
+            var sort = db.DbBookings.OrderBy(x => x.UserName).ToList();
+            return (sort);
+        }
     }
 }

@@ -51,15 +51,27 @@ namespace TestSup.Controllers
             }
             return View();
         }
-        public ActionResult SortBySystemName()
+        public async Task<ActionResult> SortBySystemName()
         {
-            var sort = db.DbBookings.OrderBy(x => x.BookingSystem.SystemName).ToList();
-            return View("Index", sort);
+            var url = "http://localhost:64034/api/sortBookingBySystemName";
+            using (var client = new HttpClient())
+            {
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
+                return View("BookingList", booking);
+            }
         }
-        public ActionResult SortByName()
+        public async Task<ActionResult> SortByName()
         {
-            var sort = db.DbBookings.OrderBy(x => x.UserName).ToList();
-            return View("Index", sort);
+            var url = "http://localhost:64034/api/sortBookingByName";
+            using (var client = new HttpClient())
+            {
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
+                return View("BookingList", booking);
+            }
         }
 
 
