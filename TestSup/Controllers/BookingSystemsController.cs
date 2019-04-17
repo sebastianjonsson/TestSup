@@ -108,51 +108,52 @@ namespace TestSup.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateBookingSystem([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,City,Category,Longitude,Latitude")] BookingSystem bookingSystem, HttpPostedFileBase upload)
-        {
-            if (ModelState.IsValid)
-            {
-                db.DbBookingSystem.Add(bookingSystem);
-                db.SaveChanges();
-
-                var system = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
-                if (upload != null && upload.ContentLength > 0)
-                {
-                    system.File = upload.FileName;
-
-                    system.Content = upload.ContentType;
-
-                    using (var reader = new BinaryReader(upload.InputStream))
-                    {
-                        system.Picture = reader.ReadBytes(upload.ContentLength);
-                    }
-                    db.Entry(system).State = EntityState.Modified;
-                }
-                    db.SaveChanges();
-
-                return RedirectToAction("BookingSystemList");
-            }
-
-            return View(bookingSystem);
-        }
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create(BookingSystem bookingSystem)
+        //public ActionResult CreateBookingSystem([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,City,Category,Longitude,Latitude")] BookingSystem bookingSystem, HttpPostedFileBase upload)
         //{
-        //    var url = "http://localhost:64034/api/createBookingSystem";
-        //    using (var client = new HttpClient())
+        //    if (ModelState.IsValid)
         //    {
-        //        var content = new StringContent(JsonConvert.SerializeObject(bookingSystem), Encoding.UTF8, "application/json");
-        //        var result = await client.PostAsync(url, content);
-        //        if (result.IsSuccessStatusCode)
+        //        db.DbBookingSystem.Add(bookingSystem);
+        //        db.SaveChanges();
+
+        //        var system = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
+        //        if (upload != null && upload.ContentLength > 0)
         //        {
-        //            return RedirectToAction("Index");
+        //            system.File = upload.FileName;
+
+        //            system.Content = upload.ContentType;
+
+        //            using (var reader = new BinaryReader(upload.InputStream))
+        //            {
+        //                system.Picture = reader.ReadBytes(upload.ContentLength);
+        //            }
+        //            db.Entry(system).State = EntityState.Modified;
         //        }
-        //        return View(bookingSystem);
+        //            db.SaveChanges();
+
+        //        return RedirectToAction("BookingSystemList");
         //    }
+
+        //    return View(bookingSystem);
         //}
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateBookingSystem(BookingSystem bookingSystem/*, HttpPostedFileBase upload*/)
+        {
+            var url = "http://localhost:64034/api/addBookingSystem";
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent(JsonConvert.SerializeObject(bookingSystem), Encoding.UTF8, "application/json");
+                var result = await client.PostAsync(url, content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("BookingSystemList");
+                }
+                return View(bookingSystem);
+            }
+        }
 
         public async Task<ActionResult> EditBookingSystem(int? id)
         {
