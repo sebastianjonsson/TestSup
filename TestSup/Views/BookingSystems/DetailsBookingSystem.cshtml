@@ -33,14 +33,13 @@
     </div>
 </div>
 
-<div class="col-md-12">
-    <div id="map" style="width: 620px; height: 380px;"></div>
-    <hr />
-</div>
+
 
 <div id="kolumn2">
     <div class="container">
         <div class="row">
+            <div id="map" style="width: 620px; height: 380px;"></div>
+            <hr />
             <h3>Rekommenderade:</h3>
             @Html.Partial("../BookingSystems/RecommendedBookingSystem", new TestSup.Controllers.RecommendedBookingSystem(Model.Category, Model.Id, Model.Latitude, Model.Longitude))
             <br />
@@ -59,9 +58,8 @@
         var infowindow = new google.maps.InfoWindow({
             content: contentString
         });
-        
+
             infowindow.open(map, marker);
-        
     }
 </script>
 

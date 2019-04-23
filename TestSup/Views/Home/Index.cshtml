@@ -27,7 +27,7 @@
                 <tr>
                     <td>
                         <img height="48" width="48" src="@Url.Action("Image", "BookingSystems", new { id = item.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
-                         @Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)
+                        @Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)
                     </td>
                 </tr>
             }
@@ -35,6 +35,7 @@
     </div>
 </div>
 
+<div id="map" style="width: 600px; height: 480px;"></div>
 
 <script>
     function CategoryChange() {
@@ -48,7 +49,6 @@
 </script>
 
 <script>
-    var map;
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 59.609901, lng: 16.544809 },
@@ -104,7 +104,6 @@
     }
 
 </script>
-<body onload="initialize()">
-    <div id="map" style="width: 600px; height: 480px;"></div>
-</body>
+
+
 
