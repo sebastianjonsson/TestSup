@@ -118,22 +118,25 @@ namespace TestSup.Controllers
             }
         }
 
-        // POST: BookingSystems/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditBooking([Bind(Include = "Id, UserName, Email, UserMobile, Subject, StartTime, Endtime")] Bookings booking)
+        public async Task<ActionResult> EditBooking(Bookings booking)
         {
-            if (ModelState.IsValid)
             {
-                db.Entry(booking).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("BookingList");
+                var url = "http://localhost:64034/api/editBooking";
+                using (var client = new HttpClient())
+                {
+                    var content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
+                    var result = await client.PostAsync(url, content);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("BookingList");
+                    }
+                    return View();
+                }
             }
-            return View(booking);
         }
-
-        // GET: BookingSystems/Delete/5
-        public async Task<ActionResult> DeleteBooking(int? id)
+         public async Task<ActionResult> DeleteBooking(int? id)
         {
             var url = "http://localhost:64034/api/getBooking/" + id;
             using (var client = new HttpClient())

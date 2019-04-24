@@ -5,6 +5,7 @@ using System.Web;
 using TestSup.Controllers;
 using Logic;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace TestSup.Repository
 {
@@ -43,6 +44,12 @@ namespace TestSup.Repository
         public void AddBooking(Bookings booking)
         {
             db.DbBookings.Add(booking);
+            db.SaveChanges();
+        }
+
+        public void EditBooking(Bookings booking)
+        {
+            db.Entry(booking).State = EntityState.Modified;
             db.SaveChanges();
         }
 

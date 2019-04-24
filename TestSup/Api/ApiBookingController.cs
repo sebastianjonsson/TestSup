@@ -85,6 +85,14 @@ namespace TestSup.Api
         }
 
         [HttpPost]
+        [Route("api/editBooking/")]
+        public IHttpActionResult EditBooking(Bookings booking)
+        {
+            bookingRepository.EditBooking(booking);
+            return Ok();
+        }
+
+        [HttpPost]
         [Route("api/deleteBooking/")]
         public IHttpActionResult DeleteBooking(Bookings booking)
         {
