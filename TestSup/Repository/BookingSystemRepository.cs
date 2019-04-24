@@ -13,7 +13,7 @@ namespace TestSup.Repository
 {
     public class BookingSystemRepository : BaseController
     {
-        public async Task<BookingSystem> GetBookingSystem(int id)
+        public BookingSystem GetBookingSystem(int id)
         {
             BookingSystem bookingSystem = db.DbBookingSystem.Find(id);
             return (bookingSystem);

@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace TestSup.Controllers
 {
@@ -85,22 +86,25 @@ namespace TestSup.Controllers
         {
             return View();
         }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateBooking([Bind(Include = "Id,UserName,Email,UserMobile,Subject,StartTime,EndTime,BookingSys")] Bookings booking, int id)
+        public async Task<ActionResult> CreateBooking(Bookings booking, int id)
         {
-            if (ModelState.IsValid)
+            var system = db.DbBookingSystem.Single(x => x.Id == id);
+            booking.BookingSystem = system;
+            var url = "http://localhost:64034/api/addBooking";
+            using (var client = new HttpClient())
             {
-                var sys = db.DbBookingSystem.Single(x => x.Id == id);
-                booking.BookingSystem = sys;
-                db.DbBookings.Add(booking);
-                db.SaveChanges();
-                //return RedirectToAction("BookingList")
+                var content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
+                var result = await client.PostAsync(url, content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("BookingList");
+                }
+                return View(booking);
             }
-
-            return View();
         }
-        
         // GET: BookingSystems/Edit/5
         public async Task<ActionResult> EditBooking(int? id)
         {

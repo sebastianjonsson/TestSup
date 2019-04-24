@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using TestSup.Models;
 using TestSup.Repository;
 
 namespace TestSup.Api
@@ -15,9 +17,9 @@ namespace TestSup.Api
         // GET: api/ApiBooking
         [HttpGet]
         [Route("api/getAllBookings")]
-        public async Task<IHttpActionResult> GetAllBookings()
+        public IHttpActionResult GetAllBookings()
         {
-            var system = await bookingRepository.GetAllBookings();
+            var system = bookingRepository.GetAllBookings();
             if (system == null)
             {
                 return BadRequest();
@@ -28,9 +30,9 @@ namespace TestSup.Api
         // GET: api/ApiBooking/5
         [HttpGet]
         [Route("api/getBooking/{id}")]
-        public async Task<IHttpActionResult> GetBookingAsync(int id)
+        public IHttpActionResult GetBooking(int id)
         {
-            var system = await bookingRepository.GetBooking(id);
+            var system = bookingRepository.GetBooking(id);
             if (system == null)
             {
                 return BadRequest();
@@ -40,9 +42,9 @@ namespace TestSup.Api
 
         [HttpGet]
         [Route("api/sortBookingBySystemName")]
-        public async Task<IHttpActionResult> SortBookingBySystemName()
+        public IHttpActionResult SortBookingBySystemName()
         {
-            var system = await bookingRepository.SortBookingsBySystemName();
+            var system = bookingRepository.SortBookingsBySystemName();
             if (system == null)
             {
                 return BadRequest();
@@ -52,9 +54,9 @@ namespace TestSup.Api
 
         [HttpGet]
         [Route("api/sortBookingByName")]
-        public async Task<IHttpActionResult> SortBookingByName()
+        public IHttpActionResult SortBookingByName()
         {
-            var system = await bookingRepository.SortBookingsByName();
+            var system = bookingRepository.SortBookingsByName();
             if (system == null)
             {
                 return BadRequest();
@@ -64,14 +66,22 @@ namespace TestSup.Api
 
         [HttpGet]
         [Route("api/searchBooking/{searchString}")]
-        public async Task<IHttpActionResult> SearchBooking(string searchString)
+        public IHttpActionResult SearchBooking(string searchString)
         {
-            var system = await bookingRepository.SearchBooking(searchString);
+            var system = bookingRepository.SearchBooking(searchString);
             if (system == null)
             {
                 return BadRequest();
             }
             return Ok(system);
+        }
+
+        [HttpPost]
+        [Route("api/addBooking/")]
+        public IHttpActionResult AddBooking(Bookings booking)
+        {
+            bookingRepository.AddBooking(booking);
+            return Ok();
         }
 
         // POST: api/ApiBooking

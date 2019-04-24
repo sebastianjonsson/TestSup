@@ -10,34 +10,40 @@ namespace TestSup.Repository
 {
     public class BookingRepository : BaseController
     {
-        public async Task<Bookings> GetBooking(int id)
+        public Bookings GetBooking(int id)
         {
             Bookings booking = db.DbBookings.Find(id);
             return (booking);
         }
 
-        public async Task<IEnumerable<Bookings>> GetAllBookings()
+        public IEnumerable<Bookings> GetAllBookings()
         {
             IEnumerable<Bookings> bookings = db.DbBookings.ToList();
             return (bookings);
         }
 
-        public async Task <IEnumerable<Bookings>> SortBookingsBySystemName()
+        public IEnumerable<Bookings> SortBookingsBySystemName()
         {
             var sort = db.DbBookings.OrderBy(x => x.BookingSystem.SystemName).ToList();
             return (sort);
         }
 
-        public async Task<IEnumerable<Bookings>> SortBookingsByName()
+        public IEnumerable<Bookings> SortBookingsByName()
         {
             var sort = db.DbBookings.OrderBy(x => x.UserName).ToList();
             return (sort);
         }
 
-        public async Task<IEnumerable<Bookings>> SearchBooking(string searchString)
+        public IEnumerable<Bookings> SearchBooking(string searchString)
         {
-                IEnumerable<Bookings> bookings = db.DbBookings.Where(s => s.BookingSystem.SystemName.Contains(searchString) || s.UserName.Contains(searchString)).ToList();
-                return (bookings);
+            IEnumerable<Bookings> bookings = db.DbBookings.Where(s => s.BookingSystem.SystemName.Contains(searchString) || s.UserName.Contains(searchString)).ToList();
+            return (bookings);
+        }
+
+        public void AddBooking(Bookings booking)
+        {
+            db.DbBookings.Add(booking);
+            db.SaveChanges();
         }
     }
 }
