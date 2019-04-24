@@ -42,18 +42,19 @@ namespace TestSup.Controllers
                     return View("BookingList", booking);
                 }
             }
+            return View("BookingList");
             //Detta är nog fel.
-            else
-            {
-                var url = "http://localhost:64034/api/getAllBookings";
-                using (var client = new HttpClient())
-                {
-                    var task = await client.GetAsync(url);
-                    var jsonString = await task.Content.ReadAsStringAsync();
-                    var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
-                    return View("BookingList", booking);
-                }
-            }
+            //else
+            //{
+            //    var url = "http://localhost:64034/api/getAllBookings";
+            //    using (var client = new HttpClient())
+            //    {
+            //        var task = await client.GetAsync(url);
+            //        var jsonString = await task.Content.ReadAsStringAsync();
+            //        var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
+            //        return View("BookingList", booking);
+            //    }
+            //}
         }
 
         public async Task<ActionResult> SortBySystemName()
@@ -94,10 +95,10 @@ namespace TestSup.Controllers
                 booking.BookingSystem = sys;
                 db.DbBookings.Add(booking);
                 db.SaveChanges();
-                return RedirectToAction("BookingList");
+                //return RedirectToAction("BookingList")
             }
 
-            return View(booking);
+            return View();
         }
         
         // GET: BookingSystems/Edit/5
@@ -141,7 +142,7 @@ namespace TestSup.Controllers
         }
 
         // POST: BookingSystems/Delete/5
-        [HttpPost, ActionName("DeleteBooking")]
+        [ActionName("DeleteBooking")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

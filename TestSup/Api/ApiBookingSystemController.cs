@@ -28,15 +28,7 @@ namespace TestSup.Api
             return "value";
         }
 
-        // POST api/<controller>
-        [HttpPost]
-        [Route("api/recBookingSystem")]
-        public IHttpActionResult RecBookingSystem(BookingSystem bookingSystem)
-        {
-
-
-            return Ok("WOwww");
-        }
+        
         [HttpGet]
         [Route("api/getBookingSystem/{id}")]
         public async Task<IHttpActionResult> GetBookingSystemAsync(int id)
@@ -53,7 +45,7 @@ namespace TestSup.Api
         [Route("api/addBookingSystem/")]
         public async Task <IHttpActionResult> AddBookingSystem(BookingSystem bookingSystem/*, HttpPostedFileBase upload*/)
         {
-            new BookingSystemRepository().AddBookingSystem(bookingSystem/*, upload*/);
+            bookingSystemRepository.AddBookingSystem(bookingSystem/*, upload*/);
             return Ok();
         }
 
@@ -61,7 +53,15 @@ namespace TestSup.Api
         [Route("api/editBookingSystem/")]
         public async Task<IHttpActionResult> EditBookingSystem(BookingSystem bookingSystem)
         {
-            new BookingSystemRepository().EditBookingSystem(bookingSystem);
+            bookingSystemRepository.EditBookingSystem(bookingSystem);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/deleteBookingSystem/")]
+        public async Task<IHttpActionResult> DeleteBookingSystem(BookingSystem bookingSystem)
+        {
+            bookingSystemRepository.DeleteBookingSystem(bookingSystem);
             return Ok();
         }
 

@@ -15,7 +15,7 @@ namespace TestSup.Repository
     {
         public async Task<BookingSystem> GetBookingSystem(int id)
         {
-            BookingSystem bookingSystem =  db.DbBookingSystem.Find(id);
+            BookingSystem bookingSystem = db.DbBookingSystem.Find(id);
             return (bookingSystem);
         }
         public void AddBookingSystem(BookingSystem bookingSystem/*, HttpPostedFileBase upload*/)
@@ -52,6 +52,13 @@ namespace TestSup.Repository
             bookingSystem.Website = bookingSystem.Website;
 
             db.Entry(bookingSystem).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+        public void DeleteBookingSystem(BookingSystem bookingSystemModel)
+        {
+            var bookingSystem = db.DbBookingSystem.Find(bookingSystemModel.Id);
+
+            db.DbBookingSystem.Remove(bookingSystem);
             db.SaveChanges();
         }
     }
