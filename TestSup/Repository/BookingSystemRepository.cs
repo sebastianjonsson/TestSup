@@ -37,5 +37,22 @@ namespace TestSup.Repository
             //}
             //db.SaveChanges();
         }
+
+        public void EditBookingSystem(BookingSystem bookingSystem)
+        {
+            bookingSystem.Address = bookingSystem.Address;
+            bookingSystem.Category = bookingSystem.Category;
+            bookingSystem.City = bookingSystem.City;
+            bookingSystem.Email = bookingSystem.Email;
+            bookingSystem.PhoneNumber = bookingSystem.PhoneNumber;
+            bookingSystem.Latitude = bookingSystem.Latitude;
+            bookingSystem.Longitude = bookingSystem.Longitude;
+            bookingSystem.SystemName = bookingSystem.SystemName;
+            bookingSystem.SystemDescription = bookingSystem.SystemDescription;
+            bookingSystem.Website = bookingSystem.Website;
+
+            db.Entry(bookingSystem).State = EntityState.Modified;
+            db.SaveChanges();
+        }
     }
 }

@@ -169,29 +169,43 @@ namespace TestSup.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditBookingSystem(BookingSystem bookingSystem)
+        public async Task<ActionResult> EditBookingSystem(BookingSystem bookingSystem)
         {
-            if (ModelState.IsValid)
             {
-                
-                var system = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
-
-                system.Address = bookingSystem.Address;
-                system.Category = bookingSystem.Category;
-                system.City = bookingSystem.City;
-                system.Email = bookingSystem.Email;
-                system.PhoneNumber = bookingSystem.PhoneNumber;
-                system.Latitude = bookingSystem.Latitude;
-                system.Longitude = bookingSystem.Longitude;
-                system.SystemName = bookingSystem.SystemName;
-                system.SystemDescription = bookingSystem.SystemDescription;
-                system.Website = bookingSystem.Website;
-
-                db.Entry(system).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("BookingSystemList");
+                var url = "http://localhost:64034/api/editBookingSystem";
+                using (var client = new HttpClient())
+                {
+                    var content = new StringContent(JsonConvert.SerializeObject(bookingSystem), Encoding.UTF8, "application/json");
+                    var result = await client.PostAsync(url, content);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("BookingSystemList");
+                    }
+                    return View(bookingSystem);
+                }
             }
-            return View(bookingSystem);
+
+            //if (ModelState.IsValid)
+            //{
+                
+            //    var system = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
+
+            //    system.Address = bookingSystem.Address;
+            //    system.Category = bookingSystem.Category;
+            //    system.City = bookingSystem.City;
+            //    system.Email = bookingSystem.Email;
+            //    system.PhoneNumber = bookingSystem.PhoneNumber;
+            //    system.Latitude = bookingSystem.Latitude;
+            //    system.Longitude = bookingSystem.Longitude;
+            //    system.SystemName = bookingSystem.SystemName;
+            //    system.SystemDescription = bookingSystem.SystemDescription;
+            //    system.Website = bookingSystem.Website;
+
+            //    db.Entry(system).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("BookingSystemList");
+            //}
+            //return View(bookingSystem);
         }
 
         public async Task<ActionResult> DeleteBookingSystem(int? id)

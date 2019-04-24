@@ -57,6 +57,14 @@ namespace TestSup.Api
             return Ok();
         }
 
+        [HttpPost]
+        [Route("api/editBookingSystem/")]
+        public async Task<IHttpActionResult> EditBookingSystem(BookingSystem bookingSystem)
+        {
+            new BookingSystemRepository().EditBookingSystem(bookingSystem);
+            return Ok();
+        }
+
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)
         {
