@@ -45,5 +45,13 @@ namespace TestSup.Repository
             db.DbBookings.Add(booking);
             db.SaveChanges();
         }
+
+        public void DeleteBooking(Bookings bookingModel)
+        {
+            var booking = db.DbBookings.Find(bookingModel.Id);
+
+            db.DbBookings.Remove(booking);
+            db.SaveChanges();
+        }
     }
 }

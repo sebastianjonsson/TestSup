@@ -233,12 +233,8 @@ namespace TestSup.Controllers
                 {
                     return RedirectToAction("BookingSystemList");
                 }
-                return View(bookingSystem);
+                return View();
             }
-            //BookingSystem bookingSystem = db.DbBookingSystem.Find(id);
-            //db.DbBookingSystem.Remove(bookingSystem);
-            //db.SaveChanges();
-            //return RedirectToAction("BookingSystemList");
         }
 
         protected override void Dispose(bool disposing)

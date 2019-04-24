@@ -145,15 +145,21 @@ namespace TestSup.Controllers
             }
         }
 
-        // POST: BookingSystems/Delete/5
-        [ActionName("DeleteBooking")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteBooking(Bookings booking)
         {
-            Bookings booking = db.DbBookings.Find(id);
-            db.DbBookings.Remove(booking);
-            db.SaveChanges();
-            return RedirectToAction("BookingList");
+            var url = "http://localhost:64034/api/deleteBooking";
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
+                var result = await client.PostAsync(url, content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("BookingList");
+                }
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)

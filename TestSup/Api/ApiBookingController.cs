@@ -84,6 +84,14 @@ namespace TestSup.Api
             return Ok();
         }
 
+        [HttpPost]
+        [Route("api/deleteBooking/")]
+        public IHttpActionResult DeleteBooking(Bookings booking)
+        {
+            bookingRepository.DeleteBooking(booking);
+            return Ok();
+        }
+
         // POST: api/ApiBooking
         public void Post([FromBody]string value)
         {
@@ -93,10 +101,6 @@ namespace TestSup.Api
         public void Put(int id, [FromBody]string value)
         {
         }
-
-        // DELETE: api/ApiBooking/5
-        public void Delete(int id)
-        {
-        }
+        
     }
 }
