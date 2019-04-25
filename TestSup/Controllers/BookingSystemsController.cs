@@ -27,7 +27,7 @@ namespace TestSup.Controllers
         {
             try
             {
-                var bookingSystem = db.DbBookingSystem.Where(i => i.Category == category && i.Id != id).ToList();
+                var bookingSystem = db.DbBookingSystem.Where(i => i.Category != category && i.Id != id).ToList();
                 return View(new RecommendedBookingSystem { BookingSystem = bookingSystem });
             }
             catch
@@ -260,7 +260,7 @@ namespace TestSup.Controllers
         {
             using (var db = new DatabaseContext())
                 {
-                    this.BookingSystem = db.DbBookingSystem.Where(i => i.Category == category && i.Id != id).ToList();
+                    this.BookingSystem = db.DbBookingSystem.Where(i => i.Category != category && i.Id != id).ToList();
                     this.Category = category;
                     this.Lat = latitude;
                     this.Long = longitude;
