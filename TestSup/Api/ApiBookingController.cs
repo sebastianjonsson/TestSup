@@ -76,12 +76,44 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        //[HttpPost]
+        //[Route("api/addBooking/")]
+        //public IHttpActionResult AddBooking(Bookings booking)
+        //{
+        //    bookingRepository.AddBooking(booking);
+        //    return Ok();
+        //}
+
         [HttpPost]
-        [Route("api/addBooking/")]
-        public IHttpActionResult AddBooking(Bookings booking)
+        [Route("api/newBooking/")]
+        public void NewBooking([FromBody] Bookings booking)
         {
+            //try
+            //{
+            //    using (var db = new DatabaseContext())
+            //    {
+            //var system = db.DbBookingSystem.Single(x => x.Id == url);
+            //booking.BookingSystem = system;
+
+            //        //db.DbBookings.Add(new Bookings()
+            //        //{
+            //        //    UserName = booking.UserName,
+            //        //    Email = booking.Email,
+            //        //    UserMobile = booking.UserMobile.ToString(),
+            //        //    Subject = booking.Subject,
+            //        //    StartTime = booking.StartTime,
+            //        //    Endtime = booking.Endtime,
+            //        //});
+            //        db.DbBookings.Add(booking);
+            //        db.SaveChanges();
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(e.Message);
+            //}
             bookingRepository.AddBooking(booking);
-            return Ok();
+
         }
 
         [HttpPost]

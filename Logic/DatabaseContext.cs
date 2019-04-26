@@ -18,15 +18,14 @@ namespace Logic
         }
         public DbSet<BookingSystem> DbBookingSystem { get; set; }
         public DbSet<Bookings> DbBookings { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Entity<Bookings>()
-            .HasOptional<BookingSystem>(s => s.BookingSystem)
-            .WithMany()
-            .WillCascadeOnDelete(true);
-            
-        }
+        //    modelBuilder.Entity<Bookings>()
+        //    .HasOptional<BookingSystem>(s => s.BookingSystem)
+        //    .WithMany()
+        //    .WillCascadeOnDelete(true);
+        //}
     }
 }

@@ -9,7 +9,6 @@ namespace TestSup.Models
 {
     public class BookingViewModel
     {
-        public int Id { get; set; }
         [Required]
         [Display(Name = "Namn")]
         public string UserName { get; set; }

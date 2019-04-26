@@ -5,11 +5,6 @@
 }
 
 <h2>Boka</h2>
-
-@using (Html.BeginForm("CreateBooking", "Booking"))
-{
-    @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -63,12 +58,6 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Boka" class="btn btn-default" onclick="done()" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
                 <input href="javascript:void(0);" onclick="history.go(-1);" type="button" value="Tillbaka till verksamheten" class="btn btn-default" />
             </div>
         </div>
@@ -77,35 +66,78 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title"> Rekommenderade!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Din bokning är nu genomförd</p>
+                    <p>Din bokning är nu genomförd och om du är intresserad kommer här några tips:</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button onclick="location.href= '@Url.Action("BookingList", "Booking")'" class="btn btn-info"> Stäng </button>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function done() {
-            var userName = $('#userName').val().length;
-            var email = $('#email').val().length;
-            var userMobile = $('#userMobile').val().length;
-            var subject = $('#subject').val().length;
-            var startTime = $('#startTime').val().length;
-            var endTime = $('#endTime').val().length;
+    @*<script>
+            function done() {
+                var userName = $('#userName').val().length;
+                var email = $('#email').val().length;
+                var userMobile = $('#userMobile').val().length;
+                var subject = $('#subject').val().length;
+                var startTime = $('#startTime').val().length;
+                var endTime = $('#endTime').val().length;
 
-            if (userName > 0 && email > 0 && userMobile > 0 && subject > 0 && startTime > 0 && endTime > 0) {
-                alert("Din bokning är nu genomförd.")
-                $('#modal-badboy').modal('show');
+                if (userName > 0 && email > 0 && userMobile > 0 && subject > 0 && startTime > 0 && endTime > 0) {
+                    alert("Din bokning är nu genomförd.")
+                    $('#modal-badboy').modal('show');
+                }
             }
+        </script>*@
+
+    <input type="button" value="Boka" class="btn btn-info" onclick="book()" />
+
+    <script type="text/javascript">
+    function book() {
+        var userName = $('#userName').val().length;
+        var email = $('#email').val().length;
+        var userMobile = $('#userMobile').val().length;
+        var subject = $('#subject').val().length;
+        var startTime = $('#startTime').val().length;
+        var endTime = $('#endTime').val().length;
+
+        if (userName > 0 && email > 0 && userMobile > 0 && subject > 0 && startTime > 0 && endTime > 0) {
+
+            var userName = $('#userName').val();
+            var email = $('#email').val();
+            var userMobile = $('#userMobile').val();
+            var subject = $('#subject').val();
+            var startTime = $('#startTime').val();
+            var endTime = $('#endTime').val();
+            var booking = {
+                UserName: userName,
+                Email: email,
+                UserMobile: userMobile,
+                Subject: subject,
+                StartTime: startTime,
+                EndTime: endTime,
+            };
+            $.ajax({
+                type: 'POST',
+                url: "http://localhost:64034/api/newBooking",
+                contentType: 'application/json',
+                data: JSON.stringify(booking),
+                success: function (result) {
+                    $('#modal-badboy').modal('show');
+                }
+            });
         }
+        else {
+            alert("Du måste fylla i alla fält!")
+        }
+    }
     </script>
-}
+
+
 
