@@ -131,10 +131,11 @@
                 Subject: subject,
                 StartTime: startTime,
                 EndTime: endTime,
+                BookingSystem : id
             };
             $.ajax({
                 type: 'POST',
-                url: "http://localhost:64034/api/newBooking/" + id,
+                url: "http://localhost:64034/api/addBooking/",
                 contentType: 'application/json',
                 data: JSON.stringify(booking),
                 success: function (result) {
