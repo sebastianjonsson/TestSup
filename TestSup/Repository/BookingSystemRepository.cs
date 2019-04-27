@@ -38,6 +38,12 @@ namespace TestSup.Repository
             //db.SaveChanges();
         }
 
+        public IEnumerable<BookingSystem> SearchBookingSystem(string searchString)
+        {
+            IEnumerable<BookingSystem> bookingSystem = db.DbBookingSystem.Where(s => s.SystemName.Contains(searchString)).ToList();
+            return (bookingSystem);
+        }
+
         public void EditBookingSystem(BookingSystem bookingSystem)
         {
             bookingSystem.Address = bookingSystem.Address;

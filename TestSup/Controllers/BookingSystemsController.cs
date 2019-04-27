@@ -39,26 +39,23 @@ namespace TestSup.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult SearchBookingSystem(string searchString)
+        public async Task<ActionResult> SearchBookingSystem(string searchString)
         {
-            try
+            if (!String.IsNullOrEmpty(searchString))
             {
-                var bookingSystems = from m in db.DbBookingSystem
-                            select m;
-
-                if (!String.IsNullOrEmpty(searchString))
+                var url = "http://localhost:64034/api/searchBookingSystem/" + searchString;
+                using (var client = new HttpClient())
                 {
-                    bookingSystems = bookingSystems.Where(s => s.SystemName.Contains(searchString));
+                    var task = await client.GetAsync(url);
+                    var jsonString = await task.Content.ReadAsStringAsync();
+                    var bookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
+                    return View("BookingSystemList", bookingSystem);
                 }
-
-                return View("BookingSystemList", bookingSystems);
             }
-            catch
+            else
             {
-                RedirectToAction("Index", "Home");
+                return RedirectToAction("BookingSystemList");
             }
-            return View();
         }
         public ActionResult SortByName()
         {

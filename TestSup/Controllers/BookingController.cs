@@ -43,19 +43,10 @@ namespace TestSup.Controllers
                     return View("BookingList", booking);
                 }
             }
-            return View("BookingList");
-            //Detta är nog fel.
-            //else
-            //{
-            //    var url = "http://localhost:64034/api/getAllBookings";
-            //    using (var client = new HttpClient())
-            //    {
-            //        var task = await client.GetAsync(url);
-            //        var jsonString = await task.Content.ReadAsStringAsync();
-            //        var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
-            //        return View("BookingList", booking);
-            //    }
-            //}
+            else
+            {
+                return RedirectToAction("BookingList");
+            }
         }
 
         public async Task<ActionResult> SortBySystemName()

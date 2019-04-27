@@ -28,6 +28,17 @@ namespace TestSup.Api
             return "value";
         }
 
+        [HttpGet]
+        [Route("api/searchBookingSystem/{searchString}")]
+        public IHttpActionResult SearchBookingSystem(string searchString)
+        {
+            var system = bookingSystemRepository.SearchBookingSystem(searchString);
+            if (system == null)
+            {
+                return BadRequest();
+            }
+            return Ok(system);
+        }
 
         [HttpGet]
         [Route("api/getBookingSystem/{id}")]
