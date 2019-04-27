@@ -36,16 +36,12 @@
 
 
 <div id="kolumn2">
-    <div class="container">
-        <div class="row">
-            <div id="map" style="width: 620px; height: 380px;"></div>
-            <hr />
-            <h3>Rekommenderade:</h3>
-            @Html.Partial("../BookingSystems/RecommendedBookingSystem", new TestSup.Controllers.RecommendedBookingSystem(Model.Category, Model.Id, Model.Latitude, Model.Longitude))
-            <br />
+        <div class="container">
+            <div class="row">
+                <div id="map" style="width: 620px; height: 380px;"></div>
+            </div>
         </div>
     </div>
-</div>
 
 <script>
     function initMap() {

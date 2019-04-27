@@ -82,8 +82,9 @@ namespace TestSup.Controllers
             }
         }
 
-        public ActionResult CreateBooking()
+        public ActionResult CreateBooking(int id)
         {
+            ViewBag.id = id;
             return View();
         }
 

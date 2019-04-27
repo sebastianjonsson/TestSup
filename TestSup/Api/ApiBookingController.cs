@@ -85,8 +85,8 @@ namespace TestSup.Api
         //}
 
         [HttpPost]
-        [Route("api/newBooking/")]
-        public void NewBooking([FromBody] Bookings booking)
+        [Route("api/newBooking/{id}")]
+        public void NewBooking([FromBody] Bookings booking, int id)
         {
             //try
             //{

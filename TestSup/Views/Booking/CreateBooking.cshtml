@@ -73,6 +73,14 @@
                 </div>
                 <div class="modal-body">
                     <p>Din bokning är nu genomförd och om du är intresserad kommer här några tips:</p>
+                    @{
+                        ViewBag.Title = "CreateBooking";
+                        var id = ViewBag.ID;
+                    }
+                    <div id="map" style="width: 620px; height: 380px;"></div>
+                        <hr />
+                        <h3>Rekommenderade:</h3>
+                        @Html.Partial("../BookingSystems/RecommendedBookingSystem", new TestSup.Controllers.RecommendedBookingSystem(id))
                 </div>
                 <div class="modal-footer">
                     <button onclick="location.href= '@Url.Action("BookingList", "Booking")'" class="btn btn-info"> Stäng </button>
@@ -115,6 +123,7 @@
             var subject = $('#subject').val();
             var startTime = $('#startTime').val();
             var endTime = $('#endTime').val();
+            var id = '@ViewBag.ID';
             var booking = {
                 UserName: userName,
                 Email: email,
@@ -125,7 +134,7 @@
             };
             $.ajax({
                 type: 'POST',
-                url: "http://localhost:64034/api/newBooking",
+                url: "http://localhost:64034/api/newBooking/" + id,
                 contentType: 'application/json',
                 data: JSON.stringify(booking),
                 success: function (result) {

@@ -23,11 +23,12 @@ namespace TestSup.Controllers
             var bookingSystems = db.DbBookingSystem.ToList();
             return View(bookingSystems);
         }
-        public ActionResult RecommendedBookingSystem(string category, int id, string latitude, string longitude)
+        public ActionResult RecommendedBookingSystem(int id)
         {
             try
             {
-                var bookingSystem = db.DbBookingSystem.Where(i => i.Category != category && i.Id != id).ToList();
+                var yourBookingSystem = db.DbBookingSystem.Single(x => x.Id == id);
+                var bookingSystem = db.DbBookingSystem.Where(i => i.Category == yourBookingSystem.Category && i.Id != id).ToList();
                 return View(new RecommendedBookingSystem { BookingSystem = bookingSystem });
             }
             catch
@@ -256,14 +257,15 @@ namespace TestSup.Controllers
         {
 
         }
-        public RecommendedBookingSystem(string category, int id, string latitude, string longitude)
+        public RecommendedBookingSystem(int id)
         {
             using (var db = new DatabaseContext())
                 {
-                    this.BookingSystem = db.DbBookingSystem.Where(i => i.Category != category && i.Id != id).ToList();
-                    this.Category = category;
-                    this.Lat = latitude;
-                    this.Long = longitude;
+                var yourBookingSystem = db.DbBookingSystem.Single(x => x.Id == id);
+                this.BookingSystem = db.DbBookingSystem.Where(i => i.Category == yourBookingSystem.Category && i.Id != id).ToList();
+                    this.Category = yourBookingSystem.Category;
+                    this.Lat = yourBookingSystem.Latitude;
+                    this.Long = yourBookingSystem.Longitude;
                 
                 }
             
