@@ -18,6 +18,12 @@ namespace TestSup.Repository
             BookingSystem bookingSystem = db.DbBookingSystem.Find(id);
             return (bookingSystem);
         }
+
+        public List<BookingSystem> GetAllBookingSystem()
+        {
+            List<BookingSystem> bookingSystem = db.DbBookingSystem.ToList();
+            return (bookingSystem);
+        }
         public void AddBookingSystem(BookingSystem bookingSystem/*, HttpPostedFileBase upload*/)
         {
             db.DbBookingSystem.Add(bookingSystem);

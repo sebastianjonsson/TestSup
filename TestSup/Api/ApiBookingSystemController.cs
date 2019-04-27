@@ -16,10 +16,16 @@ namespace TestSup.Api
     {
         BookingSystemRepository bookingSystemRepository = new BookingSystemRepository();
 
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [Route("api/getAllBookingSystem")]
+        public IHttpActionResult GetAllBookingSystem()
         {
-            return new string[] { "value1", "value2" };
+            var system = bookingSystemRepository.GetAllBookingSystem();
+            if (system == null)
+            {
+                return BadRequest();
+            }
+            return Ok(system);
         }
 
         // GET api/<controller>/5
