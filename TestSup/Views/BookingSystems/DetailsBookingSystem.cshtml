@@ -10,9 +10,9 @@
 
 <h2>@Html.DisplayFor(model => model.SystemName)</h2>
 <hr />
-<button onclick="location.href= '@Url.Action("CreateBooking", "Booking", new { id = Model.Id })'" class="btn btn-info"> Boka </button>
+<button onclick="location.href= '@Url.Action("CreateBooking", "Booking", new { id = Model.Id })'" class="btn btn-info"> Gör en bokning här! </button>
 <p>
-    @Html.ActionLink("Tillbaka till alla verksamheter", "BookingSystemList")
+    @Html.ActionLink("Tillbaka till alla bokningssystem", "BookingSystemList")
 </p>
 <div id="kolumn1">
     <div class="container">

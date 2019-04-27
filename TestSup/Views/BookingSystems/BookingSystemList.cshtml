@@ -4,9 +4,9 @@
     ViewBag.Title = "Boka";
 }
 
-<h2>Tryck på en verksamhet för att boka</h2>
+<h2>Tryck på ett bokningssystem för att boka</h2>
 
-@using (Html.BeginForm("SearchBooking", "BookingSystems"))
+@using (Html.BeginForm("SearchBookingSystem", "BookingSystems"))
 {
     <p>
         @Html.TextBox("SearchString") <input type="submit" class="btn btn-primary" value="Sök efter verksamhetsnamn" />
@@ -53,8 +53,8 @@
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
-                @Html.ActionLink("Ändra verksamhet", "EditBookingSystem", new { id = item.Id }) |
-                @Html.ActionLink("Ta bort verksamhet", "DeleteBookingSystem", new { id = item.Id })
+                @Html.ActionLink("Ändra bokningssystem", "EditBookingSystem", new { id = item.Id }) |
+                @Html.ActionLink("Ta bort bokningssystem", "DeleteBookingSystem", new { id = item.Id })
             </td>
         </tr>
     }

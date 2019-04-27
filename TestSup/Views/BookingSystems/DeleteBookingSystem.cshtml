@@ -1,10 +1,10 @@
 ﻿@model Logic.BookingSystem
 
 @{
-    ViewBag.Title = "Ta bort verksamhet";
+    ViewBag.Title = "Ta bort bokningssystem";
 }
 
-<h2>Ta bort verksamhet</h2>
+<h2>Ta bort bokningssystem!</h2>
 
 <h3>Är du säker på att du vill ta bort @Html.DisplayFor(model => model.SystemName)?</h3>
 @using (Html.BeginForm())
@@ -13,7 +13,7 @@
 
     <div class="form-actions no-color">
         <input type="submit" value="Ta bort" class="btn btn-default" /> |
-        @Html.ActionLink("Tillbaka till verksamheter", "BookingSystemList")
+        @Html.ActionLink("Tillbaka till bokningssystemen", "BookingSystemList")
     </div>
 }
 <div>

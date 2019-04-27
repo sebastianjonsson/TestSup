@@ -1,10 +1,10 @@
 ﻿@model Logic.BookingSystem
 
 @{
-    ViewBag.Title = "Ändra Verksamhet";
+    ViewBag.Title = "Ändra bokningssystem";
 }
 
-<h2>Ändra Verksamhet</h2>
+<h2>Ändra Bokningssystem</h2>
 
 
 @using (Html.BeginForm("EditBookingSystem", "BookingSystems", FormMethod.Post, new { enctype = "multipart/form-data", onkeydown = "return event.keyCode!=13" }))
@@ -110,7 +110,7 @@
 }
 
 <div>
-    @Html.ActionLink("Tillbaka till verksamheter", "BookingSystemList")
+    @Html.ActionLink("Tillbaka till alla bokningsystem", "BookingSystemList")
 </div>
 
 <script>function showResult(result) {

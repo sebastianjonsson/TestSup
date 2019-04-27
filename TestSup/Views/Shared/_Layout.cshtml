@@ -16,13 +16,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("BokningsProjekt", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Startsida", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Boka", "BookingSystemList", "BookingSystems")</li>
+                    <li>@Html.ActionLink("Alla Bokningssystem", "BookingSystemList", "BookingSystems")</li>
                     <li>@Html.ActionLink("Skapa bokningssystem", "CreateBookingSystem", "BookingSystems")</li>
-                    <li>@Html.ActionLink("Bokningar", "BookingList", "Booking")</li>
+                    <li>@Html.ActionLink("Alla Bokningar", "BookingList", "Booking")</li>
                 </ul>
             </div>
         </div>
