@@ -17,22 +17,16 @@ namespace TestSup.Controllers
 {
     public class BookingSystemsController : BaseController
     {
-        //public async Task<ActionResult> BookingSystemList()
-        //{
-        //    var url = "http://localhost:64034/api/getAllBookingSystem";
-        //    using (var client = new HttpClient())
-        //    {
-        //        var task = await client.GetAsync(url);
-        //        var jsonString = await task.Content.ReadAsStringAsync();
-        //        var bookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
-        //        return View(bookingSystem);
-        //    }
-        //}
-
-        public ActionResult BookingSystemList()
+        public async Task<ActionResult> BookingSystemList()
         {
-           var bookingSystem = db.DbBookingSystem.ToList();
-           return View(bookingSystem);
+            var url = "http://localhost:64034/api/getAllBookingSystem";
+            using (var client = new HttpClient())
+            {
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var bookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
+                return View(bookingSystem);
+            }
         }
 
         public ActionResult RecommendedBookingSystem(int id)
