@@ -23,6 +23,6 @@ namespace Logic
         public DateTime Endtime { get; set; }
 
         //public int BookingSystemID { get; set; }
-        public BookingSystem BookingSystem { get; set; }
+        public virtual BookingSystem BookingSystem { get; set; }
     }
 }

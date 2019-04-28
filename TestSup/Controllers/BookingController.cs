@@ -18,18 +18,24 @@ namespace TestSup.Controllers
     public class BookingController : BaseController
     {
         // GET: Posts
-        public async Task<ActionResult> BookingList()
+        //public async Task<ActionResult> BookingList()
+        //{
+        //    var url = "http://localhost:64034/api/getAllBookings";
+        //    using (var client = new HttpClient())
+        //    {
+        //        var task = await client.GetAsync(url);
+        //        var jsonString = await task.Content.ReadAsStringAsync();
+        //        var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
+        //        return View(booking);
+        //    }
+        //}
+
+        public ActionResult BookingList()
         {
-            var url = "http://localhost:64034/api/getAllBookings";
-            using (var client = new HttpClient())
-            {
-                var task = await client.GetAsync(url);
-                var jsonString = await task.Content.ReadAsStringAsync();
-                var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
-                return View(booking);
-            }
+            var booking = db.DbBookings.ToList();
+            return View(booking);
         }
- 
+
         public async Task<ActionResult> SearchBooking(string searchString)
         {
             if (!String.IsNullOrEmpty(searchString))

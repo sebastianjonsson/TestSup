@@ -76,14 +76,6 @@ namespace TestSup.Api
             return Ok(system);
         }
 
-        //[HttpPost]
-        //[Route("api/addBooking/")]
-        //public IHttpActionResult AddBooking(Bookings booking)
-        //{
-        //    bookingRepository.AddBooking(booking);
-        //    return Ok();
-        //}
-
         [HttpPost]
         [Route("api/addBooking/")]
         public IHttpActionResult AddBooking(BookingViewModel booking)
