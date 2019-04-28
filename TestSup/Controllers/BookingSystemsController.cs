@@ -144,8 +144,19 @@ namespace TestSup.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateBookingSystem(BookingSystem bookingSystem/*, HttpPostedFileBase upload*/)
+        public async Task<ActionResult> CreateBookingSystem(BookingSystem bookingSystem, HttpPostedFileBase upload)
         {
+            if (upload != null && upload.ContentLength > 0)
+            {
+                bookingSystem.File = upload.FileName;
+
+                bookingSystem.Content = upload.ContentType;
+
+                using (var reader = new BinaryReader(upload.InputStream))
+                {
+                    bookingSystem.Picture = reader.ReadBytes(upload.ContentLength);
+                }
+             }
             var url = "http://localhost:64034/api/addBookingSystem";
             using (var client = new HttpClient())
             {
