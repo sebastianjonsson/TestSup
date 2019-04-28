@@ -17,16 +17,22 @@ namespace TestSup.Controllers
 {
     public class BookingSystemsController : BaseController
     {
-        public async Task<ActionResult> BookingSystemList()
+        //public async Task<ActionResult> BookingSystemList()
+        //{
+        //    var url = "http://localhost:64034/api/getAllBookingSystem";
+        //    using (var client = new HttpClient())
+        //    {
+        //        var task = await client.GetAsync(url);
+        //        var jsonString = await task.Content.ReadAsStringAsync();
+        //        var bookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
+        //        return View(bookingSystem);
+        //    }
+        //}
+
+        public ActionResult BookingSystemList()
         {
-            var url = "http://localhost:64034/api/getAllBookingSystem";
-            using (var client = new HttpClient())
-            {
-                var task = await client.GetAsync(url);
-                var jsonString = await task.Content.ReadAsStringAsync();
-                var bookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
-                return View(bookingSystem);
-            }
+           var bookingSystem = db.DbBookingSystem.ToList();
+           return View(bookingSystem);
         }
 
         public ActionResult RecommendedBookingSystem(int id)
@@ -34,7 +40,7 @@ namespace TestSup.Controllers
             try
             {
                 var yourBookingSystem = db.DbBookingSystem.Single(x => x.Id == id);
-                var bookingSystem = db.DbBookingSystem.Where(i => i.Category == yourBookingSystem.Category && i.Id != id).ToList();
+                var bookingSystem = db.DbBookingSystem.Where(i => i.Category != yourBookingSystem.Category && i.Id != id).ToList();
                 return View(new RecommendedBookingSystem { BookingSystem = bookingSystem });
             }
             catch
@@ -265,11 +271,10 @@ namespace TestSup.Controllers
             using (var db = new DatabaseContext())
                 {
                 var yourBookingSystem = db.DbBookingSystem.Single(x => x.Id == id);
-                this.BookingSystem = db.DbBookingSystem.Where(i => i.Category == yourBookingSystem.Category && i.Id != id).ToList();
+                this.BookingSystem = db.DbBookingSystem.Where(i => i.Category != yourBookingSystem.Category && i.Id != id).ToList();
                     this.Category = yourBookingSystem.Category;
                     this.Lat = yourBookingSystem.Latitude;
                     this.Long = yourBookingSystem.Longitude;
-                
                 }
             
          }

@@ -77,8 +77,6 @@
                         ViewBag.Title = "CreateBooking";
                         var id = ViewBag.ID;
                     }
-                    <div id="map" style="width: 620px; height: 380px;"></div>
-                        <hr />
                         <h3>Rekommenderade:</h3>
                         @Html.Partial("../BookingSystems/RecommendedBookingSystem", new TestSup.Controllers.RecommendedBookingSystem(id))
                 </div>
@@ -88,23 +86,8 @@
             </div>
         </div>
     </div>
-    @*<script>
-            function done() {
-                var userName = $('#userName').val().length;
-                var email = $('#email').val().length;
-                var userMobile = $('#userMobile').val().length;
-                var subject = $('#subject').val().length;
-                var startTime = $('#startTime').val().length;
-                var endTime = $('#endTime').val().length;
-
-                if (userName > 0 && email > 0 && userMobile > 0 && subject > 0 && startTime > 0 && endTime > 0) {
-                    alert("Din bokning är nu genomförd.")
-                    $('#modal-badboy').modal('show');
-                }
-            }
-        </script>*@
-
-    <input type="button" value="Boka" class="btn btn-info" onclick="book()" />
+    
+        <input type="button" value="Boka" class="btn btn-info" onclick="book()" />
 
     <script type="text/javascript">
     function book() {
