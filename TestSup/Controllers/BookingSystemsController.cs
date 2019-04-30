@@ -112,36 +112,6 @@ namespace TestSup.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult CreateBookingSystem([Bind(Include = "Id,SystemName,SystemDescription,Email,PhoneNumber,Website,Address,City,Category,Longitude,Latitude")] BookingSystem bookingSystem, HttpPostedFileBase upload)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.DbBookingSystem.Add(bookingSystem);
-        //        db.SaveChanges();
-
-        //        var system = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
-        //        if (upload != null && upload.ContentLength > 0)
-        //        {
-        //            system.File = upload.FileName;
-
-        //            system.Content = upload.ContentType;
-
-        //            using (var reader = new BinaryReader(upload.InputStream))
-        //            {
-        //                system.Picture = reader.ReadBytes(upload.ContentLength);
-        //            }
-        //            db.Entry(system).State = EntityState.Modified;
-        //        }
-        //            db.SaveChanges();
-
-        //        return RedirectToAction("BookingSystemList");
-        //    }
-
-        //    return View(bookingSystem);
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateBookingSystem(BookingSystem bookingSystem, HttpPostedFileBase upload)
@@ -199,28 +169,6 @@ namespace TestSup.Controllers
                     return View(bookingSystem);
                 }
             }
-
-            //if (ModelState.IsValid)
-            //{
-                
-            //    var system = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
-
-            //    system.Address = bookingSystem.Address;
-            //    system.Category = bookingSystem.Category;
-            //    system.City = bookingSystem.City;
-            //    system.Email = bookingSystem.Email;
-            //    system.PhoneNumber = bookingSystem.PhoneNumber;
-            //    system.Latitude = bookingSystem.Latitude;
-            //    system.Longitude = bookingSystem.Longitude;
-            //    system.SystemName = bookingSystem.SystemName;
-            //    system.SystemDescription = bookingSystem.SystemDescription;
-            //    system.Website = bookingSystem.Website;
-
-            //    db.Entry(system).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("BookingSystemList");
-            //}
-            //return View(bookingSystem);
         }
 
         public async Task<ActionResult> DeleteBookingSystem(int? id)

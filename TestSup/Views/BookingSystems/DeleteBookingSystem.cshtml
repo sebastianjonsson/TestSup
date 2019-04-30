@@ -12,8 +12,8 @@
     @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <input type="submit" value="Ta bort" class="btn btn-default" /> |
-        @Html.ActionLink("Tillbaka till bokningssystemen", "BookingSystemList")
+        <input type="submit" value="Ta bort" class="btn btn-danger" /> |
+        <button type="button" onclick="location.href= '@Url.Action("BookingSystemList", "BookingSystems")'" class="btn btn-primary btn-sm"> Tillbaka till alla bokningssystem </button>
     </div>
 }
 <div>

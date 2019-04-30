@@ -10,9 +10,10 @@
 
 <h2>@Html.DisplayFor(model => model.SystemName)</h2>
 <hr />
-<button onclick="location.href= '@Url.Action("CreateBooking", "Booking", new { id = Model.Id })'" class="btn btn-info"> Gör en bokning här! </button>
+<button type="button" onclick="location.href= '@Url.Action("CreateBooking", "Booking", new { id = Model.Id })'" class="btn btn-primary btn-lg"> Gör en bokning här! </button>
 <p>
-    @Html.ActionLink("Tillbaka till alla bokningssystem", "BookingSystemList")
+    <br />
+    <button type="button" onclick="location.href= '@Url.Action("BookingSystemList", "BookingSystems")'" class="btn btn-primary btn-sm"> Tillbaka till alla bokningssystem </button>
 </p>
 <div id="kolumn1">
     <div class="container">
@@ -33,15 +34,13 @@
     </div>
 </div>
 
-
-
 <div id="kolumn2">
-        <div class="container">
-            <div class="row">
-                <div id="map" style="width: 620px; height: 380px;"></div>
-            </div>
+    <div class="container">
+        <div class="row">
+            <div id="map" style="width: 620px; height: 380px;"></div>
         </div>
     </div>
+</div>
 
 <script>
     function initMap() {

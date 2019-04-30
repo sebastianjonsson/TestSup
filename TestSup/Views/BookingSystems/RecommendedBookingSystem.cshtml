@@ -4,7 +4,7 @@
     ViewBag.Title = "RecBookingSys";
 }
 <h5>Välj avstånd för rekommenderade bokningssystem:</h5>
-<select id="kmList" onchange="initMap2()">
+<select id="kmList" onchange="initMap()">
     <option value="1000">1km</option>
     <option value="2000">2km</option>
     <option value="3000">3km</option>
@@ -13,10 +13,10 @@
 </select>
 
 <script>
-    function initMap2() {
+    function initMap() {
         var place = { lat: @Model.Lat, lng: @Model.Long };
-        var map2 = new google.maps.Map(
-            document.getElementById('map2'), { zoom: 11, center: place });
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 11, center: place });
 
         var infowindow = new google.maps.InfoWindow();
 
@@ -31,7 +31,7 @@
             strokeWeight: 1,
             fillColor: "#CACACA",
             fillOpacity: 0.3,
-            map: map2
+            map: map
         });
 
         var activeBookingSystem = new google.maps.LatLng(@Model.Lat, @Model.Long);
@@ -45,14 +45,14 @@
 
         if (distance < kmComboBox) {
             var marker = new google.maps.Marker({
-                map: map2,
+                map: map,
                 position: { lat: @item.Latitude, lng: @item.Longitude },
             });
 
             google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
                 return function () {
                     infowindow.setContent(contentString);
-                    infowindow.open(map2, marker);
+                    infowindow.open(map, marker);
                 };
             })(marker, contentString, infowindow));
         }
@@ -61,6 +61,6 @@
     }
 </script>
 
-<body onload="initMap2()">
-    <div id="map2" style="width: 420px; height: 280px;"></div>
+<body onload="initMap()">
+    <div id="map" style="width: 420px; height: 280px;"></div>
 </body>

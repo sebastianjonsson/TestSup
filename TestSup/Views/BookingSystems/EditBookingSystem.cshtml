@@ -11,146 +11,148 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+    <div class="form-horizontal">
 
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.SystemName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.SystemName, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
-            @Html.ValidationMessageFor(model => model.SystemName, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.SystemName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SystemName, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+                @Html.ValidationMessageFor(model => model.SystemName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SystemDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SystemDescription, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+                @Html.ValidationMessageFor(model => model.SystemDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Website, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+                @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "address", @onclick = "hide()" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @id = "city", @onclick = "hide()" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Category, new SelectList(Enum.GetValues(typeof(Category))), "Välj Kategori", new { @class = "form-control", @onclick = "hide()" })
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", @id = "latitude", style = "display: none;" } })
+                @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control", @id = "longitude", @style = "display: none;" } })
+                @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="updateBtn" value="Uppdatera" class="btn btn-info" onclick="update();" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Spara" class="btn btn-info" id="hidden" style="display: none;" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" onclick="location.href= '@Url.Action("BookingSystemList", "BookingSystems")'" class="btn btn-primary btn-sm"> Tillbaka till alla bokningssystem </button>
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.SystemDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.SystemDescription, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
-            @Html.ValidationMessageFor(model => model.SystemDescription, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
-            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Website, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
-            @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "address", @onclick = "hide()" } })
-            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @id = "city", @onclick = "hide()" } })
-            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Category, new SelectList(Enum.GetValues(typeof(Category))), "Välj Kategori", new { @class = "form-control", @onclick = "hide()" })
-            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", @id = "latitude", style = "display: none;" } })
-            @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control", @id = "longitude", @style = "display: none;" } })
-            @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" id="updateBtn" value="Uppdatera" class="btn btn-default" onclick="update();"/>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Spara" class="btn btn-default" id="hidden" style="display: none;"/>
-        </div>
-    </div>
-</div>
-}
-
-<div>
-    @Html.ActionLink("Tillbaka till alla bokningsystem", "BookingSystemList")
-</div>
-
-<script>function showResult(result) {
-  document.getElementById('latitude').value = result.geometry.location.lat();
-  document.getElementById('longitude').value = result.geometry.location.lng();
-}
-
-function getLatitudeLongitude(callback, address, city) {
-  geocoder = new google.maps.Geocoder();
-  if (geocoder) {
-      geocoder.geocode({
-          'address': address + city
-      }, function (results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-              callback(results[0]);
-          }
-      });
-  }
-}
-    var out = document.getElementById('updateBtn');
-
-out.addEventListener("click", function () {
-    var address = document.getElementById('address').value + document.getElementById('city').value;
-  getLatitudeLongitude(showResult, address)
-});</script>
-
-<script>
-    function update() {
-        var hiddenButton = document.getElementById("hidden");
-        hiddenButton.style.display = "block";
     }
 
-    function hide() {
-        var hiddenButton = document.getElementById("hidden");
-        hiddenButton.style.display = "none";
+    <script>
+        function showResult(result) {
+            document.getElementById('latitude').value = result.geometry.location.lat();
+            document.getElementById('longitude').value = result.geometry.location.lng();
+        }
 
+        function getLatitudeLongitude(callback, address, city) {
+            geocoder = new google.maps.Geocoder();
+            if (geocoder) {
+                geocoder.geocode({
+                    'address': address + city
+                }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        callback(results[0]);
+                    }
+                });
+            }
+        }
+        var out = document.getElementById('updateBtn');
+
+        out.addEventListener("click", function () {
+            var address = document.getElementById('address').value + document.getElementById('city').value;
+            getLatitudeLongitude(showResult, address)
+        });</script>
+
+    <script>
+        function update() {
+            var hiddenButton = document.getElementById("hidden");
+            hiddenButton.style.display = "block";
+        }
+
+        function hide() {
+            var hiddenButton = document.getElementById("hidden");
+            hiddenButton.style.display = "none";
+
+        }
+    </script>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
     }
-</script>
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

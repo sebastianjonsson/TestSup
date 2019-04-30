@@ -11,10 +11,10 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Ta bort bokning" class="btn btn-default" /> |
-        @Html.ActionLink("Tillbaka till alla bokningar", "BookingList")
-    </div>
+<div class="form-actions no-color">
+    <input type="submit" value="Ta bort bokning" class="btn btn-danger" /> |
+    <button type="button" onclick="location.href= '@Url.Action("BookingList", "Booking")'" class="btn btn-primary btn-sm"> Tillbaka till alla bokningar </button>
+</div>
 }
 <div>
     <hr />

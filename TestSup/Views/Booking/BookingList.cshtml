@@ -59,9 +59,10 @@
                 @Html.DisplayFor(modelItem => item.Endtime)
             </td>
             <td>
-                @Html.ActionLink("Ändra bokning", "EditBooking", new { id = item.Id }) |
-                @Html.ActionLink("Ta bort bokning", "DeleteBooking", new { id = item.Id })
-            </td>
+                <button type="button" onclick="location.href= '@Url.Action("EditBooking", "Booking", new { id = item.Id })'"  class="btn btn-primary btn-sm"> Ändra bokning </button> |
+                <button type="button" onclick="location.href= '@Url.Action("DeleteBooking", "Booking", new { id = item.Id })'" class="btn btn-primary btn-sm"> Ta bort bokning </button>
+</td>
         </tr>
     }
 </table>
+
