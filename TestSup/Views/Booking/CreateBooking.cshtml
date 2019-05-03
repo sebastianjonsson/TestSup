@@ -4,63 +4,76 @@
     ViewBag.Title = "Create";
 }
 
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<link href="/Content/Site.css" rel="stylesheet" />
+
 <h2>Boka</h2>
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "userName" } })
-            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+<div id="kolumn1">
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "userName" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "email" } })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "email" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.UserMobile, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.UserMobile, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "userMobile" } })
-            @Html.ValidationMessageFor(model => model.UserMobile, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserMobile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserMobile, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "userMobile" } })
+                @Html.ValidationMessageFor(model => model.UserMobile, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "subject" } })
-            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "subject" } })
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @required = "required", @id = "startTime" } })
-            @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
-        </div>
-    </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @required = "required", @id = "startTime" } })
+                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Endtime, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Endtime, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @required = "required", @id = "endTime" } })
-            @Html.ValidationMessageFor(model => model.Endtime, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Endtime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Endtime, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @required = "required", @id = "endTime" } })
+                    @Html.ValidationMessageFor(model => model.Endtime, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" value="Boka" class="btn btn-info" onclick="book()" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required", @id = "date" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Boka" class="btn btn-info" onclick="book()" />
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -68,33 +81,47 @@
             </div>
         </div>
     </div>
-    <div class="modal" tabindex="-1" role="dialog" id="modal-badboy">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"> Rekommenderade!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Din bokning är nu genomförd och om du är intresserad kommer här några tips:</p>
-                    @{
-                        ViewBag.Title = "CreateBooking";
-                        var id = ViewBag.ID;
-                    }
-                    <h3>Rekommenderade:</h3>
-                    @Html.Partial("../BookingSystems/RecommendedBookingSystem", new TestSup.Controllers.RecommendedBookingSystem(id))
-                </div>
-                <div class="modal-footer">
-                    <button onclick="location.href= '@Url.Action("BookingList", "Booking")'" class="btn btn-primary btn-sm"> Inte intresserad </button>
-                </div>
+</div>
+
+<div id="kolumn2">
+    <br />
+    <br />
+    <button type="button" class="btn" value="8.00"> 8.00 - 9.00 </button>
+    <button type="button" class="btn" value="9.00"> 9.00 - 10.00 </button>
+    <button type="button" class="btn" value="10.00"> 10.00 - 11.00 </button>
+    <button type="button" class="btn" value="11.00"> 11.00 - 12.00 </button>
+    <button type="button" class="btn" value="12.00"> 12.00 - 13.00 </button>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="modal-badboy">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> Rekommenderade!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Din bokning är nu genomförd och om du är intresserad kommer här några tips:</p>
+                @{
+                    ViewBag.Title = "CreateBooking";
+                    var id = ViewBag.ID;
+                }
+                <h3>Rekommenderade:</h3>
+                @Html.Partial("../BookingSystems/RecommendedBookingSystem", new TestSup.Controllers.RecommendedBookingSystem(id))
+            </div>
+            <div class="modal-footer">
+                <button onclick="location.href= '@Url.Action("BookingList", "Booking")'" class="btn btn-primary btn-sm"> Inte intresserad </button>
             </div>
         </div>
     </div>
+</div>
 
-    <script type="text/javascript">
-    function book() {
+<script type="text/javascript">
+
+        function book() {
         var userName = $('#userName').val().length;
         var email = $('#email').val().length;
         var userMobile = $('#userMobile').val().length;
@@ -117,7 +144,7 @@
                 UserMobile: userMobile,
                 Subject: subject,
                 StartTime: startTime,
-                EndTime: endTime,
+                //EndTime: endTime,
                 BookingSystem : id
             };
             $.ajax({
@@ -134,7 +161,7 @@
             alert("Du måste fylla i alla fält!")
         }
     }
-    </script>
+</script>
 
 
 

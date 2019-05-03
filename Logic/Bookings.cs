@@ -17,6 +17,7 @@ namespace Logic
         public string UserMobile { get; set; }
         [Display(Name = "Detaljer")]
         public string Subject { get; set; }
+        public DateTime Date { get; set; }
         [Display(Name = "Starttid")]
         public DateTime StartTime { get; set; }
         [Display(Name = "Sluttid")]

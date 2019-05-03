@@ -21,12 +21,14 @@ namespace TestSup.Models
         [Required]
         [Display(Name = "Detaljer")]
         public string Subject { get; set; }
+        public DateTime Date { get; set; }
+
         [Required]
         [Display(Name = "Starttid")]
         public DateTime StartTime { get; set; }
-        [Required]
-        [Display(Name = "Sluttid")]
-        public DateTime Endtime { get; set; }
+        //[Required]
+        //[Display(Name = "Sluttid")]
+        //public DateTime Endtime { get; set; }
         public int BookingSystem { get; set; }
     }
 }

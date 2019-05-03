@@ -55,7 +55,7 @@ namespace TestSup.Repository
                     UserMobile = booking.UserMobile.ToString(),
                     Subject = booking.Subject,
                     StartTime = booking.StartTime,
-                    Endtime = booking.Endtime,
+                    //Endtime = booking.Endtime,
                     BookingSystem = system
                 });
                 db.SaveChanges();
