@@ -14,7 +14,7 @@
     function initMap() {
         var place = { lat: @Model.Lat, lng: @Model.Long };
         var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 11, center: place });
+            document.getElementById('map'), { zoom: 11, center: place, disableDefaultUI: true });
 
         var infowindow = new google.maps.InfoWindow();
 
