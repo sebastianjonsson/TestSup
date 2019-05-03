@@ -4,13 +4,11 @@
     ViewBag.Title = "RecBookingSys";
 }
 <h5>Välj avstånd för rekommenderade bokningssystem:</h5>
-<select id="kmList" onchange="initMap()">
-    <option value="1000">1km</option>
-    <option value="2000">2km</option>
-    <option value="3000">3km</option>
-    <option value="4000">4km</option>
-    <option value="5000" selected="selected">5km</option>
-</select>
+
+<div>
+    <p>Avstånd: <span id="showSliderValue"></span></p>
+    <input type="range" min="250" max="5000" value="2500" onchange="initMap()" id="slider" />
+</div>
 
 <script>
     function initMap() {
@@ -20,12 +18,16 @@
 
         var infowindow = new google.maps.InfoWindow();
 
-        var listValue = document.getElementById("kmList");
-        var kmComboBox = listValue.options[listValue.selectedIndex].value*1;
+        var sliderValue = document.getElementById("slider");
+        var kmSlider = sliderValue.value * 1;
+        var sliderValueInKm = sliderValue.value / 1000;
+
+        var showSliderValue = document.getElementById("showSliderValue");
+        showSliderValue.innerHTML = sliderValueInKm.toFixed(2) + " km";
 
         var radius = new google.maps.Circle({
             center: place,
-            radius: kmComboBox,
+            radius: kmSlider,
             strokeColor: "#0000FF",
             strokeOpacity: 0.8,
             strokeWeight: 1,
@@ -38,12 +40,13 @@
      @foreach(var item in Model.BookingSystem)
      {
      <text>
-        var contentString = '<div>@Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div>';
 
         var recommendedBookingSystems = new google.maps.LatLng(@item.Latitude, @item.Longitude);
         var distance = google.maps.geometry.spherical.computeDistanceBetween(activeBookingSystem, recommendedBookingSystems);
+        var distanceInKm = distance / 1000;
+        var contentString = '<div>@Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div><div>Avstånd: ' + distanceInKm.toFixed(2) + ' km</div>';
 
-        if (distance < kmComboBox) {
+        if (distance < kmSlider) {
             var marker = new google.maps.Marker({
                 map: map,
                 position: { lat: @item.Latitude, lng: @item.Longitude },
