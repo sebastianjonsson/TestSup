@@ -19,9 +19,9 @@ namespace Logic
         public string Subject { get; set; }
         public DateTime Date { get; set; }
         [Display(Name = "Starttid")]
-        public DateTime StartTime { get; set; }
+        public string StartTime { get; set; }
         [Display(Name = "Sluttid")]
-        public DateTime Endtime { get; set; }
+        public string Endtime { get; set; }
 
         //public int BookingSystemID { get; set; }
         public virtual BookingSystem BookingSystem { get; set; }
