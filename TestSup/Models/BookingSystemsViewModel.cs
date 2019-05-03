@@ -50,7 +50,7 @@ namespace TestSup.Models
 public enum Category
 {
     Verkstad,
-    Skönhet,
+    Behandling,
     Restaurang,
     Idrott
 }

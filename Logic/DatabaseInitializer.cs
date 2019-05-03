@@ -106,7 +106,7 @@ namespace Logic
                 Latitude = "59.275790",
                 Longitude = "15.215140",
                 City = "Örebro",
-                Category = "Skönhet",
+                Category = "Behandling",
             });
             bookingSystem.Add(new BookingSystem()
             {
@@ -119,7 +119,7 @@ namespace Logic
                 Latitude = "59.270230",
                 Longitude = "15.212027",
                 City = "Örebro",
-                Category = "Skönhet",
+                Category = "Behandling",
             });
             //Stockholm
             bookingSystem.Add(new BookingSystem()
@@ -211,7 +211,7 @@ namespace Logic
                 Latitude = "59.333890",
                 Longitude = "18.071400",
                 City = "Stockholm",
-                Category = "Skönhet",
+                Category = "Behandling",
             });
             bookingSystem.Add(new BookingSystem()
             {
@@ -224,7 +224,7 @@ namespace Logic
                 Latitude = "59.316560",
                 Longitude = "18.072180",
                 City = "Stockholm",
-                Category = "Skönhet",
+                Category = "Behandling",
             });
             foreach (BookingSystem system in bookingSystem)
                 context.DbBookingSystem.Add(system);

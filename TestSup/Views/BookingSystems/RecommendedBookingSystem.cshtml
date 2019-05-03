@@ -10,6 +10,42 @@
     <input type="range" min="250" max="5000" value="2500" onchange="initMap()" id="slider" />
 </div>
 
+<select onclick="initMap()" id="cbCategory">
+    <option value="Alla" selected>Alla</option>
+    @if (Model.Category == "Verkstad")
+    {
+        <option value="Verkstad" style="display:none;">Verkstad</option>
+    }
+    else
+    {
+        <option value="Verkstad">Verkstad</option>
+    }
+    @if (Model.Category == "Behandling")
+    {
+        <option value="Behandling" style="display:none;">Behandling</option>
+    }
+    else
+    {
+        <option value="Behandling">Behandling</option>
+    }
+    @if (Model.Category == "Idrott")
+    {
+        <option value="Idrott" style="display:none;">Idrott</option>
+    }
+    else
+    {
+        <option value="Idrott">Idrott</option>
+    }
+    @if (Model.Category == "Restaurang")
+    {
+        <option value="Restaurang" style="display:none;">Restaurang</option>
+    }
+    else
+    {
+        <option value="Restaurang">Restaurang</option>
+    }
+</select>
+
 <script>
     function initMap() {
         var place = { lat: @Model.Lat, lng: @Model.Long };
@@ -40,13 +76,27 @@
      @foreach(var item in Model.BookingSystem)
      {
      <text>
-
+        var choosenCategory = document.getElementById("cbCategory").value;
         var recommendedBookingSystems = new google.maps.LatLng(@item.Latitude, @item.Longitude);
         var distance = google.maps.geometry.spherical.computeDistanceBetween(activeBookingSystem, recommendedBookingSystems);
         var distanceInKm = distance / 1000;
         var contentString = '<div>@Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div><div>Avstånd från din bokning: ' + distanceInKm.toFixed(2) + ' km</div>';
+        var category = '@item.Category';
+        if (distance < kmSlider && choosenCategory == "Alla") {
+            var marker = new google.maps.Marker({
+                map: map,
+                position: { lat: @item.Latitude, lng: @item.Longitude },
+            });
 
-        if (distance < kmSlider) {
+            google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
+                return function () {
+                    infowindow.setContent(contentString);
+                    infowindow.open(map, marker);
+                };
+            })(marker, contentString, infowindow));
+        }
+        else if (distance < kmSlider && category == choosenCategory)
+        {
             var marker = new google.maps.Marker({
                 map: map,
                 position: { lat: @item.Latitude, lng: @item.Longitude },
