@@ -44,7 +44,7 @@
         var recommendedBookingSystems = new google.maps.LatLng(@item.Latitude, @item.Longitude);
         var distance = google.maps.geometry.spherical.computeDistanceBetween(activeBookingSystem, recommendedBookingSystems);
         var distanceInKm = distance / 1000;
-        var contentString = '<div>@Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div><div>Avstånd: ' + distanceInKm.toFixed(2) + ' km</div>';
+        var contentString = '<div>@Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div><div>Avstånd från din bokning: ' + distanceInKm.toFixed(2) + ' km</div>';
 
         if (distance < kmSlider) {
             var marker = new google.maps.Marker({
