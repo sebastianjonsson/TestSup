@@ -49,11 +49,15 @@
         @Html.Label("Välj tid", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <select onclick="getTime()" class="form-control" id="cbTime">
+                <option selected disabled> Välj tid</option>
                 <option type="button" class="btn" id="time-btn" value="08.00 - 09.00"> 08.00 - 09.00 </option>
                 <option type="button" class="btn" id="time-btn" value="09.00 - 10.00"> 09.00 - 10.00 </option>
                 <option type="button" class="btn" id="time-btn" value="10.00 - 11.00"> 10.00 - 11.00 </option>
                 <option type="button" class="btn" id="time-btn" value="11.00 - 12.00"> 11.00 - 12.00 </option>
                 <option type="button" class="btn" id="time-btn" value="12.00 - 13.00"> 12.00 - 13.00 </option>
+                <option type="button" class="btn" id="time-btn" value="13.00 - 14.00"> 13.00 - 14.00 </option>
+                <option type="button" class="btn" id="time-btn" value="14.00 - 15.00"> 14.00 - 15.00 </option>
+                <option type="button" class="btn" id="time-btn" value="15.00 - 16.00"> 15.00 - 16.00 </option>
             </select>
         </div>
     </div>
@@ -136,7 +140,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                alert(data);
+                alert(JSON.stringify(data));
             },
         });
 
