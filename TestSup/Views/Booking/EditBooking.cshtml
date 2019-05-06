@@ -51,8 +51,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <label>Tidigare datum: @Html.DisplayFor(model => model.Date)</label>
-            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
+            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = Model.Date.ToShortDateString(), @required = "required" } })
             @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -79,6 +78,7 @@
         @Html.Label("Välj tid", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <select onclick="getTime()" class="form-control" id="cbTime">
+                <option selected disabled>Välj tid</option>
                 <option type="button" class="btn" id="time-btn" value="08.00 - 09.00"> 08.00 - 09.00 </option>
                 <option type="button" class="btn" id="time-btn" value="09.00 - 10.00"> 09.00 - 10.00 </option>
                 <option type="button" class="btn" id="time-btn" value="10.00 - 11.00"> 10.00 - 11.00 </option>
