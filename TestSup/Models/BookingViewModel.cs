@@ -21,6 +21,7 @@ namespace TestSup.Models
         [Required]
         [Display(Name = "Detaljer")]
         public string Subject { get; set; }
+        [Display(Name = "Datum")]
         public DateTime Date { get; set; }
 
         [Required]
