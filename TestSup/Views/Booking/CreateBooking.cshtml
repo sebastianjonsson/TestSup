@@ -88,7 +88,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="button" value="Boka" class="btn btn-info" onclick="book()" />
+            <input type="button" value="Boka" class="btn btn-info" onclick="getBookings()" />
         </div>
     </div>
 
@@ -131,18 +131,38 @@
     }
 </script>
 
-<script type="text/javascript">
-
-    function book() {
-        
+<script>
+    function getBookings() {
         $.ajax({
             url: "http://localhost:64034/api/getAllBookings/",
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                alert(JSON.stringify(data));
+                data.forEach(function (data) {
+                    var allBookingsDate = JSON.stringify(data.Date).replace(/['"]+/g, '').substring(0, 10);
+                    var systemid = JSON.stringify(data.BookingSystem.Id);
+                    var allBookingsStarttime = JSON.stringify(data.StartTime).replace(/['"]+/g, '');
+
+                    var id = '@ViewBag.ID';
+                    var date = $('#date').val();
+                    var startTime = $('#startTime').val();
+
+                    if (startTime == allBookingsStarttime && id == systemid && date == allBookingsDate) {
+                        alert("tiden är redan bokad.");
+                    }
+                    else {
+                        book();
+                    }
+          
+                });
             },
         });
+    }
+</script>
+
+<script type="text/javascript">
+
+    function book() {
 
         var userName = $('#userName').val().length;
         var email = $('#email').val().length;
