@@ -27,6 +27,9 @@
             @Html.DisplayNameFor(model => model.Subject)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
         <th>
@@ -36,33 +39,36 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookingSystem.SystemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserMobile)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subject)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endtime)
-            </td>
-            <td>
-                <button type="button" onclick="location.href= '@Url.Action("EditBooking", "Booking", new { id = item.Id })'"  class="btn btn-primary btn-sm"> Ändra bokning </button> |
-                <button type="button" onclick="location.href= '@Url.Action("DeleteBooking", "Booking", new { id = item.Id })'" class="btn btn-primary btn-sm"> Ta bort bokning </button>
-</td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingSystem.SystemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserMobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Endtime)
+        </td>
+        <td>
+            <button type="button" onclick="location.href= '@Url.Action("EditBooking", "Booking", new { id = item.Id })'" class="btn btn-primary btn-sm"> Ändra bokning </button> |
+            <button type="button" onclick="location.href= '@Url.Action("DeleteBooking", "Booking", new { id = item.Id })'" class="btn btn-primary btn-sm"> Ta bort bokning </button>
+        </td>
+    </tr>
     }
 </table>
 

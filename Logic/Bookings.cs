@@ -11,12 +11,15 @@ namespace Logic
     public class Bookings
     {
         public int Id { get; set; }
+        [Display(Name = "Namn")]
         public string UserName { get; set; }
         public string Email { get; set; }
         [Display(Name = "Telefonnummer")]
         public string UserMobile { get; set; }
         [Display(Name = "Detaljer")]
         public string Subject { get; set; }
+        [Display(Name = "Datum")]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM-yy}")]
         public DateTime Date { get; set; }
         [Display(Name = "Starttid")]
         public string StartTime { get; set; }
