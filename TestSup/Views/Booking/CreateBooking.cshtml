@@ -73,24 +73,22 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "startTime" } })
+            @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "startTime", @style = "display: none;" } })
             @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Endtime, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Endtime, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "endTime" } })
+            @Html.EditorFor(model => model.Endtime, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "endTime", @style = "display: none;" } })
             @Html.ValidationMessageFor(model => model.Endtime, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="button" value="Boka" class="btn btn-info" onclick="getBookings()" />
+            <input type="button" value="Boka" class="btn btn-info" onclick="book()" />
         </div>
     </div>
 
@@ -154,38 +152,54 @@
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                data.forEach(function (data) {
-                    var jsonTime = JSON.stringify(data.StartTime);
+                var jsonData = JSON.stringify(data);
+                if (jsonData == "[]") {
 
-                    if (jsonTime.replace(/['"]+/g, '') == "08.00") {
-                        showTime8.style.display = "none";
-                    }
-                    if (jsonTime.replace(/['"]+/g, '') == "09.00") {
-                        showTime9.style.display = "none";
-                    }
-                    if (jsonTime.replace(/['"]+/g, '') == "10.00") {
-                        showTime10.style.display = "none";
-                    }
-                    if (jsonTime.replace(/['"]+/g, '') == "11.00") {
-                        showTime11.style.display = "none";
-                    }
-                    if (jsonTime.replace(/['"]+/g, '') == "12.00") {
-                        showTime12.style.display = "none";
-                    }
-                    if (jsonTime.replace(/['"]+/g, '') == "13.00") {
-                        showTime13.style.display = "none";
-                    }
-                    if (jsonTime.replace(/['"]+/g, '') == "14.00") {
-                        showTime14.style.display = "none";
-                    }
-                    if (jsonTime.replace(/['"]+/g, '') == "15.00") {
-                        showTime15.style.display = "none";
-                    }
+                    showTime8.style.display = "block";
+                    showTime9.style.display = "block";
+                    showTime10.style.display = "block";
+                    showTime11.style.display = "block";
+                    showTime12.style.display = "block";
+                    showTime13.style.display = "block";
+                    showTime14.style.display = "block";
+                    showTime15.style.display = "block";
+
                     showTimePicker();
-                    if (jsonTime == "[]") {
+                }
+                else {
+                    data.forEach(function (data) {
+                        var jsonTime = JSON.stringify(data.StartTime);
+
+                        if (jsonTime.replace(/['"]+/g, '') == "08.00") {
+                            showTime8.style.display = "none";
+                        }
+                        if (jsonTime.replace(/['"]+/g, '') == "09.00") {
+                            showTime9.style.display = "none";
+                        }
+                        if (jsonTime.replace(/['"]+/g, '') == "10.00") {
+                            showTime10.style.display = "none";
+                        }
+                        if (jsonTime.replace(/['"]+/g, '') == "11.00") {
+                            showTime11.style.display = "none";
+                        }
+                        if (jsonTime.replace(/['"]+/g, '') == "12.00") {
+                            showTime12.style.display = "none";
+                        }
+                        if (jsonTime.replace(/['"]+/g, '') == "13.00") {
+                            showTime13.style.display = "none";
+                        }
+                        if (jsonTime.replace(/['"]+/g, '') == "14.00") {
+                            showTime14.style.display = "none";
+                        }
+                        if (jsonTime.replace(/['"]+/g, '') == "15.00") {
+                            showTime15.style.display = "none";
+                        }
                         showTimePicker();
-                    }
-                });
+                        if (jsonTime == "[]") {
+                            showTimePicker();
+                        }
+                    });
+                }
             },
         });
     }
@@ -198,28 +212,6 @@
         var getEndTime = timeText.slice(8, 13);
         document.getElementById("startTime").value = getStartTime;
         document.getElementById("endTime").value = getEndTime;
-    }
-</script>
-
-<script>
-    function getBookings() {
-        var startTime = $('#startTime').val();
-        var id = '@ViewBag.ID';
-        var date = $('#date').val();
-        $.ajax({
-            url: "http://localhost:64034/api/getAllCreateBookings?startTime=" + startTime + "&id=" + id + "&date=" + date,
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                var json = JSON.stringify(data);
-                if (json == "[]") {
-                    book();
-                }
-                else {
-                    alert("BOKNINGEN FINNS FÖRFAN REDAN!!!");
-                }
-            },
-        });
     }
 </script>
 
