@@ -46,18 +46,28 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = @DateTime.Now.ToShortDateString(), @required = "required", @id = "date", @onclick = "hideTimePicker()" } })
+            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            <br />
+            <input type="button" value="Visa lediga tider detta datum" class="btn btn-info" onclick="checkDate()" />
+        </div>
+    </div>
+
+    <div class="form-group" style="display: none;" id="timePicker">
         @Html.Label("Välj tid", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <select onclick="getTime()" class="form-control" id="cbTime">
                 <option selected disabled> Välj tid</option>
-                <option type="button" class="btn" id="time-btn" value="08.00 - 09.00"> 08.00 - 09.00 </option>
-                <option type="button" class="btn" id="time-btn" value="09.00 - 10.00"> 09.00 - 10.00 </option>
-                <option type="button" class="btn" id="time-btn" value="10.00 - 11.00"> 10.00 - 11.00 </option>
-                <option type="button" class="btn" id="time-btn" value="11.00 - 12.00"> 11.00 - 12.00 </option>
-                <option type="button" class="btn" id="time-btn" value="12.00 - 13.00"> 12.00 - 13.00 </option>
-                <option type="button" class="btn" id="time-btn" value="13.00 - 14.00"> 13.00 - 14.00 </option>
-                <option type="button" class="btn" id="time-btn" value="14.00 - 15.00"> 14.00 - 15.00 </option>
-                <option type="button" class="btn" id="time-btn time" value="15.00 - 16.00"> 15.00 - 16.00 </option>
+                <option type="button" class="time" id="time8" value="08.00 - 09.00"> 08.00 - 09.00 </option>
+                <option type="button" class="time" id="time9" value="09.00 - 10.00"> 09.00 - 10.00 </option>
+                <option type="button" class="time" id="time10" value="10.00 - 11.00"> 10.00 - 11.00 </option>
+                <option type="button" class="time" id="time11" value="11.00 - 12.00"> 11.00 - 12.00 </option>
+                <option type="button" class="time" id="time12" value="12.00 - 13.00"> 12.00 - 13.00 </option>
+                <option type="button" class="time" id="time13" value="13.00 - 14.00"> 13.00 - 14.00 </option>
+                <option type="button" class="time" id="time14" value="14.00 - 15.00"> 14.00 - 15.00 </option>
+                <option type="button" class="time" id="time15" value="15.00 - 16.00"> 15.00 - 16.00 </option>
             </select>
         </div>
     </div>
@@ -75,15 +85,6 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.Endtime, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "endTime" } })
             @Html.ValidationMessageFor(model => model.Endtime, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = @DateTime.Now.ToShortDateString(), @required = "required", @id = "date" } })
-            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-            <input type="button" value="Välj tid" class="btn btn-info" onclick="checkDate()" />
         </div>
     </div>
 
@@ -123,13 +124,29 @@
 </div>
 
 <script>
-    function hide() {
-        var hiddenButton = document.getElementById("time");
+    function hideTimePicker() {
+        var hiddenButton = document.getElementById("timePicker");
         hiddenButton.style.display = "none";
     }
+
+    function showTimePicker() {
+        var hiddenButton = document.getElementById("timePicker");
+        hiddenButton.style.display = "block";
+
+    }
 </script>
+
 <script>
     function checkDate() {
+        var showTime8 = document.getElementById("time8");
+        var showTime9 = document.getElementById("time9");
+        var showTime10 = document.getElementById("time10");
+        var showTime11 = document.getElementById("time11");
+        var showTime12 = document.getElementById("time12");
+        var showTime13 = document.getElementById("time13");
+        var showTime14 = document.getElementById("time14");
+        var showTime15 = document.getElementById("time15");
+
         var date = $('#date').val();
         var id = '@ViewBag.ID';
         $.ajax({
@@ -137,8 +154,38 @@
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                alert(JSON.stringify(data));
-                hide();
+                data.forEach(function (data) {
+                    var jsonTime = JSON.stringify(data.StartTime);
+
+                    if (jsonTime.replace(/['"]+/g, '') == "08.00") {
+                        showTime8.style.display = "none";
+                    }
+                    if (jsonTime.replace(/['"]+/g, '') == "09.00") {
+                        showTime9.style.display = "none";
+                    }
+                    if (jsonTime.replace(/['"]+/g, '') == "10.00") {
+                        showTime10.style.display = "none";
+                    }
+                    if (jsonTime.replace(/['"]+/g, '') == "11.00") {
+                        showTime11.style.display = "none";
+                    }
+                    if (jsonTime.replace(/['"]+/g, '') == "12.00") {
+                        showTime12.style.display = "none";
+                    }
+                    if (jsonTime.replace(/['"]+/g, '') == "13.00") {
+                        showTime13.style.display = "none";
+                    }
+                    if (jsonTime.replace(/['"]+/g, '') == "14.00") {
+                        showTime14.style.display = "none";
+                    }
+                    if (jsonTime.replace(/['"]+/g, '') == "15.00") {
+                        showTime15.style.display = "none";
+                    }
+                    showTimePicker();
+                    if (jsonTime == "[]") {
+                        showTimePicker();
+                    }
+                });
             },
         });
     }
