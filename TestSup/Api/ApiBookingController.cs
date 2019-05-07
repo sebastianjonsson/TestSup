@@ -27,6 +27,18 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        [HttpGet]
+        [Route("api/getAllCreateBookings")]
+        public IHttpActionResult GetAllCreateBookings(string startTime, int id, DateTime date)
+        {
+            var system = bookingRepository.GetAllCreateBookings(startTime, id, date);
+            if (system == null)
+            {
+                return BadRequest();
+            }
+            return Ok(system);
+        }
+
         // GET: api/ApiBooking/5
         [HttpGet]
         [Route("api/getBooking/{id}")]

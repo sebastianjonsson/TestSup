@@ -133,28 +133,21 @@
 
 <script>
     function getBookings() {
+        var startTime = $('#startTime').val();
+        var id = '@ViewBag.ID';
+        var date = $('#date').val();
         $.ajax({
-            url: "http://localhost:64034/api/getAllBookings/",
+            url: "http://localhost:64034/api/getAllCreateBookings?startTime=" + startTime + "&id=" + id + "&date=" + date,
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                data.forEach(function (data) {
-                    var allBookingsDate = JSON.stringify(data.Date).replace(/['"]+/g, '').substring(0, 10);
-                    var systemid = JSON.stringify(data.BookingSystem.Id);
-                    var allBookingsStarttime = JSON.stringify(data.StartTime).replace(/['"]+/g, '');
-
-                    var id = '@ViewBag.ID';
-                    var date = $('#date').val();
-                    var startTime = $('#startTime').val();
-
-                    if (startTime == allBookingsStarttime && id == systemid && date == allBookingsDate) {
-                        alert("tiden är redan bokad.");
-                    }
-                    else {
-                        book();
-                    }
-          
-                });
+                var json = JSON.stringify(data);
+                if (json == "[]") {
+                    book();
+                }
+                else {
+                    alert("BOKNINGEN FINNS FÖRFAN REDAN!!!");
+                }
             },
         });
     }

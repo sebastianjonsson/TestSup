@@ -24,6 +24,12 @@ namespace TestSup.Repository
             return (bookings);
         }
 
+        public List<Bookings> GetAllCreateBookings(string startTime, int id, DateTime date)
+        {
+            List<Bookings> bookings = db.DbBookings.Where(x => x.StartTime == startTime && x.BookingSystem.Id == id && x.Date == date).ToList();
+            return (bookings);
+        }
+
         public IEnumerable<Bookings> SortBookingsBySystemName()
         {
             var sort = db.DbBookings.OrderBy(x => x.BookingSystem.SystemName).ToList();
