@@ -136,6 +136,9 @@
 
 <script>
     function checkDate() {
+
+        var resetCbTime = document.getElementById("cbTime");  
+
         var showTime8 = document.getElementById("time8");
         var showTime9 = document.getElementById("time9");
         var showTime10 = document.getElementById("time10");
@@ -165,39 +168,38 @@
                     showTime15.style.display = "block";
 
                     showTimePicker();
+                    resetCbTime.selectedIndex = 0;
                 }
                 else {
                     data.forEach(function (data) {
-                        var jsonTime = JSON.stringify(data.StartTime);
+                        var jsonTime = data.StartTime;
 
-                        if (jsonTime.replace(/['"]+/g, '') == "08.00") {
+                        if (jsonTime == "08.00") {
                             showTime8.style.display = "none";
                         }
-                        if (jsonTime.replace(/['"]+/g, '') == "09.00") {
+                        if (jsonTime == "09.00") {
                             showTime9.style.display = "none";
                         }
-                        if (jsonTime.replace(/['"]+/g, '') == "10.00") {
+                        if (jsonTime == "10.00") {
                             showTime10.style.display = "none";
                         }
-                        if (jsonTime.replace(/['"]+/g, '') == "11.00") {
+                        if (jsonTime == "11.00") {
                             showTime11.style.display = "none";
                         }
-                        if (jsonTime.replace(/['"]+/g, '') == "12.00") {
+                        if (jsonTime == "12.00") {
                             showTime12.style.display = "none";
                         }
-                        if (jsonTime.replace(/['"]+/g, '') == "13.00") {
+                        if (jsonTime == "13.00") {
                             showTime13.style.display = "none";
                         }
-                        if (jsonTime.replace(/['"]+/g, '') == "14.00") {
+                        if (jsonTime == "14.00") {
                             showTime14.style.display = "none";
                         }
-                        if (jsonTime.replace(/['"]+/g, '') == "15.00") {
+                        if (jsonTime == "15.00") {
                             showTime15.style.display = "none";
                         }
                         showTimePicker();
-                        if (jsonTime == "[]") {
-                            showTimePicker();
-                        }
+                        resetCbTime.selectedIndex = 0;
                     });
                 }
             },
