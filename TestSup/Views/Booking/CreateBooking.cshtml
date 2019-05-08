@@ -88,7 +88,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="button" value="Boka" class="btn btn-info" onclick="book()" />
+            <input type="button" value="Boka" class="btn btn-info" onclick="getBookings()" />
         </div>
     </div>
 
@@ -214,6 +214,28 @@
         var getEndTime = timeText.slice(8, 13);
         document.getElementById("startTime").value = getStartTime;
         document.getElementById("endTime").value = getEndTime;
+    }
+</script>
+
+<script>
+    function getBookings() {
+        var startTime = $('#startTime').val();
+        var id = '@ViewBag.Id';
+        var date = $('#date').val();
+        $.ajax({
+            url: "http://localhost:64034/api/getAllCreateBookings?startTime=" + startTime + "&id=" + id + "&date=" + date,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var json = JSON.stringify(data);
+                if (json == "[]") {
+                    book();
+                }
+                else {
+                    alert("Denna tid är tyvärr redan bokad.");
+                }
+            },
+        });
     }
 </script>
 
