@@ -60,14 +60,14 @@
         <div class="col-md-10">
             <select onclick="getTime()" class="form-control" id="cbTime">
                 <option selected disabled> Välj tid</option>
-                <option type="button" class="time" id="time8" value="08.00 - 09.00"> 08.00 - 09.00 </option>
-                <option type="button" class="time" id="time9" value="09.00 - 10.00"> 09.00 - 10.00 </option>
-                <option type="button" class="time" id="time10" value="10.00 - 11.00"> 10.00 - 11.00 </option>
-                <option type="button" class="time" id="time11" value="11.00 - 12.00"> 11.00 - 12.00 </option>
-                <option type="button" class="time" id="time12" value="12.00 - 13.00"> 12.00 - 13.00 </option>
-                <option type="button" class="time" id="time13" value="13.00 - 14.00"> 13.00 - 14.00 </option>
-                <option type="button" class="time" id="time14" value="14.00 - 15.00"> 14.00 - 15.00 </option>
-                <option type="button" class="time" id="time15" value="15.00 - 16.00"> 15.00 - 16.00 </option>
+                <option type="button" class="time" id="time8" value="08:00 - 09:00"> 08.00 - 09.00 </option>
+                <option type="button" class="time" id="time9" value="09:00 - 10:00"> 09.00 - 10.00 </option>
+                <option type="button" class="time" id="time10" value="10:00 - 11:00"> 10.00 - 11.00 </option>
+                <option type="button" class="time" id="time11" value="11:00 - 12:00"> 11.00 - 12.00 </option>
+                <option type="button" class="time" id="time12" value="12:00 - 13:00"> 12.00 - 13.00 </option>
+                <option type="button" class="time" id="time13" value="13:00 - 14:00"> 13.00 - 14.00 </option>
+                <option type="button" class="time" id="time14" value="14:00 - 15:00"> 14.00 - 15.00 </option>
+                <option type="button" class="time" id="time15" value="15:00 - 16:00"> 15.00 - 16.00 </option>
             </select>
         </div>
     </div>
@@ -137,19 +137,44 @@
 <script>
     function checkDate() {
 
-        var resetCbTime = document.getElementById("cbTime");  
+        var resetCbTime = document.getElementById("cbTime");
 
+        var timeText8 = document.getElementById("time8").value;
+        var getStartTime8 = timeText8.slice(0, 5);
         var showTime8 = document.getElementById("time8");
+
+        var timeText9 = document.getElementById("time9").value;
+        var getStartTime9 = timeText9.slice(0, 5);
         var showTime9 = document.getElementById("time9");
+
+        var timeText10 = document.getElementById("time10").value;
+        var getStartTime10 = timeText10.slice(0, 5);
         var showTime10 = document.getElementById("time10");
+
+        var timeText11 = document.getElementById("time11").value;
+        var getStartTime11 = timeText11.slice(0, 5);
         var showTime11 = document.getElementById("time11");
+
+        var timeText12 = document.getElementById("time12").value;
+        var getStartTime12 = timeText12.slice(0, 5);
         var showTime12 = document.getElementById("time12");
+
+        var timeText13 = document.getElementById("time13").value;
+        var getStartTime13 = timeText13.slice(0, 5);
         var showTime13 = document.getElementById("time13");
+
+        var timeText14 = document.getElementById("time14").value;
+        var getStartTime14 = timeText14.slice(0, 5);
         var showTime14 = document.getElementById("time14");
+
+        var timeText15 = document.getElementById("time15").value;
+        var getStartTime15 = timeText15.slice(0, 5);
         var showTime15 = document.getElementById("time15");
 
         var date = $('#date').val();
         var id = '@ViewBag.ID';
+        var todayTime = '@DateTime.Now.ToShortTimeString()';
+        var todayDate = '@DateTime.Now.ToShortDateString()';
         $.ajax({
             url: "http://localhost:64034/api/getAllTimesDate?date=" + date + "&id=" + id,
             type: 'GET',
@@ -157,46 +182,107 @@
             success: function (data) {
                 var jsonData = JSON.stringify(data);
                 if (jsonData == "[]") {
-
-                    showTime8.style.display = "block";
-                    showTime9.style.display = "block";
-                    showTime10.style.display = "block";
-                    showTime11.style.display = "block";
-                    showTime12.style.display = "block";
-                    showTime13.style.display = "block";
-                    showTime14.style.display = "block";
-                    showTime15.style.display = "block";
-
+                    if (getStartTime8 < todayTime && todayDate == date) {
+                        showTime8.style.display = "none";
+                    }
+                    else {
+                        showTime8.style.display = "block";
+                    }
+                    if (getStartTime9 < todayTime  && todayDate == date) {
+                        showTime9.style.display = "none";
+                    }
+                    else {
+                        showTime9.style.display = "block";
+                    }
+                    if (getStartTime10 < todayTime  && todayDate == date) {
+                        showTime10.style.display = "none";
+                    }
+                    else {
+                        showTime10.style.display = "block";
+                    }
+                    if (getStartTime11 < todayTime  && todayDate == date) {
+                        showTime11.style.display = "none";
+                    }
+                    else {
+                        showTime11.style.display = "block";
+                    }
+                    if (getStartTime12 < todayTime  && todayDate == date) {
+                        showTime12.style.display = "none";
+                    }
+                    else {
+                        showTime12.style.display = "block";
+                    }
+                    if (getStartTime13 < todayTime  && todayDate == date) {
+                        showTime13.style.display = "none";
+                    }
+                    else {
+                        showTime13.style.display = "block";
+                    }
+                    if (getStartTime14 < todayTime  && todayDate == date) {
+                        showTime14.style.display = "none";
+                    }
+                    else {
+                        showTime14.style.display = "block";
+                    }
+                    if (getStartTime15 < todayTime  && todayDate == date) {
+                        showTime15.style.display = "none";
+                    }
+                    else {
+                        showTime15.style.display = "block";
+                    }
                     showTimePicker();
                     resetCbTime.selectedIndex = 0;
                 }
                 else {
                     data.forEach(function (data) {
                         var jsonTime = data.StartTime;
-
-                        if (jsonTime == "08.00") {
+                        if (jsonTime == getStartTime8 || getStartTime8 < todayTime && todayDate == date) {
                             showTime8.style.display = "none";
                         }
-                        if (jsonTime == "09.00") {
+                        else {
+                            showTime8.style.display = "block";
+                        }
+                        if (jsonTime == getStartTime9 || getStartTime9 < todayTime && todayDate == date) {
                             showTime9.style.display = "none";
                         }
-                        if (jsonTime == "10.00") {
+                        else {
+                            showTime9.style.display = "block";
+                        }
+                        if (jsonTime == getStartTime10 || getStartTime10 < todayTime && todayDate == date) {
                             showTime10.style.display = "none";
                         }
-                        if (jsonTime == "11.00") {
+                        else {
+                            showTime10.style.display = "block";
+                        }
+                        if (jsonTime == getStartTime11 || getStartTime11 < todayTime && todayDate == date) {
                             showTime11.style.display = "none";
                         }
-                        if (jsonTime == "12.00") {
+                        else {
+                            showTime11.style.display = "block";
+                        }
+                        if (jsonTime == getStartTime12 || getStartTime12 < todayTime && todayDate == date) {
                             showTime12.style.display = "none";
                         }
-                        if (jsonTime == "13.00") {
+                        else {
+                            showTime12.style.display = "block";
+                        }
+                        if (jsonTime == getStartTime13 || getStartTime13 < todayTime && todayDate == date) {
                             showTime13.style.display = "none";
                         }
-                        if (jsonTime == "14.00") {
+                        else {
+                            showTime13.style.display = "block";
+                        }
+                        if (jsonTime == getStartTime14 || getStartTime14 < todayTime && todayDate == date) {
                             showTime14.style.display = "none";
                         }
-                        if (jsonTime == "15.00") {
+                        else {
+                            showTime14.style.display = "block";
+                        }
+                        if (jsonTime == getStartTime15 || getStartTime15 < todayTime && todayDate == date) {
                             showTime15.style.display = "none";
+                        }
+                        else {
+                            showTime15.style.display = "block";
                         }
                         showTimePicker();
                         resetCbTime.selectedIndex = 0;
