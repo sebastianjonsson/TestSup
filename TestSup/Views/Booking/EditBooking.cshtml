@@ -51,8 +51,10 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = Model.Date.ToShortDateString(), @required = "required", @onclick = "hide()", @id = "date", @min = @DateTime.Now.ToShortDateString() } })
+            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = Model.Date.ToShortDateString(), @required = "required", @onclick = "hide(), hideTimePicker()", @id = "date", @min = @DateTime.Now.ToShortDateString() } })
             @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            <br />
+            <input type="button" value="Visa lediga tider detta datum" class="btn btn-info" onclick="checkDate()" />
         </div>
     </div>
 
@@ -74,19 +76,19 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.Label("Välj tid", htmlAttributes: new { @class = "control-label col-md-2"})
+    <div class="form-group" style="display: none;" id="timePicker">
+        @Html.Label("Välj tid", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <select onclick="getTime(), hide()" class="form-control" id="cbTime">
-                <option selected disabled>Välj tid</option>
-                <option type="button" class="btn" id="time-btn" value="08.00 - 09.00"> 08.00 - 09.00 </option>
-                <option type="button" class="btn" id="time-btn" value="09.00 - 10.00"> 09.00 - 10.00 </option>
-                <option type="button" class="btn" id="time-btn" value="10.00 - 11.00"> 10.00 - 11.00 </option>
-                <option type="button" class="btn" id="time-btn" value="11.00 - 12.00"> 11.00 - 12.00 </option>
-                <option type="button" class="btn" id="time-btn" value="12.00 - 13.00"> 12.00 - 13.00 </option>
-                <option type="button" class="btn" id="time-btn" value="13.00 - 14.00"> 13.00 - 14.00 </option>
-                <option type="button" class="btn" id="time-btn" value="14.00 - 15.00"> 14.00 - 15.00 </option>
-                <option type="button" class="btn" id="time-btn" value="15.00 - 16.00"> 15.00 - 16.00 </option>
+                <option selected disabled> Välj tid</option>
+                <option type="button" class="time" id="time8" value="08:00 - 09:00"> 08.00 - 09.00 </option>
+                <option type="button" class="time" id="time9" value="09:00 - 10:00"> 09.00 - 10.00 </option>
+                <option type="button" class="time" id="time10" value="10:00 - 11:00"> 10.00 - 11.00 </option>
+                <option type="button" class="time" id="time11" value="11:00 - 12:00"> 11.00 - 12.00 </option>
+                <option type="button" class="time" id="time12" value="12:00 - 13:00"> 12.00 - 13.00 </option>
+                <option type="button" class="time" id="time13" value="13:00 - 14:00"> 13.00 - 14.00 </option>
+                <option type="button" class="time" id="time14" value="14:00 - 15:00"> 14.00 - 15.00 </option>
+                <option type="button" class="time" id="time15" value="15:00 - 16:00"> 15.00 - 16.00 </option>
             </select>
         </div>
     </div>
@@ -130,7 +132,138 @@
     function hide() {
         var hiddenButton = document.getElementById("hidden");
         hiddenButton.style.display = "none";
+    }
+</script>
 
+<script>
+    function hideTimePicker() {
+        var hiddenButton = document.getElementById("timePicker");
+        hiddenButton.style.display = "none";
+    }
+
+    function showTimePicker() {
+        var hiddenButton = document.getElementById("timePicker");
+        hiddenButton.style.display = "block";
+
+    }
+</script>
+
+<script>
+    function checkDate() {
+
+        var resetCbTime = document.getElementById("cbTime");
+
+        var getStartTime8 = "08:00";
+        var showTime8 = document.getElementById("time8");
+        
+        var getStartTime9 = "09:00";
+        var showTime9 = document.getElementById("time9");
+        
+        var getStartTime10 = "10:00";
+        var showTime10 = document.getElementById("time10");
+        
+        var getStartTime11 = "11:00";
+        var showTime11 = document.getElementById("time11");
+        
+        var getStartTime12 = "12:00";
+        var showTime12 = document.getElementById("time12");
+        
+        var getStartTime13 = "13:00";
+        var showTime13 = document.getElementById("time13");
+        
+        var getStartTime14 = "14:00";
+        var showTime14 = document.getElementById("time14");
+        
+        var getStartTime15 = "15:00";
+        var showTime15 = document.getElementById("time15");
+
+        var date = $('#date').val();
+        var id = @Model.BookingSystem.Id;
+        var todayTime = '@DateTime.Now.ToShortTimeString()';
+        var todayDate = '@DateTime.Now.ToShortDateString()';
+        $.ajax({
+            url: "http://localhost:64034/api/getAllTimesDate?date=" + date + "&id=" + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var jsonData = JSON.stringify(data);
+                if (jsonData == "[]") {
+                    showTime8.style.display = "block";
+                    showTime9.style.display = "block";
+                    showTime10.style.display = "block";
+                    showTime11.style.display = "block";
+                    showTime12.style.display = "block";
+                    showTime13.style.display = "block";
+                    showTime14.style.display = "block";
+                    showTime15.style.display = "block";
+                    if (getStartTime8 < todayTime && todayDate == date) {
+                        showTime8.style.display = "none";
+                    }
+                    if (getStartTime9 < todayTime  && todayDate == date) {
+                        showTime9.style.display = "none";
+                    }
+                    if (getStartTime10 < todayTime  && todayDate == date) {
+                        showTime10.style.display = "none";
+                    }
+                    if (getStartTime11 < todayTime  && todayDate == date) {
+                        showTime11.style.display = "none";
+                    }
+                    if (getStartTime12 < todayTime  && todayDate == date) {
+                        showTime12.style.display = "none";
+                    }
+                    if (getStartTime13 < todayTime  && todayDate == date) {
+                        showTime13.style.display = "none";
+                    }
+                    if (getStartTime14 < todayTime  && todayDate == date) {
+                        showTime14.style.display = "none";
+                    }
+                    if (getStartTime15 < todayTime  && todayDate == date) {
+                        showTime15.style.display = "none";
+                    }
+                    showTimePicker();
+                    resetCbTime.selectedIndex = 0;
+                }
+                else {
+                    showTime8.style.display = "block";
+                    showTime9.style.display = "block";
+                    showTime10.style.display = "block";
+                    showTime11.style.display = "block";
+                    showTime12.style.display = "block";
+                    showTime13.style.display = "block";
+                    showTime14.style.display = "block";
+                    showTime15.style.display = "block";
+                        data.forEach(function (data) {
+                            var jsonTime = data.StartTime;
+                            if (jsonTime == getStartTime8 || getStartTime8 < todayTime && todayDate == date) {
+                                showTime8.style.display = "none";
+                            }
+                            if (jsonTime == getStartTime9 || getStartTime9 < todayTime && todayDate == date) {
+                                showTime9.style.display = "none";
+                            }
+                            if (jsonTime == getStartTime10 || getStartTime10 < todayTime && todayDate == date) {
+                                showTime10.style.display = "none";
+                            }
+                            if (jsonTime == getStartTime11 || getStartTime11 < todayTime && todayDate == date) {
+                                showTime11.style.display = "none";
+                            }
+                            if (jsonTime == getStartTime12 || getStartTime12 < todayTime && todayDate == date) {
+                                showTime12.style.display = "none";
+                            }
+                            if (jsonTime == getStartTime13 || getStartTime13 < todayTime && todayDate == date) {
+                                showTime13.style.display = "none";
+                            }
+                            if (jsonTime == getStartTime14 || getStartTime14 < todayTime && todayDate == date) {
+                                showTime14.style.display = "none";
+                            }
+                            if (jsonTime == getStartTime15 || getStartTime15 < todayTime && todayDate == date) {
+                                showTime15.style.display = "none";
+                            }
+                            showTimePicker();
+                            resetCbTime.selectedIndex = 0;
+                    });
+                }
+            },
+        });
     }
 </script>
 
