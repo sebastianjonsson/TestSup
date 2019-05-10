@@ -71,6 +71,7 @@
             fillOpacity: 0.3,
             map: map
         });
+        var directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
 
         var activeBookingSystem = new google.maps.LatLng(@Model.Lat, @Model.Long);
      @foreach(var item in Model.BookingSystem)
@@ -92,8 +93,25 @@
                 return function () {
                     infowindow.setContent(contentString);
                     infowindow.open(map, marker);
+                    var directionsService = new google.maps.DirectionsService;
+                    directionsDisplay.setMap(map);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay);
+                    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+                        directionsService.route({
+                          origin: { lat: @Model.Lat, lng: @Model.Long },
+                          destination: { lat: @item.Latitude, lng: @item.Longitude },
+                          travelMode: 'WALKING'
+                        }, function(response, status) {
+                          if (status === 'OK') {
+                            directionsDisplay.setDirections(response);
+                          } else {
+                            window.alert('Directions request failed due to ' + status);
+                          }
+                        });
+                    }
                 };
-            })(marker, contentString, infowindow));
+
+             })(marker, contentString, infowindow));
         }
         else if (distance < kmSlider && category == choosenCategory)
         {
@@ -106,8 +124,25 @@
                 return function () {
                     infowindow.setContent(contentString);
                     infowindow.open(map, marker);
+                    var directionsService = new google.maps.DirectionsService;
+                    directionsDisplay.setMap(map);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay);
+                    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+                        directionsService.route({
+                          origin: { lat: @Model.Lat, lng: @Model.Long },
+                          destination: { lat: @item.Latitude, lng: @item.Longitude },
+                          travelMode: 'WALKING'
+                        }, function(response, status) {
+                          if (status === 'OK') {
+                            directionsDisplay.setDirections(response);
+                          } else {
+                            window.alert('Directions request failed due to ' + status);
+                          }
+                        });
+                    }
                 };
-            })(marker, contentString, infowindow));
+
+             })(marker, contentString, infowindow));
         }
      </text>
     }
