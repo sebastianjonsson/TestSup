@@ -50,8 +50,21 @@
     function initMap() {
         var place = { lat: @Model.Lat, lng: @Model.Long };
         var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 11, center: place, disableDefaultUI: true });
-
+            document.getElementById('map'), { zoom: 11, center: place });
+                    var contentStringBooking = 'Här ligger din bokning';
+                    var infowindowBooking = new google.maps.InfoWindow({
+                      content: contentStringBooking
+                    });
+                   var markerBooking = new google.maps.Marker({
+                    position: place,
+                       map: map,
+                    title: 'Här ligger din bokning.',
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+                   });
+                    markerBooking.addListener('click', function() {
+                      infowindowBooking.open(map, markerBooking);
+                    });
+                  
         var infowindow = new google.maps.InfoWindow();
 
         var sliderValue = document.getElementById("slider");
