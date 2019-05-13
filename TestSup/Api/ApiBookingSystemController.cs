@@ -60,9 +60,9 @@ namespace TestSup.Api
         }
         [HttpPost]
         [Route("api/addBookingSystem/")]
-        public IHttpActionResult AddBookingSystem(BookingSystem bookingSystem/*, HttpPostedFileBase upload*/)
+        public IHttpActionResult AddBookingSystem(BookingSystem bookingSystem)
         {
-            bookingSystemRepository.AddBookingSystem(bookingSystem/*, upload*/);
+            bookingSystemRepository.AddBookingSystem(bookingSystem);
             return Ok();
         }
 

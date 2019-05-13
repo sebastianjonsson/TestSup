@@ -78,24 +78,6 @@ namespace TestSup.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> CreateBooking(Bookings booking, int id)
-        //{
-        //    var system = db.DbBookingSystem.Single(x => x.Id == id);
-        //    booking.BookingSystem = system;
-        //    var url = "http://localhost:64034/api/addBooking";
-        //    using (var client = new HttpClient())
-        //    {
-        //        var content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
-        //        var result = await client.PostAsync(url, content);
-        //        if (result.IsSuccessStatusCode)
-        //        {
-        //            return RedirectToAction("BookingList");
-        //        }
-        //        return View(booking);
-        //    }
-        //}
         // GET: BookingSystems/Edit/5
         public async Task<ActionResult> EditBooking(int? id)
         {

@@ -24,24 +24,10 @@ namespace TestSup.Repository
             List<BookingSystem> bookingSystem = db.DbBookingSystem.ToList();
             return (bookingSystem);
         }
-        public void AddBookingSystem(BookingSystem bookingSystem/*, HttpPostedFileBase upload*/)
+        public void AddBookingSystem(BookingSystem bookingSystem)
         {
             db.DbBookingSystem.Add(bookingSystem);
             db.SaveChanges();
-
-            //var system = db.DbBookingSystem.Single(x => x.Id == bookingSystem.Id);
-            //if (upload != null && upload.ContentLength > 0)
-            //{
-            //    system.File = upload.FileName;
-
-            //    system.Content = upload.ContentType;
-
-            //    using (var reader = new BinaryReader(upload.InputStream))
-            //    {
-            //        system.Picture = reader.ReadBytes(upload.ContentLength);
-            //    }
-            //}
-            //db.SaveChanges();
         }
 
         public IEnumerable<BookingSystem> SearchBookingSystem(string searchString)
@@ -52,18 +38,20 @@ namespace TestSup.Repository
 
         public void EditBookingSystem(BookingSystem bookingSystem)
         {
-            bookingSystem.Address = bookingSystem.Address;
-            bookingSystem.Category = bookingSystem.Category;
-            bookingSystem.City = bookingSystem.City;
-            bookingSystem.Email = bookingSystem.Email;
-            bookingSystem.PhoneNumber = bookingSystem.PhoneNumber;
-            bookingSystem.Latitude = bookingSystem.Latitude;
-            bookingSystem.Longitude = bookingSystem.Longitude;
-            bookingSystem.SystemName = bookingSystem.SystemName;
-            bookingSystem.SystemDescription = bookingSystem.SystemDescription;
-            bookingSystem.Website = bookingSystem.Website;
+            var bookingSystemToChange = db.DbBookingSystem.FirstOrDefault(u => u.Id == bookingSystem.Id);
 
-            db.Entry(bookingSystem).State = EntityState.Modified;
+            bookingSystemToChange.Address = bookingSystem.Address;
+            bookingSystemToChange.Category = bookingSystem.Category;
+            bookingSystemToChange.City = bookingSystem.City;
+            bookingSystemToChange.Email = bookingSystem.Email;
+            bookingSystemToChange.PhoneNumber = bookingSystem.PhoneNumber;
+            bookingSystemToChange.Latitude = bookingSystem.Latitude;
+            bookingSystemToChange.Longitude = bookingSystem.Longitude;
+            bookingSystemToChange.SystemName = bookingSystem.SystemName;
+            bookingSystemToChange.SystemDescription = bookingSystem.SystemDescription;
+            bookingSystemToChange.Website = bookingSystem.Website;
+            
+            db.Entry(bookingSystemToChange).State = EntityState.Modified;
             db.SaveChanges();
         }
         public void DeleteBookingSystem(BookingSystem bookingSystemModel)
