@@ -102,16 +102,12 @@
 <div class="modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" id="modal-badboy">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"> Rekommenderade!</h5>
-            </div>
             <div class="modal-body">
                 <p>Din bokning är nu genomförd och om du är intresserad kommer här några tips:</p>
                 @{
                     ViewBag.Title = "CreateBooking";
                     var id = ViewBag.ID;
                 }
-                <h3>Rekommenderade:</h3>
                 @Html.Partial("../BookingSystems/RecommendedBookingSystem", new TestSup.Controllers.RecommendedBookingSystem(id))
             </div>
             <div class="modal-footer">
