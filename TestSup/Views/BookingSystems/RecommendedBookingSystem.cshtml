@@ -46,6 +46,13 @@
     }
 </select>
 
+<div id="map" style="width: 100%; height: 280px;"></div>
+
+<table id="recommendedBookingSystemTable" class="table" border='1'>
+    <tr>
+     </tr>
+</table>
+
 <script>
     function initMap() {
         var place = { lat: @Model.Lat, lng: @Model.Long };
@@ -64,8 +71,10 @@
                     markerBooking.addListener('click', function() {
                       infowindowBooking.open(map, markerBooking);
                     });
-                  
+
         var infowindow = new google.maps.InfoWindow();
+
+        $('#recommendedBookingSystemTable').empty();
 
         var sliderValue = document.getElementById("slider");
         var kmSlider = sliderValue.value * 1;
@@ -97,11 +106,11 @@
         var contentString = '<div>@Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div><div>Avstånd från din bokning: ' + distanceInKm.toFixed(2) + ' km</div>';
         var category = '@item.Category';
         if (distance < kmSlider && choosenCategory == "Alla") {
-            var marker = new google.maps.Marker({
+            $('#recommendedBookingSystemTable').append(contentString);
+             var marker = new google.maps.Marker({
                 map: map,
                 position: { lat: @item.Latitude, lng: @item.Longitude },
             });
-
             google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
                 return function () {
                     infowindow.setContent(contentString);
@@ -128,6 +137,7 @@
         }
         else if (distance < kmSlider && category == choosenCategory)
         {
+            $('#recommendedBookingSystemTable').append(contentString);
             var marker = new google.maps.Marker({
                 map: map,
                 position: { lat: @item.Latitude, lng: @item.Longitude },
@@ -157,11 +167,10 @@
 
              })(marker, contentString, infowindow));
         }
+        
      </text>
     }
     }
 </script>
 
-<body onload="initMap()">
-    <div id="map" style="width: 420px; height: 280px;"></div>
-</body>
+
