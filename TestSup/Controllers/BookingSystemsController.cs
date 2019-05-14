@@ -17,6 +17,7 @@ namespace TestSup.Controllers
 {
     public class BookingSystemsController : BaseController
     {
+        //Hämtar en lista över alla bokningssytem och skickar de till vyn.
         public async Task<ActionResult> BookingSystemList()
         {
             var url = "http://localhost:64034/api/getAllBookingSystem";
@@ -29,6 +30,7 @@ namespace TestSup.Controllers
             }
         }
 
+        //Hämtar en lista över rekommenderade bokningssytem som är inom specifika kategorier som skickas vidare till vyn.
         public ActionResult RecommendedBookingSystem(int id)
         {
             try
@@ -45,6 +47,7 @@ namespace TestSup.Controllers
 
         }
 
+        //Action för att söka efter bokningssystem.
         public async Task<ActionResult> SearchBookingSystem(string searchString)
         {
             if (!String.IsNullOrEmpty(searchString))
@@ -63,23 +66,47 @@ namespace TestSup.Controllers
                 return RedirectToAction("BookingSystemList");
             }
         }
-        public ActionResult SortByName()
+
+        //Action för att sortera bokningssystem efter namn.
+        public async Task<ActionResult> SortByName()
         {
-            var sortSystem = db.DbBookingSystem.OrderBy(x => x.SystemName).ToList();
-            return View("BookingSystemList", sortSystem);
-        }
-        public ActionResult SortByCity()
-        {
-            var sortSystem = db.DbBookingSystem.OrderBy(x => x.City).ToList();
-            return View("BookingSystemList", sortSystem);
-        }
-        public ActionResult SortByCategory()
-        {
-            var sortSystem = db.DbBookingSystem.OrderBy(x => x.Category).ToList();
-            return View("BookingSystemList", sortSystem);
+            var url = "http://localhost:64034/api/sortBookingSystemByName";
+            using (var client = new HttpClient())
+            {
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var sortBookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
+                return View("BookingSystemList", sortBookingSystem);
+            }
         }
 
-        // GET: BookingSystems/Details/5
+        //Action för att sortera bokningssystem efter stad.
+        public async Task<ActionResult> SortByCity()
+        {
+            var url = "http://localhost:64034/api/sortBookingSystemByCity";
+            using (var client = new HttpClient())
+            {
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var sortBookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
+                return View("BookingSystemList", sortBookingSystem);
+            }
+        }
+
+        //Action för att sortera bokningssystem efter kategori.
+        public async Task<ActionResult> SortByCategory()
+        {
+            var url = "http://localhost:64034/api/sortBookingSystemByCategory";
+            using (var client = new HttpClient())
+            {
+                var task = await client.GetAsync(url);
+                var jsonString = await task.Content.ReadAsStringAsync();
+                var sortBookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
+                return View("BookingSystemList", sortBookingSystem);
+            }
+        }
+
+        //Hämtar ett bokningssystem och visar bokningssystemet i vyn.
         public async Task<ActionResult> DetailsBookingSystem(int? id)
         {
 
@@ -93,6 +120,8 @@ namespace TestSup.Controllers
                 return View(bookingSystem);
             }
         }
+
+        //Action för att visa bokningsystemets bild.
         public ActionResult Image(int id)
         {
             try
@@ -106,12 +135,13 @@ namespace TestSup.Controllers
             }
         }
         
-        // GET: BookingSystems/Create
+        //Returnerar vyn för att skapa ett bokningssystem.
         public ActionResult CreateBookingSystem()
         {
             return View();
         }
 
+        //Action för att skapa bokningssystem.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateBookingSystem(BookingSystem bookingSystem, HttpPostedFileBase upload)
@@ -140,6 +170,7 @@ namespace TestSup.Controllers
             }
         }
 
+        //Hämtar ett bokningssystem som ska ändras och tar med bokningssystemets attribut till vyn.
         public async Task<ActionResult> EditBookingSystem(int? id)
         {
             var url = "http://localhost:64034/api/getBookingSystem/" + id;
@@ -152,6 +183,7 @@ namespace TestSup.Controllers
             }
         }
 
+        //Action för att ändra ett bokningssystem.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditBookingSystem(BookingSystem bookingSystem)
@@ -171,6 +203,7 @@ namespace TestSup.Controllers
             }
         }
 
+        //Hämtar bokningssystemet som ska tas bort.
         public async Task<ActionResult> DeleteBookingSystem(int? id)
         {
             var url = "http://localhost:64034/api/getBookingSystem/" + id;
@@ -183,6 +216,7 @@ namespace TestSup.Controllers
             }
         }
 
+        //Action för att ta bort bokningssystem.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteBookingSystem (BookingSystem bookingSystem)
@@ -199,16 +233,10 @@ namespace TestSup.Controllers
                 return View();
             }
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
+
+    //Class för rekommenderade bokningssystem.
     public class RecommendedBookingSystem
     {
         public string Category { get; set; }
