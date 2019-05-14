@@ -13,8 +13,10 @@ namespace TestSup.Api
 {
     public class ApiBookingController : ApiController
     {
+        //Skapar en instans av vårt bookingRepository.
         BookingRepository bookingRepository = new BookingRepository();
-        // GET: api/ApiBooking
+        
+        //Hämtar alla bokningssystem.
         [HttpGet]
         [Route("api/getAllBookings")]
         public IHttpActionResult GetAllBookings()
@@ -27,6 +29,8 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        //Hämtar de bokningarna som har samma starttid, datum och bokningssystemsID som det man försöker boka.
+        //Detta för att se om tiden är ledig eller inte. 
         [HttpGet]
         [Route("api/getAllCreateBookings")]
         public IHttpActionResult GetAllCreateBookings(string startTime, int id, DateTime date)
@@ -39,6 +43,8 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        //Hämtar de bokningar som har samma datum och bokningssystemsID som det man försöker boka.
+        //Detta för att se vilka tider den dagen har lediga.
         [HttpGet]
         [Route("api/getAllTimesDate")]
         public IHttpActionResult GetAllTimesDate(DateTime date, int id)
@@ -51,7 +57,8 @@ namespace TestSup.Api
             return Ok(system);
         }
 
-        // GET: api/ApiBooking/5
+        //Hämtar från repository med id.
+        //Skickar bokningen till EditBooking och DeleteBooking i controllern.
         [HttpGet]
         [Route("api/getBooking/{id}")]
         public IHttpActionResult GetBooking(int id)
@@ -64,6 +71,7 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        //Hämtar från repository och skickar bokningarna till controllern.
         [HttpGet]
         [Route("api/sortBookingBySystemName")]
         public IHttpActionResult SortBookingBySystemName()
@@ -76,6 +84,7 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        //Hämtar från repository och skickar bokningarna till controllern.
         [HttpGet]
         [Route("api/sortBookingByName")]
         public IHttpActionResult SortBookingByName()
@@ -88,6 +97,7 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        //Hämtar från repository och skickar bokningarna till controllern.
         [HttpGet]
         [Route("api/searchBooking/{searchString}")]
         public IHttpActionResult SearchBooking(string searchString)
@@ -100,6 +110,9 @@ namespace TestSup.Api
             return Ok(system);
         }
 
+        //Skickar bokningen man vill lägga till till repository.
+        //Varför vi gjorde denna genom ajax från vyn och direkt till APIcontrollern är 
+        //för att vi inte vill returnera ny vy direkt när man skapar en bokning.
         [HttpPost]
         [Route("api/addBooking/")]
         public IHttpActionResult AddBooking(BookingViewModel booking)
@@ -108,6 +121,7 @@ namespace TestSup.Api
             return Ok();
         }
 
+        //Skickar bokningen man vill ändra till repository.
         [HttpPost]
         [Route("api/editBooking/")]
         public IHttpActionResult EditBooking(Bookings booking)
@@ -116,6 +130,7 @@ namespace TestSup.Api
             return Ok();
         }
 
+        //Skickar bokningen man vill ta bort till repository.
         [HttpPost]
         [Route("api/deleteBooking/")]
         public IHttpActionResult DeleteBooking(Bookings booking)
@@ -123,16 +138,5 @@ namespace TestSup.Api
             bookingRepository.DeleteBooking(booking);
             return Ok();
         }
-
-        // POST: api/ApiBooking
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/ApiBooking/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-        
     }
 }
