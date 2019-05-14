@@ -29,24 +29,7 @@ namespace TestSup.Controllers
                 return View(bookingSystem);
             }
         }
-
-        //Hämtar en lista över rekommenderade bokningssytem som är inom specifika kategorier som skickas vidare till vyn.
-        public ActionResult RecommendedBookingSystem(int id)
-        {
-            try
-            {
-                var yourBookingSystem = db.DbBookingSystem.Single(x => x.Id == id);
-                var bookingSystem = db.DbBookingSystem.Where(i => i.Category != yourBookingSystem.Category && i.Id != id).ToList();
-                return View(new RecommendedBookingSystem { BookingSystem = bookingSystem });
-            }
-            catch
-            {
-                RedirectToAction("Index", "Home");
-            }
-            return View();
-
-        }
-
+        
         //Action för att söka efter bokningssystem.
         public async Task<ActionResult> SearchBookingSystem(string searchString)
         {
@@ -234,30 +217,5 @@ namespace TestSup.Controllers
             }
         }
         
-    }
-
-    //Class för rekommenderade bokningssystem.
-    public class RecommendedBookingSystem
-    {
-        public string Category { get; set; }
-        public string Lat { get; set; }
-        public string Long { get; set; }
-        public ICollection<BookingSystem> BookingSystem { get; set; }
-        public RecommendedBookingSystem()
-        {
-
-        }
-        public RecommendedBookingSystem(int id)
-        {
-            using (var db = new DatabaseContext())
-                {
-                var yourBookingSystem = db.DbBookingSystem.Single(x => x.Id == id);
-                this.BookingSystem = db.DbBookingSystem.Where(i => i.Category != yourBookingSystem.Category && i.Id != id).ToList();
-                    this.Category = yourBookingSystem.Category;
-                    this.Lat = yourBookingSystem.Latitude;
-                    this.Long = yourBookingSystem.Longitude;
-                }
-            
-         }
     }
 }
