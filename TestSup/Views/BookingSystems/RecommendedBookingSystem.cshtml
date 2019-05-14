@@ -10,8 +10,9 @@
     <input type="range" min="250" max="5000" value="2500" onchange="initMap()" id="slider" />
 </div>
 
+<p style="display:inline;">Sortera efter kategori: </p>
 <select onclick="initMap()" id="cbCategory">
-    <option value="Alla" selected>Alla</option>
+    <option value="Alla" selected>Alla förutom @Model.Category</option>
     @if (Model.Category == "Verkstad")
     {
         <option value="Verkstad" style="display:none;">Verkstad</option>
@@ -46,12 +47,14 @@
     }
 </select>
 
-<div id="map" style="width: 100%; height: 280px;"></div>
+<div id="map" style="width: 100%; height: 380px;"></div>
+<div style="height:280px;overflow:auto;">
+    <table id="recommendedBookingSystemTable" class="table" border="1">
+        <tr>
+        </tr>
+    </table>
+</div>
 
-<table id="recommendedBookingSystemTable" class="table" border='1'>
-    <tr>
-     </tr>
-</table>
 
 <script>
     function initMap() {
@@ -103,10 +106,10 @@
         var recommendedBookingSystems = new google.maps.LatLng(@item.Latitude, @item.Longitude);
         var distance = google.maps.geometry.spherical.computeDistanceBetween(activeBookingSystem, recommendedBookingSystems);
         var distanceInKm = distance / 1000;
-        var contentString = '<div>@Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div><div>Avstånd från din bokning: ' + distanceInKm.toFixed(2) + ' km</div>';
+        var contentString = '<div>@Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div><div>Fågelväg: ' + distanceInKm.toFixed(2) + ' km</div>';
         var category = '@item.Category';
         if (distance < kmSlider && choosenCategory == "Alla") {
-            $('#recommendedBookingSystemTable').append(contentString);
+            $('#recommendedBookingSystemTable').append(contentString + "<br />");
              var marker = new google.maps.Marker({
                 map: map,
                 position: { lat: @item.Latitude, lng: @item.Longitude },
@@ -122,11 +125,11 @@
                           origin: { lat: @Model.Lat, lng: @Model.Long },
                           destination: { lat: @item.Latitude, lng: @item.Longitude },
                           travelMode: 'WALKING'
-                        }, function(response, status) {
+                        }, function (response, status) {
+                            var walkDistance = response.routes[0].legs[0].distance.value / 1000;
                             if (status === 'OK') {
-                                directionsDisplay.setDirections(response);
-                                var walkDistance = response.routes[0].legs[0].distance.value / 1000;
                                 infowindow.setContent(contentString + "Gångavstånd: " + walkDistance.toFixed(2) + " km");
+                                directionsDisplay.setDirections(response);
                           } else {
                             window.alert('Directions request failed due to ' + status);
                           }
@@ -138,7 +141,7 @@
         }
         else if (distance < kmSlider && category == choosenCategory)
         {
-            $('#recommendedBookingSystemTable').append(contentString);
+            $('#recommendedBookingSystemTable').append(contentString + "<br />");
             var marker = new google.maps.Marker({
                 map: map,
                 position: { lat: @item.Latitude, lng: @item.Longitude },
@@ -156,9 +159,11 @@
                           origin: { lat: @Model.Lat, lng: @Model.Long },
                           destination: { lat: @item.Latitude, lng: @item.Longitude },
                           travelMode: 'WALKING'
-                        }, function(response, status) {
-                          if (status === 'OK') {
-                            directionsDisplay.setDirections(response);
+                        }, function (response, status) {
+                            var walkDistance = response.routes[0].legs[0].distance.value / 1000;
+                            if (status === 'OK') {
+                                infowindow.setContent(contentString + "Gångavstånd: " + walkDistance.toFixed(2) + " km");
+                                directionsDisplay.setDirections(response);
                           } else {
                             window.alert('Directions request failed due to ' + status);
                           }
