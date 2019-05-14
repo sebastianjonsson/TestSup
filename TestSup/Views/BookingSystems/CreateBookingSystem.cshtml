@@ -107,11 +107,13 @@
 }
 
 <script>
+    //Skickar koordinterna till de gömda textfälten "latitude" och "longitude".
     function showResult(result) {
         document.getElementById('latitude').value = result.geometry.location.lat();
         document.getElementById('longitude').value = result.geometry.location.lng();
     }
 
+    //Function för att räkna ut koordinaterna med hjälp av vilken stad och adress användaren skriver i.
     function getLatitudeLongitude(callback, address, city) {
         geocoder = new google.maps.Geocoder();
         if (geocoder) {
@@ -125,7 +127,7 @@
         }
     }
     var out = document.getElementById('city');
-
+    //När användaren lämnar "stad"-fältet så körs functions ovanför och fälten "latitude" och "longitude" får sina värden.
     out.addEventListener("focusout", function () {
         var address = document.getElementById('address').value + document.getElementById('city').value;
         getLatitudeLongitude(showResult, address)

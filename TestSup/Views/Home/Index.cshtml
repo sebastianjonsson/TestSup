@@ -38,6 +38,7 @@
 <div id="map" style="width: 600px; height: 480px;"></div>
 
 <script>
+    //Function som hämtar vilken kategori man valt i en dropdownlist. Alla bokningssystem inom kategorin visas i listan och på kartan.
     function CategoryChange() {
         var category = $("#changeCategory option:selected").val();
         if (window.location.href.indexOf("Home") > 0) {
@@ -49,13 +50,16 @@
 </script>
 
 <script>
+    //Function som visar kartan i vyn. 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 59.609901, lng: 16.544809 },
             zoom: 8
         });
 
+        //Inforuta som visar information om bokningssystem när man klickar på en markör.
         var infowindow = new google.maps.InfoWindow();
+        //Inforuta som visar var användaren befinner sig någonstans eller visar error om användaren inte tillåter att sidan ser var användaren befinner sig.
         var infoWindowGeo = new google.maps.InfoWindow;
 
         if (navigator.geolocation) {
@@ -74,9 +78,9 @@
                 handleLocationError(true, infoWindowGeo, map.getCenter());
             });
         } else {
-            // Browser doesn't support Geolocation
             handleLocationError(false, infoWindowGeo, map.getCenter());
         }
+
         function handleLocationError(browserHasGeolocation, infoWindowGeo, pos) {
             infoWindowGeo.setPosition(pos);
             infoWindowGeo.setContent(browserHasGeolocation ?
@@ -84,6 +88,7 @@
                 'Fel: Din webbläsare stödjer inte geolocation.');
             infoWindowGeo.open(map);
         }
+        //För varje bokningssystem skapas en markör och en sträng med info om bokningssystemet. 
         @foreach(var item in Model) {
      <text>
         var contentString = '<div>@Html.ActionLink(item.SystemName, "DetailsBookingSystem", "BookingSystems", new { id = item.Id }, null)</div><div>@item.Address</div>';
@@ -92,7 +97,7 @@
             map: map,
             position: { lat: @item.Latitude, lng: @item.Longitude },
         });
-
+        //Strängen och inforutan visas när man klickar på en markör.
         google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
             return function () {
                 infowindow.setContent(contentString);

@@ -76,6 +76,7 @@
         </div>
     </div>
 
+    @*Options för tider man kan boka.*@
     <div class="form-group" style="display: none;" id="timePicker">
         @Html.Label("Välj tid", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -101,7 +102,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" id="hidden" value="Spara de nya ändringarna" class="btn btn-info" style="display: none;"/>
+            <input type="submit" id="hidden" value="Spara de nya ändringarna" class="btn btn-info" style="display: none;" />
         </div>
     </div>
 
@@ -114,6 +115,7 @@
 }
 
 <script>
+    //Funktion för att dela på starttid och sluttid från optionlistan och sätter det värdet på de gömda fälten för slut- och starttid.
     function getTime() {
         var timeText = document.getElementById("cbTime").value;
         var getStartTime = timeText.slice(0, 5);
@@ -124,11 +126,12 @@
 </script>
 
 <script>
+    //Visar "spara"-knappen när man klickar på "uppdatera"-knappen
     function update() {
         var hiddenButton = document.getElementById("hidden");
         hiddenButton.style.display = "block";
     }
-
+    //Gömmer "spara"-knappen om man klickar på nåt fält att ändra.
     function hide() {
         var hiddenButton = document.getElementById("hidden");
         hiddenButton.style.display = "none";
@@ -136,11 +139,12 @@
 </script>
 
 <script>
+    //Gömmer timepicker om mn byter dag.
     function hideTimePicker() {
         var hiddenButton = document.getElementById("timePicker");
         hiddenButton.style.display = "none";
     }
-
+    //Visar timepicker när man vill se tider för den dagen.
     function showTimePicker() {
         var hiddenButton = document.getElementById("timePicker");
         hiddenButton.style.display = "block";
@@ -149,6 +153,8 @@
 </script>
 
 <script>
+    //Funktion för att visa de tider i timepickern som inte redan varit den dagen man väljer och som inte redan är 
+    //bokade för den dagen.
     function checkDate() {
 
         var resetCbTime = document.getElementById("cbTime");
@@ -181,12 +187,14 @@
         var id = @Model.BookingSystem.Id;
         var todayTime = '@DateTime.Now.ToShortTimeString()';
         var todayDate = '@DateTime.Now.ToShortDateString()';
+        //Ajax som hämtar de bokningar som redan är bokade den dagen hos bokningssystemet.
         $.ajax({
             url: "http://localhost:64034/api/getAllTimesDate?date=" + date + "&id=" + id,
             type: 'GET',
             dataType: 'json',
             success: function (data) {
                 var jsonData = JSON.stringify(data);
+                //Om det inte finns några bokade den dagen så visas alla tider som inte redan har varit den dagen.
                 if (jsonData == "[]") {
                     showTime8.style.display = "block";
                     showTime9.style.display = "block";
@@ -220,9 +228,12 @@
                     if (getStartTime15 < todayTime  && todayDate == date) {
                         showTime15.style.display = "none";
                     }
+                    //Visar timepickern med de tiderna som är lediga.
                     showTimePicker();
+                    //Visar "Välj tid" om man byter dag.
                     resetCbTime.selectedIndex = 0;
                 }
+                //Om det finns bokningar den dagen så visas bara de tider som inte är bokade och som inte redan varit den dagen.
                 else {
                     showTime8.style.display = "block";
                     showTime9.style.display = "block";
@@ -258,7 +269,9 @@
                             if (jsonTime == getStartTime15 || getStartTime15 < todayTime && todayDate == date) {
                                 showTime15.style.display = "none";
                             }
+                            //Visar timepickern med de tiderna som är lediga.
                             showTimePicker();
+                            //Visar "Välj tid" om man byter dag.
                             resetCbTime.selectedIndex = 0;
                     });
                 }
@@ -268,6 +281,8 @@
 </script>
 
 <script>
+    //Denna funktion hämtar alla bokningar som är gjorde hos bokningssystemet samma tid och samma dag som man väljer.
+    //Om man t.ex. har två fönster öppna samtidigt och försöker boka samma tid så körs elsen i denna metod.
     function getBookings() {
         var startTime = $('#startTime').val();
         var id = @Model.BookingSystem.Id;
