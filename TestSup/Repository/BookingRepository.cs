@@ -12,6 +12,7 @@ namespace TestSup.Repository
 {
     public class BookingRepository : BaseController
     {
+        //Hämtar den bokningen 
         public Bookings GetBooking(int id)
         {
             Bookings booking = db.DbBookings.Find(id);

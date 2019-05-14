@@ -17,6 +17,7 @@ namespace TestSup.Controllers
 {
     public class BookingController : BaseController
     {
+        //Hämtar lista över alla bokningar som är gjorde och skickar det till vyn.
          public async Task<ActionResult> BookingList()
         {
             var url = "http://localhost:64034/api/getAllBookings";
@@ -29,6 +30,9 @@ namespace TestSup.Controllers
             }
         }
 
+        //hämtar input från sökfältet och hämtar de bokningar som matchar sökordet.
+        //Hittar den inget som matchar returneras ingenting.
+        //Är input tomt så returneras hela listan med alla bokningar.
         public async Task<ActionResult> SearchBooking(string searchString)
         {
             if (!String.IsNullOrEmpty(searchString))
@@ -47,7 +51,8 @@ namespace TestSup.Controllers
                 return RedirectToAction("BookingList");
             }
         }
-
+        
+        //Sorterar och hämtar alla bokningar i bokstavsordning efter namnet på systemet.
         public async Task<ActionResult> SortBySystemName()
         {
             var url = "http://localhost:64034/api/sortBookingBySystemName";
@@ -60,6 +65,7 @@ namespace TestSup.Controllers
             }
         }
 
+        //Sorterar och hämtar alla bokningar i bokstavsordning efter Namnet på användaren.
         public async Task<ActionResult> SortByName()
         {
             var url = "http://localhost:64034/api/sortBookingByName";
@@ -72,13 +78,14 @@ namespace TestSup.Controllers
             }
         }
 
+        //Returnerar vyn för att skapa en bokning samt har med ID på bokningssystemet i en viewBag.
         public ActionResult CreateBooking(int id)
         {
             ViewBag.id = id;
             return View();
         }
 
-        // GET: BookingSystems/Edit/5
+        //Hämtar den bokningen som man vill ändra och returnerar den till vyn.
         public async Task<ActionResult> EditBooking(int? id)
         {
             var url = "http://localhost:64034/api/getBooking/" + id;
@@ -91,6 +98,7 @@ namespace TestSup.Controllers
             }
         }
 
+        //Skickar tillbaka den bokningen som vi hämtade i metoden ovanför med de eventuellt ändrade fälten. 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditBooking(Bookings booking)
@@ -109,6 +117,7 @@ namespace TestSup.Controllers
                 }
             }
         }
+        //Hämtar den bokningen som man vill ta bort och returnerar den till vyn.
          public async Task<ActionResult> DeleteBooking(int? id)
         {
             var url = "http://localhost:64034/api/getBooking/" + id;
@@ -121,6 +130,7 @@ namespace TestSup.Controllers
             }
         }
 
+        ////Skickar tillbaka den bokningen som vi hämtade i metoden ovanför för att ta bort den. 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteBooking(Bookings booking)
@@ -137,15 +147,5 @@ namespace TestSup.Controllers
                 return View();
             }
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
     }
 }
