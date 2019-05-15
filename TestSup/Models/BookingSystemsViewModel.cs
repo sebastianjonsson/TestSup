@@ -12,7 +12,7 @@ namespace TestSup.Models
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Verksamhet")]
+        [Display(Name = "Bokningssystem")]
         public string SystemName { get; set; }
         [Required]
         [Display(Name = "Beskrivning")]
@@ -38,7 +38,7 @@ namespace TestSup.Models
         [Required]
         [Display(Name = "Kategori")]
         public Category Category { get; set; }
-        [Display(Name = "Verksamhetslogga")]
+        [Display(Name = "Logga")]
         public byte[] Picture { get; set; }
         public string File { get; set; }
         public string Content { get; set; }

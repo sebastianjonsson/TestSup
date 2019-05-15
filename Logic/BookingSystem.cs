@@ -11,7 +11,7 @@ namespace Logic
     public class BookingSystem
     {
         public int Id { get; set; }
-        [Display(Name = "Verksamhet")]
+        [Display(Name = "Bokningssystem")]
         public string SystemName { get; set; }
         [Display(Name = "Beskrivning")]
         public string SystemDescription { get; set; }
@@ -30,7 +30,7 @@ namespace Logic
         [Required]
         [Display(Name = "Kategori")]
         public string Category { get; set; }
-        [Display(Name = "Verksamhetslogga")]
+        [Display(Name = "Logga")]
         public byte[] Picture { get; set; }
         public string File { get; set; }
         public string Content { get; set; }
