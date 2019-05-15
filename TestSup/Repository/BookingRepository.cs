@@ -21,7 +21,7 @@ namespace TestSup.Repository
 
         public List<Bookings> GetAllBookings()
         {
-            List<Bookings> bookings = db.DbBookings.ToList();
+            List<Bookings> bookings = db.DbBookings.OrderBy(d => d.Date).ThenBy(s => s.StartTime).ToList();
             return (bookings);
         }
 
