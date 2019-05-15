@@ -50,7 +50,7 @@
                 @Html.DisplayFor(modelItem => item.City)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category)
+                @Html.DisplayFor(modelItem => item.CreateBookingSystemCategory)
             </td>
             <td>
                 <button type="button" onclick="location.href= '@Url.Action("EditBookingSystem", "BookingSystems", new { id = item.Id })'" class="btn btn-primary btn-sm"> Ändra bokningssystem </button> |

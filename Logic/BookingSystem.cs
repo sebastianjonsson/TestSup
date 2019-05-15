@@ -29,7 +29,7 @@ namespace Logic
         public string City { get; set; }
         [Required]
         [Display(Name = "Kategori")]
-        public string Category { get; set; }
+        public string CreateBookingSystemCategory { get; set; }
         [Display(Name = "Logga")]
         public byte[] Picture { get; set; }
         public string File { get; set; }

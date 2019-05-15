@@ -37,7 +37,9 @@ namespace TestSup.Models
         public string City { get; set; }
         [Required]
         [Display(Name = "Kategori")]
-        public Category Category { get; set; }
+        public CreateBookingSystemCategory CreateBookingSystemCategory { get; set; }
+
+        public HomeCategory HomeCategory { get; set; }
         [Display(Name = "Logga")]
         public byte[] Picture { get; set; }
         public string File { get; set; }
@@ -47,8 +49,17 @@ namespace TestSup.Models
     }
 
 }
-public enum Category
+public enum CreateBookingSystemCategory
 {
+    Verkstad,
+    Behandling,
+    Restaurang,
+    Idrott
+}
+
+public enum HomeCategory
+{
+    Alla,
     Verkstad,
     Behandling,
     Restaurang,
