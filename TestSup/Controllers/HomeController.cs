@@ -13,7 +13,7 @@ namespace TestSup.Controllers
         {
             try
             {
-                if (category == null || category == "")
+                if (category == null || category == "" || category == "Alla")
                 {
                     var bookingSystems = db.DbBookingSystem.ToList();
                     Random random = new Random();
@@ -22,7 +22,7 @@ namespace TestSup.Controllers
                 }
                 else
                 {
-                    var bookingSystems = db.DbBookingSystem.Where(x => x.Category == category).ToList();
+                    var bookingSystems = db.DbBookingSystem.Where(x => x.CreateBookingSystemCategory == category).ToList();
                     Random random = new Random();
                     bookingSystems = bookingSystems.OrderBy(emp => random.Next()).ToList();
                     return View(bookingSystems);

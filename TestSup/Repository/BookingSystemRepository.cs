@@ -47,7 +47,7 @@ namespace TestSup.Repository
             var bookingSystemToChange = db.DbBookingSystem.FirstOrDefault(u => u.Id == bookingSystem.Id);
 
             bookingSystemToChange.Address = bookingSystem.Address;
-            bookingSystemToChange.Category = bookingSystem.Category;
+            bookingSystemToChange.CreateBookingSystemCategory = bookingSystem.CreateBookingSystemCategory;
             bookingSystemToChange.City = bookingSystem.City;
             bookingSystemToChange.Email = bookingSystem.Email;
             bookingSystemToChange.PhoneNumber = bookingSystem.PhoneNumber;
@@ -87,7 +87,7 @@ namespace TestSup.Repository
         //Sorterar bokningsystemen i bokstavsordning utifrån kategori.
         public IEnumerable<BookingSystem> SortBookingSystemByCategory()
         {
-            var sort = db.DbBookingSystem.OrderBy(x => x.Category).ToList();
+            var sort = db.DbBookingSystem.OrderBy(x => x.CreateBookingSystemCategory).ToList();
             return (sort);
         }
     }

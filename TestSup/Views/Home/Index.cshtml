@@ -11,11 +11,11 @@
     <p class="lead">Det här är ett projekt som görs av Tim och Sebastian i samarbete med:</p>
     <p><a href="https://boka.se" class="btn btn-primary btn-lg">boka.se &raquo;</a></p>
 </div>
-<p>Sortera på kategori:</p>
-@Html.DropDownList("changeCategory", new SelectList(Enum.GetValues(typeof(Category))), "Visa alla", new { @id = "changeCategory", @onchange = "CategoryChange()", @class = "form-control" })
 <div id="kolumn1">
+    @Html.DropDownList("changeCategory", new SelectList(Enum.GetValues(typeof(HomeCategory))), "Välj kategori att sortera på", new { @id = "changeCategory", @onchange = "CategoryChange()", @class = "form-control" })
+
     <div style="height: 480px; overflow: auto;">
-        <table class="table">
+        <table class="table" border="1">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.SystemName)
@@ -35,7 +35,7 @@
     </div>
 </div>
 
-<div id="map" style="width: 600px; height: 480px;"></div>
+<div id="map" style="width: 740px; height: 480px;"></div>
 
 <script>
     //Function som hämtar vilken kategori man valt i en dropdownlist. Alla bokningssystem inom kategorin visas i listan och på kartan.
