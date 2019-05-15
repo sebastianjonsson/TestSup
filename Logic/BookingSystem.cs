@@ -11,20 +11,29 @@ namespace Logic
     public class BookingSystem
     {
         public int Id { get; set; }
+        [Required]
         [Display(Name = "Bokningssystem")]
         public string SystemName { get; set; }
+        [Required]
         [Display(Name = "Beskrivning")]
         public string SystemDescription { get; set; }
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Required]
         [Display(Name = "Telefonnummer")]
         public string PhoneNumber { get; set; }
+        [Required]
         [Display(Name = "Hemsida")]
         public string Website { get; set; }
+        [Required]
         [Display(Name = "Adress")]
         public string Address { get; set; }
+        [Required]
         public string Latitude { get; set; }
+        [Required]
         public string Longitude { get; set; }
+        [Required]
         [Display(Name = "Stad")]
         public string City { get; set; }
         [Required]
