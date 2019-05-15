@@ -27,7 +27,7 @@ namespace TestSup.Models
         [Required]
         [Display(Name = "Hemsida")]
         public string Website { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Välj en giltig plats.")]
         [Display(Name = "Adress")]
         public string Address { get; set; }
         public string Latitude { get; set; }
