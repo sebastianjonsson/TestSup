@@ -33,18 +33,25 @@ namespace TestSup.Controllers
         //Action för att söka efter bokningssystem.
         public async Task<ActionResult> SearchBookingSystem(string searchString)
         {
-            if (!String.IsNullOrEmpty(searchString))
+            try
             {
-                var url = "http://localhost:64034/api/searchBookingSystem/" + searchString;
-                using (var client = new HttpClient())
+                if (!String.IsNullOrEmpty(searchString))
                 {
-                    var task = await client.GetAsync(url);
-                    var jsonString = await task.Content.ReadAsStringAsync();
-                    var bookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
-                    return View("BookingSystemList", bookingSystem);
+                    var url = "http://localhost:64034/api/searchBookingSystem/" + searchString;
+                    using (var client = new HttpClient())
+                    {
+                        var task = await client.GetAsync(url);
+                        var jsonString = await task.Content.ReadAsStringAsync();
+                        var bookingSystem = JsonConvert.DeserializeObject<List<BookingSystem>>(jsonString);
+                        return View("BookingSystemList", bookingSystem);
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("BookingSystemList");
                 }
             }
-            else
+            catch
             {
                 return RedirectToAction("BookingSystemList");
             }

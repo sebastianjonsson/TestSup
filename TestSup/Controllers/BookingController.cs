@@ -35,18 +35,25 @@ namespace TestSup.Controllers
         //Är input tomt så returneras hela listan med alla bokningar.
         public async Task<ActionResult> SearchBooking(string searchString)
         {
-            if (!String.IsNullOrEmpty(searchString))
+            try
             {
-                var url = "http://localhost:64034/api/searchBooking/" + searchString;
-                using (var client = new HttpClient())
+                if (!String.IsNullOrEmpty(searchString))
                 {
-                    var task = await client.GetAsync(url);
-                    var jsonString = await task.Content.ReadAsStringAsync();
-                    var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
-                    return View("BookingList", booking);
+                    var url = "http://localhost:64034/api/searchBooking/" + searchString;
+                    using (var client = new HttpClient())
+                    {
+                        var task = await client.GetAsync(url);
+                        var jsonString = await task.Content.ReadAsStringAsync();
+                        var booking = JsonConvert.DeserializeObject<List<Bookings>>(jsonString);
+                        return View("BookingList", booking);
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("BookingList");
                 }
             }
-            else
+            catch
             {
                 return RedirectToAction("BookingList");
             }
