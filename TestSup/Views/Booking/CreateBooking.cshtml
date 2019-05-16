@@ -312,6 +312,12 @@
         var startTime = $('#startTime').val().length;
         var endTime = $('#endTime').val().length;
 
+        //Validering
+        if (userName < 4 || userName > 30) {
+            alert("Namnet måste vara minst 4 tecken och max 30 tecken.");
+            return;
+        }
+
         var emailValidate = $('#email').val();
         var emailRegex = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
         if (!emailRegex.test(emailValidate)) {

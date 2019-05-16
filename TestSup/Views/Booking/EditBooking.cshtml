@@ -19,7 +19,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2", @onclick = "hide()" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @required = "required", @onclick = "hide()" } })
+            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @required = "required", @onclick = "hide()", @id = "userName" } })
             @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required", @onclick = "hide()" } })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "required", @onclick = "hide()", @id = "email" } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -35,7 +35,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.UserMobile, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.UserMobile, new { htmlAttributes = new { @class = "form-control", @required = "required", @onclick = "hide()" } })
+            @Html.EditorFor(model => model.UserMobile, new { htmlAttributes = new { @class = "form-control", @required = "required", @onclick = "hide()", @id = "userMobile" } })
             @Html.ValidationMessageFor(model => model.UserMobile, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -128,9 +128,32 @@
 <script>
     //Visar "spara"-knappen när man klickar på "uppdatera"-knappen
     function update() {
+        //Validering
+        var userName = $('#userName').val().length;
+        var userMobile = $('#userMobile').val().length;
+        var emailValidate = $('#email').val();
+        var emailRegex = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+
+        if (userName < 4 || userName > 30) {
+            alert("Namnet måste vara minst 4 tecken och max 30 tecken.");
+            return;
+        }
+
+        if (!emailRegex.test(emailValidate)) {
+            alert("Skriv en korrekt email.");
+            return;
+        }
+
+        if (userMobile != 10) {
+            alert("Telefonnumret måste vara 10 siffror.");
+            return;
+        }
+
+        //Visar knappen för att spara
         var hiddenButton = document.getElementById("hidden");
         hiddenButton.style.display = "block";
     }
+
     //Gömmer "spara"-knappen om man klickar på nåt fält att ändra.
     function hide() {
         var hiddenButton = document.getElementById("hidden");
