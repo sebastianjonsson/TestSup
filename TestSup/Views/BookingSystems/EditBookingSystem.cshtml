@@ -20,7 +20,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.SystemName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.SystemName, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+            @Html.EditorFor(model => model.SystemName, new { htmlAttributes = new { @class = "form-control", @onfocus = "hide()" } })
             @Html.ValidationMessageFor(model => model.SystemName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -28,7 +28,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.SystemDescription, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.SystemDescription, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+            @Html.EditorFor(model => model.SystemDescription, new { htmlAttributes = new { @class = "form-control", @onfocus = "hide()" } })
             @Html.ValidationMessageFor(model => model.SystemDescription, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -36,7 +36,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @onfocus = "hide()" } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -44,7 +44,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @onfocus = "hide()", @type = "number", @onkeydown = "return event.keyCode !== 69" } })
             @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -52,7 +52,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Website, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control", @onclick = "hide()" } })
+            @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control", @onfocus = "hide()" } })
             @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -60,7 +60,7 @@
     <div class="form-group">
         @Html.Label("Plats", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.Editor("Plats", new { htmlAttributes = new { @class = "form-control", @id = "auto-input", @required = "required", @onclick = "hide()" } })
+            @Html.Editor("Plats", new { htmlAttributes = new { @class = "form-control", @id = "auto-input", @required = "required", @onfocus = "hide()" } })
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -68,7 +68,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.CreateBookingSystemCategory, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.CreateBookingSystemCategory, new SelectList(Enum.GetValues(typeof(CreateBookingSystemCategory))), "Välj Kategori", new { @class = "form-control", @onclick = "hide()" })
+            @Html.DropDownListFor(model => model.CreateBookingSystemCategory, new SelectList(Enum.GetValues(typeof(CreateBookingSystemCategory))), "Välj Kategori", new { @class = "form-control", @onfocus = "hide()" })
             @Html.ValidationMessageFor(model => model.CreateBookingSystemCategory, "", new { @class = "text-danger" })
         </div>
     </div>

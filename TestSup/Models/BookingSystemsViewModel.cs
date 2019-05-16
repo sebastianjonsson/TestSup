@@ -12,7 +12,7 @@ namespace TestSup.Models
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(30, ErrorMessage = "Namnet måste vara minst 1 och max 30 tecken.", MinimumLength = 1)]
+        [StringLength(50, ErrorMessage = "Namnet måste vara minst 1 och max 50 tecken.", MinimumLength = 1)]
         [Display(Name = "Bokningssystem")]
         public string SystemName { get; set; }
         [Required]
