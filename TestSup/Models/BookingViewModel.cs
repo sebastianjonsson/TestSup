@@ -17,7 +17,7 @@ namespace TestSup.Models
         [Required]
         [Display(Name = "Telefonnummer")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "telefonnumret måste vara i siffror.")]
-        public int UserMobile { get; set; }
+        public string UserMobile { get; set; }
         [Required]
         [Display(Name = "Detaljer")]
         public string Subject { get; set; }
