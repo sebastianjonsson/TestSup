@@ -32,7 +32,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.UserMobile, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.UserMobile, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "userMobile" } })
+            @Html.EditorFor(model => model.UserMobile, new { htmlAttributes = new { @class = "form-control", @required = "required", @id = "userMobile", @onkeydown = "return event.keyCode !== 69" } })
             @Html.ValidationMessageFor(model => model.UserMobile, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -311,6 +311,18 @@
         var subject = $('#subject').val().length;
         var startTime = $('#startTime').val().length;
         var endTime = $('#endTime').val().length;
+
+        var emailValidate = $('#email').val();
+        var emailRegex = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        if (!emailRegex.test(emailValidate)) {
+            alert("Skriv en korrekt email.");
+            return;
+        } 
+
+        if (userMobile != 10) {
+            alert("Telefonnumret måste vara 10 siffror.");
+            return;
+        }
 
         if (userName > 0 && email > 0 && userMobile > 0 && subject > 0 && startTime > 0 && endTime > 0) {
 
