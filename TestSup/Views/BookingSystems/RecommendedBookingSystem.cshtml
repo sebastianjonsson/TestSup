@@ -107,7 +107,8 @@
             map: map
         });
 
-        //Skapar en variabel för vägbeskrivning.
+        //Skapar en variabel för vägbeskrivning där SupressMarker innebär att vi tar bort markör för start och slutmål eftersom vi
+        //skapar de markörerna senare. 
         var directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
 
         //Plats där man bokade.
