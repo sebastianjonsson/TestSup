@@ -6,7 +6,7 @@ using TestSup.Controllers;
 using Logic;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using TestSup.Models;
+using Logic.Models;
 
 namespace TestSup.Repository
 {

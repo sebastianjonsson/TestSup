@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using TestSup.Models;
+using Logic.Models;
 using TestSup.Repository;
 
 namespace TestSup.Api

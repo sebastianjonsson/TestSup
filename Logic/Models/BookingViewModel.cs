@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using Logic;
 
-namespace TestSup.Models
+namespace Logic.Models
 {
     public class BookingViewModel
     {

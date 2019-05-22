@@ -75,6 +75,8 @@
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="BookingSystem.cs" />
     <Compile Include="DatabaseInitializer.cs" />
+    <Compile Include="Models\BookingSystemsViewModel.cs" />
+    <Compile Include="Models\BookingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
