@@ -45,10 +45,6 @@ namespace Logic.Models
         public HomeCategory HomeCategory { get; set; }
         [Display(Name = "Logga")]
         public byte[] Picture { get; set; }
-        public string File { get; set; }
-        public string Content { get; set; }
-
-        public virtual ICollection<Bookings> Bookings { get; set; }
     }
 
 }
