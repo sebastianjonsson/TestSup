@@ -58,9 +58,9 @@ namespace TestSup.Api
         //Lägger till ett bokningssystem.
         [HttpPost]
         [Route("api/addBookingSystem/")]
-        public IHttpActionResult AddBookingSystem(BookingSystem bookingSystem)
+        public IHttpActionResult CreateBookingSystem(BookingSystem bookingSystem)
         {
-            bookingSystemRepository.AddBookingSystem(bookingSystem);
+            bookingSystemRepository.CreateBookingSystem(bookingSystem);
             return Ok();
         }
 

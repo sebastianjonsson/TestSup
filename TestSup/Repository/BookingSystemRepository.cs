@@ -28,7 +28,7 @@ namespace TestSup.Repository
         }
 
         //Lägger till ett bokningssystem.
-        public void AddBookingSystem(BookingSystem bookingSystem)
+        public void CreateBookingSystem(BookingSystem bookingSystem)
         {
             db.DbBookingSystem.Add(bookingSystem);
             db.SaveChanges();

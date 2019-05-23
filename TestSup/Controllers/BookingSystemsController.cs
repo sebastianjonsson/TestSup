@@ -117,7 +117,7 @@ namespace TestSup.Controllers
             try
             {
                 var image = db.DbBookingSystem.Single(x => x.Id == id);
-                return File(image.Picture, image.Content);
+                return File(image.Picture, image.PictureContent);
             }
             catch
             {
@@ -138,9 +138,9 @@ namespace TestSup.Controllers
         {
             if (upload != null && upload.ContentLength > 0)
             {
-                bookingSystem.File = upload.FileName;
+                bookingSystem.PictureFile = upload.FileName;
 
-                bookingSystem.Content = upload.ContentType;
+                bookingSystem.PictureContent = upload.ContentType;
 
                 using (var reader = new BinaryReader(upload.InputStream))
                 {

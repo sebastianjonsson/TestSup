@@ -32,8 +32,6 @@ namespace Logic
         [Required]
         [Display(Name = "Sluttid")]
         public string Endtime { get; set; }
-
-        //public int BookingSystemID { get; set; }
         public virtual BookingSystem BookingSystem { get; set; }
     }
 }

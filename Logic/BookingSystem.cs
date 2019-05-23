@@ -45,10 +45,8 @@ namespace Logic
         public string CreateBookingSystemCategory { get; set; }
         [Display(Name = "Logga")]
         public byte[] Picture { get; set; }
-        public string File { get; set; }
-        public string Content { get; set; }
-
-        public virtual ICollection<Bookings> Bookings { get; set; }
+        public string PictureFile { get; set; }
+        public string PictureContent { get; set; }
     }
 }
     
